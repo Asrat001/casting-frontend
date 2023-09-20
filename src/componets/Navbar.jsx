@@ -1,6 +1,7 @@
 import React from 'react'
 import logo from '../assets/logo.png'
 import {BsPersonPlusFill} from 'react-icons/bs'
+import { NavLink } from 'react-router-dom'
 
 
 function Navbar() {
@@ -9,12 +10,12 @@ function Navbar() {
     <img src={logo} className='w-28 h-28'/>
      <ul className=' flex justify-center items-center gap-x-4'>
        <li>
-        home
+        <NavLink to='/' className='text-white text-[18px]'>home</NavLink>
        </li>
        <li>
-        about
+        <NavLink to='/about' className='text-white text-[18px]'>about</NavLink>
        </li>
-     <li>register</li>
+        <NavLink to='/login' className='text-white text-[18px]'>login</NavLink>
      </ul>
       <div className='p-3 h-16 w-16 rounded-full border-[4px] border-green-400 flex justify-center items-center'>
 <BsPersonPlusFill className='w-7 h-7 text-white '/>
