@@ -10,7 +10,7 @@ export default {
         "hero-bg":"url('https://res.cloudinary.com/diogyja1g/image/upload/v1695058369/bg_m30gul.jpg')"
       }),
       dropShadow:{
-        'xl':'16px 16px 20px red '
+        'xl':' 17px 17px 10px white'
       }
 
       

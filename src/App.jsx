@@ -13,6 +13,7 @@ import RootLayout from "./componets/RootLayout";
 import About from "./componets/About";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
+import Detail from "./pages/Detail";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,7 +21,7 @@ const router = createBrowserRouter(
 <Route path="/" element={<RootLayout/>}>
  <Route index element={<Home/>}/>
  <Route path="about" element={<About/>}/>
- <Route path="/detail" element={<About/>}/>
+ <Route path="/detail" element={<Detail/>}/>
 </Route>
 <Route path="/login" element={<LoginPage/>}/>
 <Route path="/register" element={<Register/>}/>

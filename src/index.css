@@ -12,3 +12,6 @@
       user-select: none;
       
   }
+  .balance{
+    text-wrap: balance;
+  }
