@@ -11,7 +11,9 @@ const Hero = () => {
      <p className=' text-[20px]  text-white'> Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore optio, animi nam odit provident atque.</p>
      <div className=' flex items-center gap-x-3 mt-6'>
      <button className=' p-3 border-[3px] border-white rounded-xl bg-green-400'>
-            get started
+            how it works !
+
+
         </button>
   
             <Link to='/register' className='p-3 border-[3px]  border-green-400 rounded-xl bg-white'>
@@ -20,7 +22,10 @@ const Hero = () => {
         
      </div>
     </main>
-    <img src={hero} alt='hero' className=' w-[600px]'/>
+  <div>
+  <img src={hero} alt='hero' className=' w-[600px]'/>
+  <div className=' filter relative top-[-270px] right-[-370px]  drop-shadow-xl invert-[70%]  w-4 h-6  '/>
+  </div>
    
    
     </section>
