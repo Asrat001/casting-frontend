@@ -15,6 +15,8 @@ import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Detail from "./pages/Detail";
 import How from "./componets/How";
+import AdminDashboard from "./pages/Admin"
+import Usermanagment from "./pages/Usermanagment"
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,6 +30,8 @@ const router = createBrowserRouter(
 <Route path="/register" element={<Register/>}/>
 <Route path="/profile" element={<Profile/>}/>
 <Route path="/how" element={<How/>}/>
+<Route path="/admin" element={<AdminDashboard/>}/>
+<Route path="/usermanagment" element={<Usermanagment/>}/>
 </>
   )
 );
