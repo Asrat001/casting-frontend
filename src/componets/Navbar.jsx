@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom'
 function Navbar() {
   return (
   <nav className='flex justify-between items-center px-8 '>
-    <img src={logo} className='w-28 h-28'/>
+    <img src={logo} className='w-28 h-28 hidden'/>
      <ul className=' flex justify-center items-center gap-x-4'>
        <li>
         <NavLink to='/' className='text-white text-[18px]'>home</NavLink>

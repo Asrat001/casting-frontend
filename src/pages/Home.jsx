@@ -42,7 +42,7 @@ function Home() {
           </select>
         </div>
       </div>
-      <div className="mt-24">
+      <div className="my-24 sm:px-20">
       <CastCard/>
       </div>
       </main>
