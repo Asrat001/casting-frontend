@@ -4,7 +4,7 @@ import {BsFillTelephoneFill} from 'react-icons/bs'
 
 const Detail = () => {
   return (
-    <div className=' min-h-fit grid grid-cols-1 sm:grid-cols-2 gap-x-4 px-[20px] sm:px-[100px] mt-[60px]'>
+    <div className=' min-h-screen mb-8 grid grid-cols-1 sm:grid-cols-2 gap-x-4 px-[20px] sm:px-[100px] mt-[40px] sm:mt-[60px]'>
         
         
             <div className=' bg-[#0f1623] p-4 h-fit rounded-lg  '>
@@ -25,9 +25,9 @@ const Detail = () => {
                 <p className=' text-gray-400 font-semibold'><span className=' text-green-500 text-[20px]'>Language:</span>somali , oromuffa , English , eating</p>
                 <p className=' text-gray-400 font-semibold'><span className=' text-green-500 text-[20px]'>Nationality:</span>Ethiopian</p>
                 <p className=' text-gray-400 font-semibold'><span className=' text-green-500 text-[20px]'>Address:</span>addis abeba , 4killo </p>
-                <div className=' flex  gap-x-4 items-center mt-6'>
+                <div className=' flex  gap-x-4 items-center my-6 '>
              <button className=' text-gray-300 border-[3px]  border-gray-400 p-1.5'>book me</button> 
-             <a className='border-[3px] text-gray-400  border-green-400 p-1.5 flex items-center gap-x-2'><BsFillTelephoneFill/> call us</a>
+             <a className='border-[3px] text-gray-400  border-green-400 p-1.5 flex items-center gap-x-2'><BsFillTelephoneFill/> call me</a>
             </div>
         
             </div>
