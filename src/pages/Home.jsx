@@ -5,6 +5,7 @@ import Filtter from "../componets/Filtter";
 import { BsSearch } from "react-icons/bs";
 import CastCard from "../componets/CastCard";
 import Pagetation from "../componets/Pagetation";
+import Baner from "../componets/Baner";
 
 function Home() {
 
@@ -46,7 +47,13 @@ function Home() {
       <div className="mt-24 mb-10 sm:px-20">
       <CastCard/>
       </div>
+      <div className="mt-24 mb-10 sm:px-20">
       <Pagetation/>
+      </div>
+      <div className="mt-24 mb-10 sm:px-20">
+      <Baner/>
+      </div>
+   
       </main>
       </section>
     
