@@ -11,7 +11,8 @@ export default {
     },
     extend: {
       backgroundImage:theme=>({
-        "hero-bg":"url('https://res.cloudinary.com/diogyja1g/image/upload/v1695058369/bg_m30gul.jpg')"
+        "hero-bg":"url('https://res.cloudinary.com/diogyja1g/image/upload/v1695058369/bg_m30gul.jpg')",
+        "baner-bg":"url('https://res.cloudinary.com/diogyja1g/image/upload/v1695577619/cus_hxbu9o.jpg')"
       }),
       dropShadow:{
         'xl':' 17px 17px 10px white'

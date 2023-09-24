@@ -1,18 +1,29 @@
-import { React, useState } from "react";
+import { React, useState ,useEffect} from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import styles from "../styles/styles";
 import { Link,useNavigate } from "react-router-dom";
 import axios from "axios";
 import { server } from "../server";
 import { toast } from "react-toastify";
+
+const image =[
+"https://res.cloudinary.com/diogyja1g/image/upload/v1695589767/image2_fu1qup.jpg",
+"https://res.cloudinary.com/diogyja1g/image/upload/v1695589768/86_sffdlz.jpg",
+"https://res.cloudinary.com/diogyja1g/image/upload/v1695590103/image1_hzy1af.jpg",
+"https://res.cloudinary.com/diogyja1g/image/upload/v1695589769/image3_fezfd6.jpg"
+]
 const Signup = () => {
+  const [rand, setRand] = useState(0);
   const [email, setEmail] = useState("");
   const [fullname, setfullName] = useState("");
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
   const navigate = useNavigate();
 
-
+  useEffect(() => {
+      let a = Math.floor(Math.random() * image.length);
+      setRand(a)
+  }, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const config = { headers: { "Content-Type": "application/json" } };
@@ -42,15 +53,15 @@ const Signup = () => {
   };
 
   return (
-    <div className="min-h-screen  flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
+    <div className=" min-h-screen grid grid-cols-1 sm:grid-cols-2 ">
+      <div className="w-full h-full ">
+        <div className="bg-white h-full py-8 px-4 shadow  sm:px-10">
+        <div className="">
+        <h2 className="mt-6 text-3xl font-extrabold text-green-500">
           Cast Registration
         </h2>
-      </div>
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-          <form className="space-y-6" onSubmit={handleSubmit}>
+        </div>
+          <form className="space-y-6 mt-20" onSubmit={handleSubmit}>
             <div>
               <label
                 htmlFor="email"
@@ -140,6 +151,9 @@ const Signup = () => {
             </div>
           </form>
         </div>
+      </div>
+      <div className=" hidden md:block bg-gradient-to-tr  from-[#243046] to-green-400/70">
+        <img src={image[rand]}  alt="loginimage" className=" w-full h-full object-cover mix-blend-overlay "/>
       </div>
     </div>
   );
