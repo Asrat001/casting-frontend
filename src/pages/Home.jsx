@@ -4,6 +4,7 @@ import Hero from "../componets/Hero";
 import Filtter from "../componets/Filtter";
 import { BsSearch } from "react-icons/bs";
 import CastCard from "../componets/CastCard";
+import Pagetation from "../componets/Pagetation";
 
 function Home() {
 
@@ -42,9 +43,10 @@ function Home() {
           </select>
         </div>
       </div>
-      <div className="my-24 sm:px-20">
+      <div className="mt-24 mb-10 sm:px-20">
       <CastCard/>
       </div>
+      <Pagetation/>
       </main>
       </section>
     

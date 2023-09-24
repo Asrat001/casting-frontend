@@ -7,7 +7,7 @@ const CastCard = () => {
 {
     Data.map((data,key)=>{
         return(
-            <div key={key} className='w-fit h-fit bg-[#0f1623]/60  border-[4px] border-green-400 rounded-md '>
+            <div key={key} className='w-fit h-fit bg-[#0f1623]/60  border-[4px] border-green-400/80 rounded-md '>
                 <img src={data.img} className=' h-[240px]  object-cover w-full rounded-t-md '/>
                 <div className='px-2 py-2'>
                 <p className=' text-green-400'>{data.role}</p>
