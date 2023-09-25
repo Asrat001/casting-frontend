@@ -19,9 +19,10 @@ import How from "./componets/How";
 import AdminDashboard from "./pages/Admin"
 import Usermanagment from "./pages/Usermanagment"
 import ErrorPage from "./pages/error-page";
+import AdminLayout from "./componets/AdminLayout";
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <>
+<Route>
 <Route path="/" element={<RootLayout/>}  errorElement={<ErrorPage />}>
  <Route index element={<Home/>}/>
  <Route path="about" element={<About/>}/>
@@ -31,9 +32,11 @@ const router = createBrowserRouter(
 <Route path="/register" element={<Register/>}/>
 <Route path="/profile" element={<Profile/>}/>
 <Route path="/how" element={<How/>}/>
-<Route path="/admin" element={<AdminDashboard/>}/>
-<Route path="/usermanagment" element={<Usermanagment/>}/>
-</>
+<Route path="/admin" element={<AdminLayout/>}>
+  <Route index element={<AdminDashboard/>}/>
+  <Route path="usermanagment" element={<Usermanagment/>}/>
+</Route>
+</Route>
   )
 );
 
