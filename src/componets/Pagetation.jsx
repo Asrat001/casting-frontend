@@ -10,7 +10,7 @@ const Pagetation = () => {
 {pages.map((page,key)=>{
     return(
     
-        <button className='w-8 h-8  border-[1px] ml-2 border-green-400 text-gray-300 rounded-full f'>
+        <button key={key} className='w-8 h-8  border-[1px] ml-2 border-green-400 text-gray-300 rounded-full f'>
       {page}
         </button>
    

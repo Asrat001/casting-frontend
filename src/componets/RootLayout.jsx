@@ -1,11 +1,13 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet ,useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
 import {  AiOutlineArrowRight } from "react-icons/ai";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import {BiLogoInstagramAlt,BiLogoTelegram,BiLogoFacebook,BiLogoYoutube} from 'react-icons/bi'
 
 const RootLayout = () => {
+  const location = useLocation();
+  const detailPage = location.pathname==="/detail"
   return (
     <>
       <header className=" ">
@@ -14,7 +16,7 @@ const RootLayout = () => {
       <main className=" ">
         <Outlet />
       </main>
-      <footer className=" bg-[#0f1623]">
+    {detailPage?  "":    <footer className=" bg-[#0f1623]">
         <div className="bg-gradient-to-r from-green-400/60 to-gray-600 h-fit py-4 px-4 sm:px-20">
           <p className=" text-[25px] sm:text-[40px] font-bold font-Comfortaa  bg-gradient-to-r from-gray-100  to-yellow-600 bg-clip-text text-transparent">
             {" "}
@@ -75,7 +77,8 @@ const RootLayout = () => {
           <p className=" font-Comfortaa text-[16px] text-green-500/40">Terms
 Privacy Policy</p>
         </div>
-      </footer>
+      </footer>}
+  
     </>
   );
 };

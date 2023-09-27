@@ -13,7 +13,7 @@ function Home() {
     
     <section className="">
      <Hero/>
-     <main className=" bg-gradient-to-tr from-slate-800  to-slate-600  mix-blend-hard-light">
+     <main className=" ">
    <div className="p-4 ">
    <div className=" mt-[50px] grid grid-cols-1 sm:grid-cols-3 place-items-center justify-items-center ">
         <p className="text-[32px] font-bold text-white">Filter Cast's</p>
@@ -45,11 +45,11 @@ function Home() {
           </select>
         </div>
       </div>
-      <div className="mt-24 mb-10 sm:px-20">
+      <div className="mt-24 mb-10  sm:px-16">
       <CastCard/>
       </div>
    </div>
-      <div className="mt-24 mb-10  sm:px-20">
+      <div className="  mt-24 mb-10  sm:px-20">
       <Pagetation/>
       </div>
       <div className="mt-24 ">

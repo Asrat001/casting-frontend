@@ -1,14 +1,18 @@
-import React from 'react'
+
 import Data from '../data'
 import { Link } from 'react-router-dom'
+
 const CastCard = () => {
+
+ 
   return (
     <div className='grid grid-cols-1 sm:grid-cols-4 place-content-center justify-items-center gap-5'>
+     
 {
-    Data.map((data,key)=>{
+    Data.map((data,i)=>{
         return(
-            <div key={key} className='w-fit h-fit bg-[#0f1623]/60  border-[4px] border-green-400/80 rounded-md  '>
-                <img src={data.img} className=' h-[240px]  object-cover w-full rounded-t-md  '/>
+            <div key={i} className='w-fit h-fit   border-[4px] border-green-400/80 rounded-md  '>
+                <img src={data.img} loading='lazy' className=' h-[240px]  object-cover w-full rounded-t-md  '/>
                 <div className='px-2 py-2'>
                 <p className=' text-green-400'>{data.role}</p>
                 <p className=' text-gray-400 px-1'>{data.disc}</p>
