@@ -16,7 +16,7 @@ function Home() {
      <main className=" ">
    <div className="p-4 ">
    <div className=" mt-[50px] grid grid-cols-1 sm:grid-cols-3 place-items-center justify-items-center ">
-        <p className="text-[32px] font-bold text-white">Filter Cast's</p>
+        <p className="text-[32px] font-bold text-white">Browes our uniqe casts</p>
         <div className=" rounded-full border-green-400 border-[3px] pl-3  w-full flex justify-center items-center">
           <BsSearch className="w-8 h-8 text-white" />
           <input
