@@ -1,0 +1,30 @@
+
+  
+  .swiper {
+    width: 390px;
+    height: 460px;
+ 
+  }
+  
+  .swiper-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 18px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #fff;
+    background-color:transparent;
+    object-fit: cover;
+  }
+
+  @media (max-width: 650px) {
+    .swiper {
+      width: 290px;
+      height: 390px;
+   
+    }
+    /* … */
+  } 
+ 
+ 

@@ -1,13 +1,27 @@
-import React from 'react'
+import { useEffect } from 'react';
+import  {useLocation}  from 'react-router-dom';
 import {AiOutlineArrowLeft, AiOutlineArrowRight} from "react-icons/ai"
 import {BsFillTelephoneFill} from 'react-icons/bs'
 
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    // Scroll to the top of the page when the pathname changes
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 const Detail = () => {
   return (
-    <div className=' min-h-screen mb-8 grid grid-cols-1 sm:grid-cols-2 gap-x-4 px-[20px] sm:px-[100px] mt-[40px] sm:mt-[60px]'>
-        
-        
-            <div className=' bg-[#0f1623] p-4 h-fit rounded-lg  '>
+    <main className='p-4 mt-[40px] sm:mt-[60px] space-y-2'>
+      <p className=' text-[28px] text-green-600  font-bold'>User Detail</p>
+  <div className='  min-h-screen  border-[2px] border-gray-400 w-fit  grid grid-cols-1 sm:grid-cols-2 sm:gap-x-4  sm:p-[10px] '>
+        <ScrollToTop/> 
+            <div className=' bg-[#06283D]  w-full p-4 h-fit   '>
               <img src='https://res.cloudinary.com/diogyja1g/image/upload/v1693222355/9_v0if8x.jpg' className='h-[400px] w-full object-cover' alt=''/>
               <p className=' text-gray-400  italic'>see cast's picture from diffrent angel</p>
               <div className='  flex  gap-x-6 mt-2 items-center '>
@@ -31,9 +45,9 @@ const Detail = () => {
             </div>
         
             </div>
-         
-
     </div>
+    </main>
+  
   )
 }
 
