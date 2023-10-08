@@ -10,12 +10,13 @@ const RootLayout = () => {
   const detailPage = location.pathname==="/detail"
   const rigsterpage = location.pathname==="/register"
   const loginpage = location.pathname=="/login"
+  const customepage = location.pathname=="/custome"
    const tru = rigsterpage||loginpage
    console.log(tru)
   return (
     <>
     {
-      tru ?"":
+      tru ||customepage?"":
       <header className=" ">
       <Navbar />
     </header>
@@ -23,7 +24,7 @@ const RootLayout = () => {
       <main className=" ">
         <Outlet />
       </main>
-    {detailPage ||rigsterpage||loginpage?  "":    <footer className=" bg-[#0f1623]">
+    {detailPage ||rigsterpage||loginpage ||customepage?  "":    <footer className=" bg-[#0f1623]">
         <div className="bg-gradient-to-r from-green-400/60 to-gray-600 h-fit py-4 px-4 sm:px-20">
           <p className=" text-[25px] sm:text-[40px] font-bold font-Comfortaa  bg-gradient-to-r from-gray-100  to-yellow-600 bg-clip-text text-transparent">
             {" "}
