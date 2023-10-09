@@ -1,8 +1,8 @@
 import React from 'react'
-import logo from '../assets/logo.png'
 import {BsPersonPlusFill} from 'react-icons/bs'
 import {GiHamburgerMenu} from 'react-icons/gi'
 import { NavLink } from 'react-router-dom'
+import logo from "../assets/cast.png"
 
 
 function Navbar() {
@@ -11,8 +11,8 @@ function Navbar() {
     <button className=' block sm:hidden'>
       <GiHamburgerMenu className='w-12 h-12 text-gray-800'/>
     </button>
-    <div className=' hidden border-[3px] border-green-400 w-fit sm:h-20 px-2 sm:flex items-center justify-center'>
-      <p className=' font-Comfortaa text-gray-300'>Energy castting</p>
+    <div className=' ml-[60px] mt-12'>
+      <img src={logo} alt="enrgy casting log" className='w-[150px] h-[150px] object-cover'/>
     </div>
      <ul className=' sm:flex justify-center items-center gap-x-4 hidden '>
        <li>
