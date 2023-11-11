@@ -78,8 +78,8 @@ function Navbar() {
          return(
          
            <div className='flex  bg-[#E6EEFB]'>
-             <div className=' w-[100px] h-[100px] rounded-lg p-2'>
-               <img src={cart.img}  alt='sgs' className=' object-cover w-full h-full'/>
+             <div className=' w-[80px] h-[80px]  p-2'>
+               <img src={cart.img}  alt='sgs' className=' rounded-full object-cover w-full h-full'/>
              </div>
      
            </div>
