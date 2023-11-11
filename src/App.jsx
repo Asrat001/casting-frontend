@@ -22,6 +22,7 @@ import ErrorPage from "./pages/error-page";
 import AdminLayout from "./componets/AdminLayout";
 import Order from "./componets/Order";
 import Custome from "./componets/Custome";
+import { ShoppingCartProvider } from "./Context/CartContext";
 const router = createBrowserRouter(
   createRoutesFromElements(
 <Route>
@@ -46,7 +47,7 @@ const router = createBrowserRouter(
 
 const App = () => {
   return (
-    <div className="" >
+    <ShoppingCartProvider>
 <RouterProvider router={router}/>
 <ToastContainer
         position="bottom-center"
@@ -60,7 +61,7 @@ const App = () => {
         pauseOnHover
         theme="dark"
       />
-    </div>
+  </ShoppingCartProvider>
   )
 }
 

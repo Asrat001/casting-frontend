@@ -38,10 +38,10 @@ const Custome = () => {
   }
   return (
     <main className=' min-h-screen p-6 flex justify-center items-center'>
-     <div className=' border-[2px] border-white sm:w-[80%] h-auto p-6  rounded-lg'>
-        <p className=' text-green-600 text-[28px] font-bold'>Place your Oredr</p>
+     <div className=' bg-[#06283D] border-[2px] border-orange-600 sm:w-[80%] h-auto p-6  rounded-lg'>
+        <p className='  text-orange-600 text-[28px] font-bold'>Place your Oredr</p>
          <form className="mt-6">
-        <div className=' sm:w-1/4 bg-[#06283D] p-6'>
+        <div className=' sm:w-1/4 bg-[#06283D]/25 p-6'>
         <div>
               <label
                 htmlFor="email"
@@ -244,20 +244,23 @@ const Custome = () => {
               
               </div>
               <div className="mt-4 h-auto overflow-y-auto  p-2 border-[2px] border-white rounded-lg">
+              <p className=' font-bold text-gray-200 pb-2'>select your talents</p>
                       <div className="flex flex-wrap gap-2">
+                     
                         {Talents.map((interest, index) => (
                           <button
                             key={index}
                             type="button"
                            
-                            className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#06283D] text-white hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 space-x-2"
+                            className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#06283D] text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 space-x-2"
                             onClick={() =>
                               setInterests(
                                 
                                 [...interests,interest]
                               )
                             }
-                          >
+                          > 
+                         
                             {interest}
                            
                           </button>
@@ -269,7 +272,7 @@ const Custome = () => {
           
             <button
                 type="submit"
-                className="group relative w-full mt-6 h-[40px] flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-900"
+                className="group relative w-full mt-6 h-[40px] flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-orange-600 hover:bg-orange-900"
               >
                 Submit
               </button>
