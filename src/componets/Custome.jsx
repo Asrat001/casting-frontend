@@ -38,14 +38,14 @@ const Custome = () => {
   }
   return (
     <main className=' min-h-screen p-6 flex justify-center items-center'>
-     <div className=' bg-[#06283D] border-[2px] border-orange-600 sm:w-[80%] h-auto p-6  rounded-lg'>
-        <p className='  text-orange-600 text-[28px] font-bold'>Place your Oredr</p>
+     <div className=' bg-white  sm:w-[80%] h-auto p-6 shadow-lg shadow-gray-500  '>
+        <p className='  text-black text-[28px] font-bold'>Place your Oredr</p>
          <form className="mt-6">
-        <div className=' sm:w-1/4 bg-[#06283D]/25 p-6'>
+        <div className=' sm:w-1/4 bg-[#F0F3F4] p-6'>
         <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-white"
+                className="block text-sm font-medium text-black"
               >
                 your Name
               </label>
@@ -56,14 +56,14 @@ const Custome = () => {
                   placeholder=' ex:091656****'
                   required
                   onChange={(e) => setName(e.target.value)}
-                  className="appearance-none block w-full px-3 bg-inherit py-2 border border-white rounded-md shadow-sm  focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                  className="appearance-none block w-full px-3 bg-inherit py-2 border border-gray-400 rounded-md shadow-sm  focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                 />
               </div>
             </div>
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-white"
+                className="block text-sm font-medium text-black"
               >
                 your Phone
               </label>
@@ -74,12 +74,12 @@ const Custome = () => {
                   placeholder=' ex:091656****'
                   required
                   onChange={(e) => setName(e.target.value)}
-                  className="appearance-none block w-full px-3 bg-inherit py-2 border border-white rounded-md shadow-sm  focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                  className="appearance-none block w-full px-3 bg-inherit py-2 border border-gray-400 rounded-md shadow-sm  focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                 />
               </div>
             </div>
         </div>
-        <p className=' text-[20px] font-Comfortaa text-gray-200 font-extrabold my-6'> fill out your prefernce</p>
+        <p className=' text-[20px] font-Comfortaa text-black font-extrabold my-6'> fill out your prefernce</p>
            <main className='grid grid-cols-1 sm:grid-cols-2 gap-4 '>
            
         
@@ -87,7 +87,7 @@ const Custome = () => {
               
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-white"
+                className="block text-sm font-medium text-black"
               >
                 language
               </label>
@@ -100,7 +100,7 @@ const Custome = () => {
                   placeholder='place sparet them by comaeg: Amharic,Engilsh,Oromuffa'
                   required
                   onChange={(e) => setLanguage(e.target.value)}
-                  className="appearance-none block w-full px-3 bg-inherit py-2 border border-white rounded-md shadow-sm  focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                  className="appearance-none block w-full px-3 bg-inherit py-2 border border-gray-600 rounded-md shadow-sm  focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                 />
               </div>
             
@@ -108,7 +108,7 @@ const Custome = () => {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-white"
+                className="block text-sm font-medium text-black"
               >
                 age
               </label>
@@ -116,23 +116,23 @@ const Custome = () => {
                 <input
                   type="number"
                   name="text"
-                  autoComplete="name"
+                  placeholder='eg: 23'
                   required
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="appearance-none block w-full px-3 bg-inherit py-2 border border-white rounded-md shadow-sm  focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                  className="appearance-none block w-full px-3 bg-inherit py-2 border border-gray-600 rounded-md shadow-sm  focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                 />
               </div>
             </div>
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-white"
+                className="block text-sm font-medium text-black"
               >
                 Skin ton
               </label>
               <div className="mt-1">
-                <select className='  appearance-none block w-full px-3 bg-inherit py-2 border border-white rounded-md shadow-sm text-gray-500  focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm'>
+                <select className='  appearance-none block w-full px-3 bg-inherit py-2 border border-gray-600 rounded-md shadow-sm text-gray-500  focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm'>
                     <option>
                       Black
                   </option>
@@ -153,7 +153,7 @@ const Custome = () => {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-white"
+                className="block text-sm font-medium text-black"
               >
                 Address
               </label>
@@ -166,7 +166,7 @@ const Custome = () => {
                   placeholder=''
                   required
                   onChange={(e) => setLanguage(e.target.value)}
-                  className="appearance-none block w-full px-3 bg-inherit py-2 border border-white rounded-md shadow-sm  focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                  className="appearance-none block w-full px-3 bg-inherit py-2 border border-gray-600 rounded-md shadow-sm  focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                 />
               </div>
             
@@ -174,7 +174,7 @@ const Custome = () => {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-white"
+                className="block text-sm font-medium text-black"
               >
                 City
               </label>
@@ -187,7 +187,7 @@ const Custome = () => {
                   placeholder='Addis Abeba,Dilla,Bahir dar'
                   required
                   onChange={(e) => setLanguage(e.target.value)}
-                  className="appearance-none block w-full px-3 bg-inherit py-2 border border-white rounded-md shadow-sm  focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                  className="appearance-none block w-full px-3 bg-inherit py-2 border border-gray-600 rounded-md shadow-sm  focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                 />
               </div>
             
@@ -196,7 +196,7 @@ const Custome = () => {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-white"
+                className="block text-sm font-medium text-black"
               >
                 Expriance
               </label>
@@ -209,7 +209,7 @@ const Custome = () => {
                   placeholder='ex: Music video, Movie , promrotion'
                   required
                   onChange={(e) => setLanguage(e.target.value)}
-                  className="appearance-none block w-full px-3 bg-inherit py-2 border border-white rounded-md shadow-sm  focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                  className="appearance-none block w-full px-3 bg-inherit py-2 border border-gray-600 rounded-md shadow-sm  focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                 />
               </div>
             
@@ -217,16 +217,16 @@ const Custome = () => {
             <div className=''>
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-white"
+                className="block text-sm font-medium text-black"
               >
                 talents
               </label>
-              <div className=" mt-1 relative appearance-none  w-full px-3 py-4 border border-white rounded-md shadow-sm   focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-            <ul className='mt-1  '>
+              <div className=" mt-1 relative appearance-none  w-full px-3 py-4 border border-gray-600 rounded-md shadow-sm   focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+            <ul className='mt-1    '>
             {
                 interests.map((tag,index)=>{
                     return(
-                        <li key={index} className='inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#06283D]  text-green-600 hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 space-x-2'>
+                        <li key={index} className='inline-flex   items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#ED7D31]  text-white hover:bg-[[#F0F3F4] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500  m-2'>
 <span>{tag}</span>
 <button onClick={()=>removeTag(index)}
 >
@@ -244,7 +244,7 @@ const Custome = () => {
               
               </div>
               <div className="mt-4 h-auto overflow-y-auto  p-2 border-[2px] border-white rounded-lg">
-              <p className=' font-bold text-gray-200 pb-2'>select your talents</p>
+              <p className=' font-bold text-black pb-2'>select your talents prefernce</p>
                       <div className="flex flex-wrap gap-2">
                      
                         {Talents.map((interest, index) => (
@@ -252,7 +252,7 @@ const Custome = () => {
                             key={index}
                             type="button"
                            
-                            className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#06283D] text-white hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 space-x-2"
+                            className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#F0F3F4] text-black hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 space-x-2"
                             onClick={() =>
                               setInterests(
                                 

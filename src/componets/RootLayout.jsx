@@ -10,8 +10,9 @@ const RootLayout = () => {
   const detailPage = location.pathname==="/detail"
   const rigsterpage = location.pathname==="/register"
   const loginpage = location.pathname=="/login"
+  const profile = location.pathname=="/profile"
   const customepage = location.pathname=="/custome"
-   const tru = rigsterpage||loginpage
+   const tru = rigsterpage||loginpage||profile
    console.log(tru)
   return (
     <>
@@ -24,9 +25,9 @@ const RootLayout = () => {
       <main className=" ">
         <Outlet />
       </main>
-    {detailPage ||rigsterpage||loginpage ||customepage?  "":    <footer className=" bg-white">
-        <div className="bg-gradient-to-bl from-[#ED7D31] to-yellow-700 h-fit py-4 px-4 sm:px-20">
-          <p className=" text-[25px] sm:text-[40px] font-bold font-Comfortaa  bg-gradient-to-r from-[#3E8ED1]  to-yellow-600 bg-clip-text text-transparent">
+    {detailPage ||rigsterpage||loginpage ||customepage||profile?  "":    <footer className=" bg-white">
+        <div className="bg-[#ED7D31] h-fit py-4 px-4 sm:px-20">
+          <p className=" text-[25px] sm:text-[40px] font-bold  text-white ">
             {" "}
             Book your favirroite Talent !{" "}
           </p>
