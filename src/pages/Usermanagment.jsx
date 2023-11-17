@@ -9,21 +9,21 @@ const Usermanagment = () => {
       <div className="w-full">
         <div className="bg-white p-4 shadow rounded">
           <h2 className="text-xl font-bold mb-4">User Management</h2>
-          <div className="flex items-center gap-x-4">
+          <div className="flex items-center gap-x-4 my-4">
             <select className="border border-gray-300 rounded  px-4 py-2 focus:outline-none">
-              <option value=""disabled>status</option>
+              <option defaultValue='' className=" hidden">status</option>
               <option value="">Active</option>
               <option value="category2">not Active</option>
             
             </select>
             <select className="border border-gray-300 rounded  px-4 py-2 focus:outline-none">
-              <option value=""disabled>skin tone</option>
+              <option defaultValue="" className=" hidden">skin tone</option>
               <option value="">black</option>
               <option value="category2">brown</option>
               <option value="category2">white</option>
             </select>
             <select className="border border-gray-300 rounded  px-4 py-2 focus:outline-none">
-              <option value=""disabled>age</option>
+              <option defaultValue="" className=" hidden">age</option>
               <option value="">10-15</option>
               <option value="category2">15-30</option>
             
@@ -33,7 +33,7 @@ const Usermanagment = () => {
               placeholder="music , film , promotion"
               className="border border-gray-300 rounded ... ... px-4 py-2 focus:outline-none ml-2"
             />
-            <button className="bg-green-500 hover:bg-green-900 text-white font-bold py-2 px-4 rounded ml-2">
+            <button className="bg-[#ED7D31] hover:bg-orange-900 text-white font-bold py-2 px-4 rounded ml-2">
               Search
             </button>
           </div>

@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { MdBarChart, MdOnlinePrediction } from "react-icons/md";
+import { FaCartArrowDown } from "react-icons/fa";
+import { IoMdPerson } from "react-icons/io";
+import { Bar } from "react-chartjs-2";
+import  {Chart as ChartJs,registerables}  from "chart.js";
+ChartJs.register(...registerables)
 const Total =[
   {
     disc:"total cast",
@@ -28,28 +33,116 @@ const Total =[
     route:"order"
   }
 ]
-   
+const registeredUsersData=[
+  {
+    month:'January',
+    value:300
+  },
+  {
+    month:'February',
+    value:100
+  },
+  {
+    month:'March',
+    value:200
+  },
+  {
+    month:'April',
+    value:350
+  },
+  {
+    month:'May',
+    value:400
+  },
+  {
+    month:'June',
+    value:600
+  },
+  {
+    month:'July',
+    value:300
+  },
+  
+]
+
+
+const data = {
+  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+  datasets: [
+    {
+      label: 'Registered Users',
+      backgroundColor: '#f38c4c',
+      borderColor: 'rgba(0,0,0,1)',
+      borderWidth: 1,
+      data: registeredUsersData.map((data)=>data.value), 
+    },
+  ],
+};
 
 
 
 const AdminDashboard = () => {
   return (
-    <div className="  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-5 ">
+    <section>
+      <h3 className="my-2 text-[24px] font-bold">Dashboard</h3>
+ <div className="  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-5 ">
     {
 Total.map((data,index)=>{
   return(  
     
-  <div className="bg-white  shadow-lg" key={index}>
+  <div className="bg-white flex  items-center justify-around  shadow-lg" key={index}>
+  { data.disc=='order'||data.disc=='custom order' ?
+      <div className="p-4 w-fit h-fit bg-[#F0F3F4] rounded-full">
+   <FaCartArrowDown size={24}/>
+      </div>:
+        <div className="p-4 w-fit h-fit bg-[#F0F3F4] rounded-full">
+        <MdBarChart size={24}/>
+           </div>
+  }
     <div className="p-4">
-      <h3 className="text-xl font-bold mb-2">{data.disc}</h3>
-      <p className="text-gray-600">{data.value}</p>
+      <h3 className="text-[14px] text-gray-600 mb-2">{data.disc}</h3>
+      <p className="text-gray-600 font-bold">{data.value}</p>
     </div>
   </div>
 )
 })
     }
+  
       
     </div>
+    <div className=" grid grid-cols-1 sm:grid-cols-2 my-8">
+  <div className=" ">
+  <h3 className=" text-[24px] font-bold my-2 text-black"> Daily Active Users</h3>
+  <div className=" bg-white w-[60%] h-32 rounded-lg mt-3 p-4">
+  <MdOnlinePrediction color="green" size={28}/>
+  <div className=" flex items-center gap-4 p-2">
+    <IoMdPerson size={24} className=" text-gray-700"/>
+    <p className=" text-xl text-gray-700 font-bold">200</p>
+   </div>
+  </div>
+  </div>
+  <div className="w-full">
+  <h3 className=" text-[24px] font-bold my-2 text-black"> Registerd Users</h3>
+  <div className="w-full">
+  <Bar
+        data={data}
+        options={{
+          title: {
+            display: true,
+            text: 'Registered Users Chart',
+            fontSize: 20,
+          },
+          legend: {
+            display: true,
+            position: 'top',
+          },
+        }}
+      />
+  </div>
+  </div>
+    </div>
+    </section>
+   
   );
 };
 
