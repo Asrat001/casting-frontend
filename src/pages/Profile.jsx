@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import UploadPics from '../componets/UploadPics'
 import {AiOutlineCloseCircle} from "react-icons/ai"
+import { Link } from 'react-router-dom';
  
 const Talents = [
     "🎨 Art",
@@ -25,9 +26,14 @@ const Talents = [
     "📝 Writing",
   ];
 
-
+  const image =[
+    "https://res.cloudinary.com/diogyja1g/image/upload/v1695589767/image2_fu1qup.jpg",
+    "https://res.cloudinary.com/diogyja1g/image/upload/v1695589768/86_sffdlz.jpg",
+    "https://res.cloudinary.com/diogyja1g/image/upload/v1695590103/image1_hzy1af.jpg",
+    "https://res.cloudinary.com/diogyja1g/image/upload/v1695589769/image3_fezfd6.jpg"
+    ]
 const Profile = () => {
-
+    const [rand, setRand] = useState(0);
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
     const [Language, setLanguage] = useState("");
@@ -39,15 +45,26 @@ const Profile = () => {
       setInterests(interests.filter((_,index)=>index!==Indextoremove))
 
     }
+    useEffect(() => {
+      let a = Math.floor(Math.random() * image.length);
+      setRand(a)
+  }, []);
    console.log(Language.split(","))
   return (
-    <main className=' min-h-screen flex justify-center items-center p-2 sm:p-12'>
+    <div className=" min-h-screen grid grid-cols-1 sm:grid-cols-2 ">
+    <div className="w-full h-full ">
+      <div className="bg-white h-full py-8 px-4 shadow  sm:px-10">
+      <div className="">
+      <h2 className="mt-6 text-3xl font-extrabold text-black">
+        Set up Your Profile
+      </h2>
+      <p className='text-black text-[12px]'>you are one step closer to you're dream Job</p>
+      </div>
+     
         
-        <div className=' bg-white sm:w-[80%] h-auto p-6  rounded-lg'>
-        <p>setup your profile</p>
-         <UploadPics/>
          <form className="mt-6">
-           <main className='grid grid-cols-1 sm:grid-cols-2 gap-4 '>
+         <UploadPics/>
+           <main className='grid grid-cols-1  sm:grid-cols-2 gap-4 '>
            <div>
               
               <label
@@ -136,7 +153,7 @@ const Profile = () => {
               >
                 Upload 4 picture  of your self (make sure u look good)
               </label>
-              <div className="mt-1 flex  space-x-3 items-center" >
+              <div className="mt-1 " >
                 <input
                   type="file"
                   name="photo"
@@ -144,9 +161,9 @@ const Profile = () => {
                   multiple={true}
                   required
                   onChange={(e) => setName(e.target.value)}
-                  className="appearance-none block gap-x-4 px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  className="appearance-none block gap-x-4 px-3 w-full py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                 />
-               <button className='group relative  h-[40px] flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-900'>Upload</button>
+      
               </div>
             </div>
 
@@ -280,6 +297,8 @@ const Profile = () => {
               </div>
             
             </div>
+          
+            </main> 
             <div className=''>
               <label
                 htmlFor="password"
@@ -331,21 +350,21 @@ const Profile = () => {
                       </div>
                     </div>
             </div>
-            </main> 
-          
             <button
                 type="submit"
-                className="group relative w-full mt-6 h-[40px] flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-900"
+                className="group relative w-full mt-6 h-[40px] flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-orange-600 hover:bg-orange-900"
               >
                 Submit
               </button>
           </form>
-          <div>
-          
-            </div>
-        </div>
-
-    </main>
+         
+        
+      </div>
+    </div>
+    <div className=" hidden md:block bg-gradient-to-tr  from-[#243046] to-[#ED7D31]">
+      <img src={image[rand]}  alt="loginimage" className=" w-full h-full object-cover mix-blend-overlay "/>
+    </div>
+  </div>
   )
 }
 

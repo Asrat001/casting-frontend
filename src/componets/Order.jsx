@@ -1,7 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Pagetation from './Pagetation'
+import Modal from './Modal'
 
 const Order = () => {
+  const [isOpen , setOpen]=useState(false)
+  const  data =[
+    {id:1,
+    name:'John',
+    phoneNumber:"09876543",
+    role:"model , actress"
+  },
+    {id:2,
+      name:'John M',
+      phoneNumber:"09876543",
+      role:"model , actress"
+    },
+      {id:3,
+        name:'John S',
+        phoneNumber:"09876543",
+        role:"model , actress"
+      },
+        {id:4,
+          name:'John D',
+          phoneNumber:"09876543",
+          role:"model , actress"
+        },
+  ]
   return (
     <div className="">
    
@@ -54,7 +78,7 @@ const Order = () => {
                 </div>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
-                <button className="text-sm text-blue-500 underline">see all</button>
+                <button onClick={()=>{setOpen(true)}} className="text-sm text-blue-500  p-1  border-[1px] border-orange-700">see all</button>
               </td>
               <td className="px-6 py-4 whitespace-nowrap">
                 <div className="text-sm text-gray-500">not comformed</div>
@@ -79,6 +103,27 @@ const Order = () => {
       </div>
     </div>
     <Pagetation/>
+    <Modal
+    isOpen={isOpen}
+    onClose={()=>{setOpen(false)}}
+    className={` fixed top-[50%] left-[50%]  translate-x-[-50%] translate-y-[-50%] `}
+    >
+    <p className=' text-[18px]'> <span className=' text-orange-600 font-semibold '>Asrat Adane </span>have Ordered <span className=' font-bold'>{data.length} </span>casts</p>
+    <ol className=' list-decimal mt-[50px] '>
+      {
+        data.map((data,index)=>{
+          return (<li
+             key={index}
+             className=' flex  justify-between items-center'
+          >
+            <p> {data.name}</p> 
+            <p> {data.phoneNumber}</p>
+            <p>{data.role}</p>
+            </li>)
+        })
+      }
+    </ol>
+    </Modal>
   </div>
   )
 }

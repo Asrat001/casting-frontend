@@ -57,7 +57,7 @@ const Signup = () => {
       <div className="w-full h-full ">
         <div className="bg-white h-full py-8 px-4 shadow  sm:px-10">
         <div className="">
-        <h2 className="mt-6 text-3xl font-extrabold text-green-500">
+        <h2 className="mt-6 text-3xl font-extrabold text-[#ED7D31]">
           Cast Registration
         </h2>
         </div>
@@ -138,7 +138,7 @@ const Signup = () => {
             <div>
               <button
                 type="submit"
-                className="group relative w-full h-[40px] flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-900"
+                className="group relative w-full h-[40px] flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-[#ED7D31] hover:bg-[#ED7D31]/70"
               >
                 Submit
               </button>
@@ -152,7 +152,7 @@ const Signup = () => {
           </form>
         </div>
       </div>
-      <div className=" hidden md:block bg-gradient-to-tr  from-[#243046] to-green-400/70">
+      <div className=" hidden md:block bg-gradient-to-tr  from-[#243046] to-[#ED7D31]">
         <img src={image[rand]}  alt="loginimage" className=" w-full h-full object-cover mix-blend-overlay "/>
       </div>
     </div>

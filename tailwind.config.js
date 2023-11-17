@@ -6,8 +6,10 @@ export default {
   ],
   theme: {
     fontFamily:{
-      'Comfortaa':['Comfortaa'],
-      'Poppins'   :['Poppins']
+  
+      "PoiretOne":["poiret-one"],
+     "exo":["Exo","2"],
+     "Montserrat":["Montserrat"]
     },
     extend: {
       backgroundImage:theme=>({
