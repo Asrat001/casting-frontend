@@ -4,6 +4,9 @@ import { useShoppingCart } from '../Context/CartContext'
 import Data from '../data'
 import Modal from './Modal'
 import { useState } from 'react'
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const CastCard = () => {
     const {openCart,dispatch} = useShoppingCart()
@@ -14,6 +17,23 @@ const CastCard = () => {
   setDetail([data])
   setOpen(true)
  }
+
+ const handleAddToCarttostify = () => {
+  // Add product to cart logic here
+
+
+  // Show toast notification
+  toast.success('Product added to cart!', {
+    position: "top-right",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+};
+
 
   return (
     <div className='grid grid-cols-1 sm:grid-cols-3 place-content-center justify-items-center gap-5'>
@@ -33,12 +53,10 @@ const CastCard = () => {
                   <BsFillEyeFill/>
                 </button>
                 <button 
-                onClick={() =>
-                dispatch({
-                  type: "ADD_TO_CART",
-                  payload: data,
-                })
-                 } className='py-1.5 px-1.5 flex items-center gap-3 bg-[#E6EEFB]  border-gray-400 border hover:bg-[#ED7D31]  text-gray-700'>
+               onClick={() => { dispatch({
+                type: "ADD_TO_CART",
+                payload: data,
+              }), handleAddToCarttostify(); }} className='py-1.5 px-1.5 flex items-center gap-3 bg-[#E6EEFB]  border-gray-400 border hover:bg-[#ED7D31]  text-gray-700'>
                   <p>Book</p>
                   <BsFillCameraReelsFill />
                   </button>
@@ -73,12 +91,10 @@ const CastCard = () => {
        <p className=' text-gray-700 font-semibold'><span className=' text-[#ED7D31] text-[20px]'>Address:</span>addis abeba , 4killo </p>
        <div className=' flex  gap-x-4 items-center my-6 '>
     <button  
-      onClick={() =>
-                dispatch({
-                  type: "ADD_TO_CART",
-                  payload: user,
-                })
-                 }  className=' text-gray-700 border-[3px]  border-gray-700 p-1.5'>book me</button> 
+     onClick={() => { dispatch({
+      type: "ADD_TO_CART",
+      payload: user,
+    }), handleAddToCarttostify(); }}  className=' text-gray-700 border-[3px]  border-gray-700 p-1.5'>book me</button> 
     <a className='border-[3px] text-gray-700  border-[#ED7D31] p-1.5 flex items-center gap-x-2'><BsFillTelephoneFill/> call me</a>
    </div>
    </div>
