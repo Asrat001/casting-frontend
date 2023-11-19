@@ -1,8 +1,19 @@
 import React from 'react'
-const pages = [
-    1,2,3,4,5
-]
+import { useShoppingCart } from '../Context/CartContext'
+
+
+
 const Pagetation = () => {
+  const {data} = useShoppingCart()
+  const pages = []
+  
+  const totalPage=Math.round(parseInt(data.data.total) /6 )
+   for(let i=1;i<=totalPage;i++){
+    pages.push(i)
+   }
+
+
+  
   return (
     <div className=' flex justify-center items-center mb-24 '>
     <div className='w-fit  flex items-center justify-center '>

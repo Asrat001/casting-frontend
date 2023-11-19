@@ -17,7 +17,7 @@ export function ShoppingCartProvider({ children }) {
   const openCart = () => setIsOpen(true);
   const closeCart = () => setIsOpen(false);
   const fetchCasts =()=>{
-    return axios.get(`http://localhost:8000/api/user/alluser?search=film&limit=9&page=1&sex=male&minAge=0&maxAge=20`)
+    return axios.get(`http://localhost:8000/api/user/alluser?search=film&limit=6&page=1&sex=male&minAge=0&maxAge=20`)
    }
    const { isLoading ,data} = useQuery("cast-data", fetchCasts);
   const cart = JSON.parse(sessionStorage.getItem('cart'))

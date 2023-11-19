@@ -29,20 +29,20 @@ dispatch({
  }
 
   
-
+console.log(data)
 
 
   return (
     <div className='grid grid-cols-1 sm:grid-cols-3 place-content-center justify-items-center gap-5'>
      
 {
-    data.data.users?.map((data,i)=>{
+    data?.data.users.map((data,i)=>{
         return(
             <div key={i} className='w-fit h-fit bg-white    shadow-lg shadow-gray-300    '>
-                <img src={data.img} loading='lazy' className=' h-[240px]  object-cover w-full   '/>
+                <img src={data.avatar} loading='lazy' className=' h-[240px]  object-cover w-full   '/>
                 <div className='px-2 py-2'>
-                <p className=' text-gray-800'>{data.role}</p>
-                <p className=' text-gray-600 text-[14px] px-1 '>{data.disc}</p>
+                <p className=' text-gray-800'>{data.fullname}</p>
+                <p className=' text-gray-600 text-[14px] px-1 '>{data.about}</p>
                 </div>
                 <div className=' flex items-center gap-x-4 px-2 p-2'>
                 <button   onClick={()=>handleDitail({data})} className='py-1 px-1.5 w-auto flex  gap-3 justify-center bg-[#E6EEFB] items-center border-gray-400 border  text-[#ED7D31]'>
@@ -50,8 +50,8 @@ dispatch({
                   <BsFillEyeFill/>
                 </button>
                 <button 
-               onClick={() => { hadleAddtoCast(data)  }} className={`py-1.5 px-1.5 flex items-center gap-3 bg-[#E6EEFB]  border-gray-400 border  ${state.cart.some(item => item.id === data.id) ? 'bg-[#ED7D31]' : ''}   text-gray-700`}>
-                   {state.cart.some(item => item.id === data.id) ? 'Already in Cart' : 'Book'}
+               onClick={() => { hadleAddtoCast(data)  }} className={`py-1.5 px-1.5 flex items-center gap-3 bg-[#E6EEFB]  border-gray-400 border  ${state.cart.some(item => item.id === data._id) ? 'bg-[#ED7D31]' : ''}   text-gray-700`}>
+                   {state.cart.some(item => item.id === data._id) ? 'Already in Cart' : 'Book'}
                   <BsFillCameraReelsFill />
                   </button>
                 </div>
