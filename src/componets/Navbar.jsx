@@ -81,6 +81,8 @@ function Navbar() {
              <div className=' w-[80px] h-[80px]  p-2'>
                <img src={cart.img}  alt='sgs' className=' rounded-full object-cover w-full h-full'/>
              </div>
+             <div>asrat</div>
+             <button className='text-red-600 ml-auto'>delete</button>
      
            </div>
            
