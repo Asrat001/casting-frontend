@@ -9,8 +9,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const CastCard = () => {
-    const {openCart,dispatch} = useShoppingCart()
+    const {state,dispatch} = useShoppingCart()
     const [isOpen , setOpen]=useState(false)
+    const [isAddedToCart , setIsAddedToCart]=useState(false)
     const [Detail , setDetail]=useState([])
  const handleDitail =({data})=>{
   console.log(data)
@@ -18,21 +19,10 @@ const CastCard = () => {
   setOpen(true)
  }
 
- const handleAddToCarttostify = () => {
-  // Add product to cart logic here
 
 
-  // Show toast notification
-  toast.success('Product added to cart!', {
-    position: "top-right",
-    autoClose: 3000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-  });
-};
+  
+
 
 
   return (
@@ -53,11 +43,11 @@ const CastCard = () => {
                   <BsFillEyeFill/>
                 </button>
                 <button 
-               onClick={() => { dispatch({
+               onClick={() => {  dispatch({
                 type: "ADD_TO_CART",
                 payload: data,
-              }), handleAddToCarttostify(); }} className='py-1.5 px-1.5 flex items-center gap-3 bg-[#E6EEFB]  border-gray-400 border hover:bg-[#ED7D31]  text-gray-700'>
-                  <p>Book</p>
+              }) }} className={`py-1.5 px-1.5 flex items-center gap-3${isAddedToCart ?`bg-green-600`:`bg-[#E6EEFB] `}  border-gray-400 border hover:bg-[#ED7D31]  text-gray-700`}>
+                  <p>{isAddedToCart?'Booked':'Book'}</p>
                   <BsFillCameraReelsFill />
                   </button>
                 </div>

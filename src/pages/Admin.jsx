@@ -110,17 +110,7 @@ Total.map((data,index)=>{
   
       
     </div>
-    <div className=" grid grid-cols-1 sm:grid-cols-2 my-8">
-  <div className=" ">
-  <h3 className=" text-[24px] font-bold my-2 text-black"> Daily Active Users</h3>
-  <div className=" bg-white w-[60%] h-32 rounded-lg mt-3 p-4">
-  <MdOnlinePrediction color="green" size={28}/>
-  <div className=" flex items-center gap-4 p-2">
-    <IoMdPerson size={24} className=" text-gray-700"/>
-    <p className=" text-xl text-gray-700 font-bold">200</p>
-   </div>
-  </div>
-  </div>
+    <div className=" grid grid-cols-1 sm:grid-cols-2 my-8 place-items-center gap-3">
   <div className="w-full">
   <h3 className=" text-[24px] font-bold my-2 text-black"> Registerd Users</h3>
   <div className="w-full">
@@ -140,10 +130,19 @@ Total.map((data,index)=>{
       />
   </div>
   </div>
+  <div className=" w-full">
+  <h3 className=" text-[24px] font-bold my-2 text-black"> Daily Active Users</h3>
+  <div className=" bg-white w-full h-32 rounded-lg mt-3 p-4">
+  <MdOnlinePrediction color="green" size={28}/>
+  <div className=" flex items-center gap-4 p-2">
+    <IoMdPerson size={24} className=" text-gray-700"/>
+    <p className=" text-xl text-gray-700 font-bold">200</p>
+   </div>
+  </div>
+  </div>
     </div>
     </section>
    
   );
 };
-
-export default AdminDashboard;
+export default AdminDashboard

@@ -59,7 +59,7 @@ function Navbar() {
       onClick={()=>{setOpen(true)}}
       className={`p-3 h-16 sm:w-16 rounded-full border-[4px]  border-[#ED7D31]  flex justify-center items-center`}>
       <BsPersonPlusFill className=' text-gray-900 ' size={28}/>
-      <p className={` text-gray-900 relative top-[-4px] left-0 `} >{state.cart.length}</p>
+      <p className={` text-gray-900 relative top-[-4px] left-0 ${state.length>0 ? `bg-red-600 p-1 rounded-full`:``} `} >{state.cart.length}</p>
        </button>
       <CastCart isOpen={isOpen}/>
   </nav>

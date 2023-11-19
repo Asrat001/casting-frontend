@@ -15,7 +15,7 @@ export function ShoppingCartProvider({ children }) {
   const openCart = () => setIsOpen(true);
   const closeCart = () => setIsOpen(false);
   const cart = JSON.parse(sessionStorage.getItem('cart'))
-  const [state, dispatch] = useReducer(cartReducer, {cart:cart||[]});
+  const [state, dispatch] = useReducer(cartReducer, {cart:cart||[],isExist:Boolean});
 
  
   useEffect(() => {

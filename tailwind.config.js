@@ -21,6 +21,7 @@ export default {
       },
       animation: {
         blob: "blob 7s infinite",
+        slideRight:"slideRight 2s ease-in-out"
       },
       keyframes: {
         blob: {
@@ -37,7 +38,16 @@ export default {
             transform: "tranlate(0px, 0px) scale(1)",
           },
         },
+        slideRight:{
+          "0%": {
+            transform:"translateX(100%)"
+          },
+          "100%": {
+            transform: "translateX(0)"
+          }
+        }
       },
+
 
       
     },
