@@ -1,5 +1,7 @@
 import { createContext, useContext, useEffect, useReducer, useState } from "react";
 import { cartReducer } from "./Reducer";
+import axios from "axios";
+import { useQuery } from "react-query";
 
 const ShoppingCartContext = createContext({});
 
@@ -9,11 +11,15 @@ export function useShoppingCart() {
 
 export function ShoppingCartProvider({ children }) {
   const [isOpen, setIsOpen] = useState(false);
-
+  
   
  
   const openCart = () => setIsOpen(true);
   const closeCart = () => setIsOpen(false);
+  const fetchCasts =()=>{
+    return axios.get(`http://localhost:8000/api/user/alluser?search=film&limit=9&page=1&sex=male&minAge=0&maxAge=20`)
+   }
+   const { isLoading ,data} = useQuery("cast-data", fetchCasts);
   const cart = JSON.parse(sessionStorage.getItem('cart'))
   const [state, dispatch] = useReducer(cartReducer, {cart:cart||[],isExist:Boolean});
 
@@ -28,9 +34,11 @@ export function ShoppingCartProvider({ children }) {
       value={{
         state,
         isOpen,
+        data,
         dispatch,
         openCart,
-        closeCart
+        closeCart,
+        
       
       }}
     >

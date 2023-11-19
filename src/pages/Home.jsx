@@ -11,9 +11,11 @@ import Pagetation from "../componets/Pagetation";
 import Baner from "../componets/Baner";
 import icon from '../assets/vol.svg'
 import space from "../assets/space.png"
+import axios from 'axios'
 
 
 function Home() {
+
   return (
     <section className="">
       <div className=" h-screen">

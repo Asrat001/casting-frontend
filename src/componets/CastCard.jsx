@@ -9,9 +9,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const CastCard = () => {
-    const {state,dispatch} = useShoppingCart()
+    const {state,dispatch,data} = useShoppingCart()
     const [isOpen , setOpen]=useState(false)
-    const [isAddedToCart , setIsAddedToCart]=useState(false)
     const [Detail , setDetail]=useState([])
  const handleDitail =({data})=>{
   console.log(data)
@@ -20,6 +19,14 @@ const CastCard = () => {
  }
 
 
+ const hadleAddtoCast =(data)=>{
+dispatch({
+                type: "ADD_TO_CART",
+                payload: data,
+              })
+       
+            
+ }
 
   
 
@@ -29,7 +36,7 @@ const CastCard = () => {
     <div className='grid grid-cols-1 sm:grid-cols-3 place-content-center justify-items-center gap-5'>
      
 {
-    Data.map((data,i)=>{
+    data.data.users?.map((data,i)=>{
         return(
             <div key={i} className='w-fit h-fit bg-white    shadow-lg shadow-gray-300    '>
                 <img src={data.img} loading='lazy' className=' h-[240px]  object-cover w-full   '/>
@@ -38,16 +45,13 @@ const CastCard = () => {
                 <p className=' text-gray-600 text-[14px] px-1 '>{data.disc}</p>
                 </div>
                 <div className=' flex items-center gap-x-4 px-2 p-2'>
-                <button  onClick={()=>handleDitail({data})} className='py-1 px-1.5 w-auto flex  gap-3 justify-center bg-[#E6EEFB] items-center border-gray-400 border  text-[#ED7D31]'>
+                <button   onClick={()=>handleDitail({data})} className='py-1 px-1.5 w-auto flex  gap-3 justify-center bg-[#E6EEFB] items-center border-gray-400 border  text-[#ED7D31]'>
                   Detail
                   <BsFillEyeFill/>
                 </button>
                 <button 
-               onClick={() => {  dispatch({
-                type: "ADD_TO_CART",
-                payload: data,
-              }) }} className={`py-1.5 px-1.5 flex items-center gap-3${isAddedToCart ?`bg-green-600`:`bg-[#E6EEFB] `}  border-gray-400 border hover:bg-[#ED7D31]  text-gray-700`}>
-                  <p>{isAddedToCart?'Booked':'Book'}</p>
+               onClick={() => { hadleAddtoCast(data)  }} className={`py-1.5 px-1.5 flex items-center gap-3 bg-[#E6EEFB]  border-gray-400 border  ${state.cart.some(item => item.id === data.id) ? 'bg-[#ED7D31]' : ''}   text-gray-700`}>
+                   {state.cart.some(item => item.id === data.id) ? 'Already in Cart' : 'Book'}
                   <BsFillCameraReelsFill />
                   </button>
                 </div>
@@ -84,7 +88,7 @@ const CastCard = () => {
      onClick={() => { dispatch({
       type: "ADD_TO_CART",
       payload: user,
-    }), handleAddToCarttostify(); }}  className=' text-gray-700 border-[3px]  border-gray-700 p-1.5'>book me</button> 
+    }), handleAddToCarttostify(); }}  className={ `text-gray-700 border-[3px]  border-gray-700 p-1.5 ${state.cart.some(item => item.id === user.id) ? 'bg-[#ED7D31]' : ''} `}>{state.cart.some(item => item.id === user.id) ? 'Already in Cart' : 'Book'}</button> 
     <a className='border-[3px] text-gray-700  border-[#ED7D31] p-1.5 flex items-center gap-x-2'><BsFillTelephoneFill/> call me</a>
    </div>
    </div>

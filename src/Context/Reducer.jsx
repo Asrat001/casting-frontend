@@ -1,5 +1,8 @@
+
 import { toast } from 'react-toastify';
+import { useShoppingCart } from './CartContext';
 export const cartReducer = (state, action) => {
+  
     switch (action.type) {
       case "ADD_TO_CART":{
         const existingItem = state.cart.find(item => item.id === action.payload.id);
@@ -26,6 +29,7 @@ export const cartReducer = (state, action) => {
             draggable: true,
             progress: undefined,
           })
+        
           return { ...state, cart: [...state.cart, { ...action.payload, qty: 1 }] };
          
         }

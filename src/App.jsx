@@ -23,6 +23,7 @@ import AdminLayout from "./componets/AdminLayout";
 import Order from "./componets/Order";
 import Custome from "./componets/Custome";
 import { ShoppingCartProvider } from "./Context/CartContext";
+import {QueryClientProvider,QueryClient} from 'react-query'
 const router = createBrowserRouter(
   createRoutesFromElements(
 <Route>
