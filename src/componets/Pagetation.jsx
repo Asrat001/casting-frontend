@@ -7,7 +7,7 @@ const Pagetation = () => {
   const {data} = useShoppingCart()
   const pages = []
   
-  const totalPage=Math.round(parseInt(data?.data.total) /6 )
+  const totalPage=Math.round(parseInt(data.data.total) /6 )
    for(let i=1;i<=totalPage;i++){
     pages.push(i)
    }
