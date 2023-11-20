@@ -165,12 +165,12 @@ function Home() {
           <h3 className=" text-black font-bold text-[30px] ">
             Why Energy Casting?
           </h3>
-          <div className=" grid grid-cols-1 sm:grid-cols-2 p-16  ">
-            <div className=" h-[500px]">
-              <img src={space} alt="co-workers image  h-full " />
+          <div className=" grid grid-cols-1 lg:grid-cols-2 sm:p-16  ">
+            <div className=" h-[300px] sm:h-[500px] ">
+              <img src={space} alt="co-workers image  h-full" className="h-full w-full object-cover " />
             </div>
-            <div className=" grid grid-cols-2   gap-3 p-4  ">
-              <div className=" bg-[#f38c4c] p-6   rounded-lg">
+            <div className=" grid grid-cols-1 sm:grid-cols-2   gap-3 p-4  ">
+              <div className=" w-auto bg-[#f38c4c] p-6   rounded-lg ">
                 <div className="w-16 h-16 bg-[#ED7D31] rounded-full flex justify-center items-center">
                   <FaStar size={24} color="white" />
                 </div>
@@ -182,7 +182,7 @@ function Home() {
                   </p>
                 </div>
               </div>
-              <div className=" bg-[#F0F3F4] p-6   rounded-lg">
+              <div className="w-auto bg-[#F0F3F4] p-6   rounded-lg">
                 <div className="w-16 h-16 bg-[#ED7D31] rounded-full flex justify-center items-center">
                   <IoIosFlash size={28} color="white" />
                 </div>
@@ -196,7 +196,7 @@ function Home() {
                   </p>
                 </div>
               </div>
-              <div className=" bg-[#F0F3F4] p-6   rounded-lg">
+              <div className=" w-auto bg-[#F0F3F4] p-6   rounded-lg">
                 <div className="w-16 h-16 bg-[#ED7D31] rounded-full flex justify-center items-center">
                   <BsCash size={24} color="white" />
                 </div>
@@ -210,7 +210,7 @@ function Home() {
                   </p>
                 </div>
               </div>
-              <div className=" bg-[#F0F3F4] p-6   rounded-lg">
+              <div className="w-auto bg-[#F0F3F4] p-6   rounded-lg">
                 <div className="w-16 h-16 bg-[#ED7D31] rounded-full flex justify-center items-center">
                   <BsServer size={24} color="white" />
                 </div>
@@ -227,10 +227,11 @@ function Home() {
             </div>
           </div>
         </div>
-        <div className="mt-24 ">
+        <div className="mt-96 sm:mt-40">
           <Baner />
         </div>
       </main>
+      
     </section>
   );
 }

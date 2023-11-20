@@ -6,12 +6,21 @@ import logo from "../assets/cast.png"
 import { useShoppingCart } from '../Context/CartContext'
 import CastCart from './CastCart'
 import Modal from './Modal'
-
+import Drawer from './drawer'
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const {openCart,state} = useShoppingCart()
   const [isOpen , setOpen]=useState(false)
+
+  const [isdrawerOpen, setIsdrawerOpen] = useState(false);
+
+  const toggleDrawer = () => {
+    setIsdrawerOpen(!isdrawerOpen);
+  };
+
+
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
@@ -32,13 +41,27 @@ function Navbar() {
    
     </div>
       <nav className={` w-full fixed  top-0  ${scrolled ? ` bg-white`:` bg-transparent`}   z-20 flex  justify-between  sm:gap-[100px] items-center py-2 px-6 sm:px-8`}>
+      <div className="cursor-pointer md:hidden" onClick={toggleDrawer}>
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </div>
       <div className=' flex items-center gap-1 '>
       <img src={logo} alt="enrgy casting log" className=' w-[60px] h-[60px]  object-cover'/>
       <h1 className=''><span className=' font-bold'>Energy</span> Casting</h1>
       </div>
-     <button className=' block sm:hidden'>
-      <GiHamburgerMenu className='w-12 h-12 text-gray-800'/>
-     </button>
+    
   
      <ul className=' sm:flex justify-center items-center gap-x-4 hidden '>
        <li>
@@ -62,11 +85,13 @@ function Navbar() {
       <p className={` text-gray-900 relative top-[-4px] left-0 ${state.length>0 ? `bg-red-600 p-1 rounded-full`:``} `} >{state.cart.length}</p>
        </button>
       <CastCart isOpen={isOpen}/>
+  
   </nav>
+  
   <Modal
    isOpen={isOpen}
    onClose={()=>{setOpen(false)}}
-   className={` absolute top-0 right-0  w-[40%]  translate-x-[-0%] translate-y-[-0%]  `}
+   className={` absolute top-0 right-0  w-auto sm:w-[40%]  translate-x-[-0%] translate-y-[-0%]  `}
   >
     <section className='mt-6'>
       <h3 className=' text-black font-semibold'>You have Selected {state.cart.length} Cast's </h3>
@@ -133,8 +158,8 @@ function Navbar() {
               </button>
      </form>
     </section>
-
   </Modal>
+  <Drawer isdrawerOpen={isdrawerOpen} toggleDrawer={toggleDrawer} />
     </React.Fragment>
  
   )
