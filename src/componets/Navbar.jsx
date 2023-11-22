@@ -74,12 +74,12 @@ function Navbar() {
     <div className='grid grid-cols-1   gap-3'>
      
      {
-       state.cart.map((cart,i)=>{
+       state?.cart.map((cart,i)=>{
          return(
          
            <div className='flex  bg-[#E6EEFB]'>
              <div className=' w-[80px] h-[80px]  p-2'>
-               <img src={cart.img}  alt='sgs' className=' rounded-full object-cover w-full h-full'/>
+               <img src={cart.avatar}  alt='sgs' className=' rounded-full object-cover w-full h-full'/>
              </div>
      
            </div>

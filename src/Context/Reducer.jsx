@@ -5,7 +5,8 @@ export const cartReducer = (state, action) => {
   
     switch (action.type) {
       case "ADD_TO_CART":{
-        const existingItem = state.cart.find(item => item.id === action.payload._id);
+        const existingItem = state.cart.find(item => item._id === action.payload._id);
+          console.log(existingItem)
         if(existingItem){
           toast.error('user alardy added',{
             position: "top-right",
