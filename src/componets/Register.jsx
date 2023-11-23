@@ -43,7 +43,7 @@ const Signup = () => {
       setPassword('');
       toast.success('you have succesfully Signup.');
       // Redirect to login page
-      navigate('/verify');
+      navigate('/login');
     } catch (error) {
       dispatch({ type: 'SIGNUP_FAILURE', payload: error.message }); // Dispatch signup failure action
       // ... handle error case
