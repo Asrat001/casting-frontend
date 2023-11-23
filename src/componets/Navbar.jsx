@@ -10,7 +10,7 @@ import Drawer from './drawer'
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const {openCart,state} = useShoppingCart()
+  const {openCart,state, dispatch} = useShoppingCart()
   const [isOpen , setOpen]=useState(false)
 
   const [isdrawerOpen, setIsdrawerOpen] = useState(false);
@@ -57,7 +57,7 @@ function Navbar() {
             />
           </svg>
         </div>
-      <div className=' flex items-center gap-1 '>
+      <div className=' sm:flex items-center gap-1 hidden  '>
       <img src={logo} alt="enrgy casting log" className=' w-[60px] h-[60px]  object-cover'/>
       <h1 className=''><span className=' font-bold'>Energy</span> Casting</h1>
       </div>
@@ -107,7 +107,8 @@ function Navbar() {
                <img src={cart.avatar}  alt='sgs' className=' rounded-full object-cover w-full h-full'/>
              </div>
              <div>asrat</div>
-             <button className='text-red-600 ml-auto'>delete</button>
+             <button onClick={()=>{dispatch({ type: "REMOVE_FROM_CART",
+                payload: cart,})}} className='text-red-600 ml-auto'>delete</button>
      
            </div>
            
