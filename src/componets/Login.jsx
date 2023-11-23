@@ -5,12 +5,14 @@ import { Link,useNavigate } from "react-router-dom";
 import axios from "axios";
 import { server } from "../server";
 import { toast } from "react-toastify";
+import { useAuthDispatch } from "../Context/AuthContext";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
   const navigate = useNavigate();
-  const handleSubmit = async (e) => {
+  const dispatch = useAuthDispatch(); // Use useAuthDispatch hook
+  /*const handleSubmit = async (e) => {
     e.preventDefault();
 
     await axios
@@ -30,6 +32,24 @@ const Login = () => {
       .catch((err) => {
         toast.error("email or password incorrect");
       });
+  };
+  */
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(`${server}/user/login`, {
+        email,
+        password,
+      });
+
+      const data = response.data;
+      dispatch({ type: 'LOGIN_SUCCESS', payload: data.user }); // Dispatch the login success action
+      toast.success('Login successful');
+      navigate('/'); // Redirect to the home page after successful login
+    } catch (error) {
+      dispatch({ type: 'LOGIN_FAILURE', payload: 'Invalid email or password' }); // Dispatch the login failure action
+      toast.error('Invalid email or password');
+    }
   };
   
   return (
