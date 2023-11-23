@@ -1,11 +1,11 @@
-import { React, useState ,useEffect} from "react";
+import { React, useState ,useEffect,useContext} from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import styles from "../styles/styles";
 import { Link,useNavigate } from "react-router-dom";
 import axios from "axios";
 import { server } from "../server";
 import { toast } from "react-toastify";
-
+import { useAuthDispatch } from "../Context/AuthContext";
 const image =[
 "https://res.cloudinary.com/diogyja1g/image/upload/v1695589767/image2_fu1qup.jpg",
 "https://res.cloudinary.com/diogyja1g/image/upload/v1695589768/86_sffdlz.jpg",
@@ -19,6 +19,7 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useAuthDispatch();
 
   useEffect(() => {
       let a = Math.floor(Math.random() * image.length);
@@ -26,31 +27,31 @@ const Signup = () => {
   }, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const config = { headers: { "Content-Type": "application/json" } };
-    const userData = {
-      fullname:fullname,
-      email: email,
-      password:password
-    };
-    await axios
-      .post(
-        `${server}/user/signup`,
-        userData,
-        config
-        
-      )
-      .then((res) => {
-        toast.success("you have successfully signed up now login to continue");
-        setfullName("");
-        setEmail("");
-        setPassword("");
-        //window.location.reload(true);
-        navigate("/login");
-      })
-      .catch((error) => {
-        toast.error(error.response.data);
-      });
+    // ... handle form submission and API request using axios
+    try {
+      const userData = {
+        fullname: fullname,
+        email: email,
+        password: password,
+      };
+      dispatch({ type: 'SIGNUP_REQUEST' }); // Dispatch signup request action
+      const response = await axios.post(`${server}/user/signup`, userData);
+      dispatch({ type: 'SIGNUP_SUCCESS', payload: response.data }); // Dispatch signup success action
+      console.log(response)// ... handle success case
+      setfullName('');
+      setEmail('');
+      setPassword('');
+      toast.success('you have succesfully Signup.');
+      // Redirect to login page
+      navigate('/login');
+    } catch (error) {
+      dispatch({ type: 'SIGNUP_FAILURE', payload: error.message }); // Dispatch signup failure action
+      // ... handle error case
+      toast.error('Signup failed. Please try again.');
+    }
   };
+
+  
 
   return (
     <div className=" min-h-screen grid grid-cols-1 sm:grid-cols-2 ">

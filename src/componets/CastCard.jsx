@@ -73,9 +73,11 @@ dispatch({
     Detail?.map((user,i)=>{
       return(
         <div>
-          <h1 className=' text-black  text-[26px]'>{user.role}</h1>
-          <img src={user.avatar} className='h-[500px] w-full object-cover' alt='username'/>
-<      div className='px-3'>
+
+          <h1 className=' text-black font-semibold text-[26px]'>{user.role}</h1>
+          <img src={user.img} className='h-[500px] w-full object-cover' alt='username'/>
+<div className='px-3'>
+
        
        <p className=' text-gray-700 text-[13px]'><span className=' text-[#ED7D31] text-[20px]'>Name: </span>{user.fullname}</p>
        <p className='balance text-gray-700 text-[13px]'><span className=' text-[#ED7D31] text-[20px]'>about me:</span> {user.about}</p>

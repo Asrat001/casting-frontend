@@ -1,8 +1,9 @@
-
+import VerifyOTP from "./pages/Verify";
 import  Home from "./pages/Home"
 import LoginPage from "./pages/Login"
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AuthProvider } from "./Context/AuthContext";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -36,6 +37,8 @@ const router = createBrowserRouter(
 <Route path="/profile" element={<Profile/>}/>
 <Route path="/how" element={<How/>}/>
 <Route path="/custome" element={<Custome/>}/>
+<Route path="/verify" element={<VerifyOTP/>}/>
+
 </Route>
 <Route path="/admin" element={<AdminLayout/>}>
   <Route index element={<AdminDashboard/>}/>
@@ -48,6 +51,7 @@ const router = createBrowserRouter(
 
 const App = () => {
   return (
+    <AuthProvider>
     <ShoppingCartProvider>
 <RouterProvider router={router}/>
 <ToastContainer
@@ -63,6 +67,7 @@ const App = () => {
         theme="dark"
       />
   </ShoppingCartProvider>
+  </AuthProvider>
   )
 }
 
