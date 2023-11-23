@@ -13,11 +13,11 @@ const CastCard = () => {
     const [isOpen , setOpen]=useState(false)
     const [Detail , setDetail]=useState([])
  const handleDitail =({data})=>{
-  console.log(data)
+  
   setDetail([data])
   setOpen(true)
  }
-
+console.log(data)
 
  const hadleAddtoCast =(data)=>{
 dispatch({
@@ -29,7 +29,7 @@ dispatch({
  }
 
   
-console.log(data)
+
 
 
   return (
@@ -37,6 +37,8 @@ console.log(data)
      
 {
     data?.data.users.map((data,i)=>{
+      
+        
         return(
             <div key={i} className='w-fit h-fit bg-white    shadow-lg shadow-gray-300    '>
                 <img src={data.avatar} loading='lazy' className=' h-[240px]  object-cover w-full   '/>
@@ -50,8 +52,8 @@ console.log(data)
                   <BsFillEyeFill/>
                 </button>
                 <button 
-               onClick={() => { hadleAddtoCast(data)  }} className={`py-1.5 px-1.5 flex items-center gap-3 bg-[#E6EEFB]  border-gray-400 border  ${state.cart.some(item => item.id === data._id) ? 'bg-[#ED7D31]' : ''}   text-gray-700`}>
-                   {state.cart.some(item => item.id === data._id) ? 'Already in Cart' : 'Book'}
+               onClick={() => { hadleAddtoCast(data)  }} className={`py-1.5 px-1.5 flex items-center gap-3 bg-[#E6EEFB]  border-gray-400 border  ${state.cart.some(item => item._id === data._id) ? 'bg-[#ED7D31]' : ''}   text-gray-700`}>
+                   {state.cart.some(item => item._id === data._id) ? 'Already in Cart' : 'Book'}
                   <BsFillCameraReelsFill />
                   </button>
                 </div>
@@ -71,18 +73,25 @@ console.log(data)
     Detail?.map((user,i)=>{
       return(
         <div>
+
           <h1 className=' text-black font-semibold text-[26px]'>{user.role}</h1>
           <img src={user.img} className='h-[500px] w-full object-cover' alt='username'/>
 <div className='px-3'>
+
        
-       <p className=' text-gray-700 font-semibold'><span className=' text-[#ED7D31] text-[20px]'>Name:</span>{user.role}</p>
-       <p className='balance text-gray-700 font-semibold'><span className=' text-[#ED7D31] text-[20px]'>about me:</span> {user.disc}</p>
-       <p className=' text-gray-700 font-semibold'><span className=' text-[#ED7D31] text-[20px]'>age:</span>23</p>
-       <p className=' text-gray-700 font-semibold'><span className=' text-[#ED7D31] text-[20px]'>exprinace:</span>sxnibiuwcbic ,whcyvbew,buiwe</p>
-       <p className=' text-gray-700 font-semibold'><span className=' text-[#ED7D31] text-[20px]'>talent:</span>reading , codding , slepping , eating</p>
-       <p className=' text-gray-700 font-semibold'><span className=' text-[#ED7D31] text-[20px]'>Language:</span>somali , oromuffa , English , eating</p>
-       <p className=' text-gray-700 font-semibold'><span className=' text-[#ED7D31] text-[20px]'>Nationality:</span>Ethiopian</p>
-       <p className=' text-gray-700 font-semibold'><span className=' text-[#ED7D31] text-[20px]'>Address:</span>addis abeba , 4killo </p>
+       <p className=' text-gray-700 text-[13px]'><span className=' text-[#ED7D31] text-[20px]'>Name: </span>{user.fullname}</p>
+       <p className='balance text-gray-700 text-[13px]'><span className=' text-[#ED7D31] text-[20px]'>about me:</span> {user.about}</p>
+       <p className=' text-gray-700 text-[13px]'><span className=' text-[#ED7D31] text-[20px]'>age: </span>{user.age}</p>
+       <p className=' text-gray-700 text-[13px]'><span className=' text-[#ED7D31] text-[20px]'>exprinace:</span>{user?.expriance}</p>
+
+       <p className=' text-gray-700 text-[13px]'><span className=' text-[#ED7D31] text-[20px]'>talent:</span>{user.talent}</p>
+       <p className=' text-gray-700 text-[13px]'><span className=' text-[#ED7D31] text-[20px]'>Language: </span>{user.language.join(' , ')}</p>
+       <p className=' text-gray-700 text-[13px]'><span className=' text-[#ED7D31] text-[20px]'>Nationality:</span>{user.info.nationality}</p>
+       <p className=' text-gray-700 text-[13px]'><span className=' text-[#ED7D31] text-[20px]'>Region: </span>{user.info.region}</p>
+
+       <p className=' text-gray-700 text-[13px]'><span className=' text-[#ED7D31] text-[20px]'>Acadamic: </span>{user.info.accadamic}</p>
+       <p className=' text-gray-700 text-[13px] '><span className=' text-[#ED7D31] text-[20px]'>Address: </span>{user.info.city}</p>
+
        <div className=' flex  gap-x-4 items-center my-6 '>
     <button  
      onClick={() => { dispatch({
