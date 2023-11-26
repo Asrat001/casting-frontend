@@ -17,7 +17,7 @@ import slide_image_1 from "../assets/hero.png";
 function Slider() {
   return (
     <section className="   flex flex-col  sm:flex-row  justify-between items-center">
-      <div className="flex justify-center items-center flex-col">
+      <div className="flex justify-center items-center flex-col overflow-x-hidden sm:overflow-visible">
         <Swiper
           effect={"cards"}
           pagination={true}

@@ -22,12 +22,12 @@ import axios from "axios";
 
 function Home() {
   return (
-    <section className="">
+    <section className="mb-20 sm:mb-auto">
       <div className=" h-screen">
         <Hero />
       </div>
       <main className=" ">
-        <div className="px-[40px] py-[35px] bg-[#3E8ED1]   ">
+        <div className="px-[40px] py-[35px] bg-[#3E8ED1]  overflow-x-hidden ">
           <h2 className=" font-bold text-[32px] ml-[60px] mb-6 text-white ">
             Popular category
           </h2>
@@ -210,7 +210,7 @@ function Home() {
                   </p>
                 </div>
               </div>
-              <div className="w-auto bg-[#F0F3F4] p-6   rounded-lg">
+              <div className="w-auto bg-[#F0F3F4] p-6 hidden  sm:block rounded-lg">
                 <div className="w-16 h-16 bg-[#ED7D31] rounded-full flex justify-center items-center">
                   <BsServer size={24} color="white" />
                 </div>
