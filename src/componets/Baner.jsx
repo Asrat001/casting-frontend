@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const Baner = () => {
   return (
-    <div className='sm:my-auto relative bg-gradient-to-tr  from-[#243046] to-[#ED7D31]/70  min-h-screen  '>
+    <div className='sm:my-auto relative bg-gradient-to-tr  from-[#243046] to-[#ED7D31]/70 min-h-screen  overflow-y-hidden '>
         <div className=' absolute bg-baner-bg bg-cover bg-no-repeat min-h-screen  mix-blend-hard-light sm:pl-12 pl-4 py-8 '>
         <main className='grid grid-cols-1 sm:grid-cols-2 '>
    <div className=' mt-24 sm:mt-36'>
