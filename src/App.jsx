@@ -26,6 +26,7 @@ import Order from "./componets/Order";
 import Custome from "./componets/Custome";
 import { ShoppingCartProvider } from "./Context/CartContext";
 import {QueryClientProvider,QueryClient} from 'react-query'
+import React from "react";
 const router = createBrowserRouter(
   createRoutesFromElements(
 <Route>
@@ -52,25 +53,29 @@ const router = createBrowserRouter(
 );
 
 const App = () => {
-  return (
-    <AuthProvider>
-    <ShoppingCartProvider>
-<RouterProvider router={router}/>
-<ToastContainer
-        position="bottom-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
-  </ShoppingCartProvider>
-  </AuthProvider>
-  )
+
+    return (
+     <AuthProvider>
+      <ShoppingCartProvider>
+  <RouterProvider router={router}/>
+  <ToastContainer
+          position="bottom-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
+    </ShoppingCartProvider>
+    </AuthProvider>
+     
+    )
+  
+
 }
 
 export default App

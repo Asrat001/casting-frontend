@@ -6,10 +6,11 @@ import Modal from './Modal'
 import { useState } from 'react'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import loding from '../assets/loging.svg'
 
 
 const CastCard = () => {
-    const {state,dispatch,data} = useShoppingCart()
+    const {state,dispatch,data,isLoading} = useShoppingCart()
     const [isOpen , setOpen]=useState(false)
     const [Detail , setDetail]=useState([])
  const handleDitail =({data})=>{
@@ -27,8 +28,15 @@ dispatch({
        
             
  }
+ if(isLoading)
+  {
+    return(
+      <div className='grid place-items-center'>
+        <img src={loding} alt="loading" className=' w-24 h-24' />
+      </div>
+    )
 
-  
+  }
 
 
 

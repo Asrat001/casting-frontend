@@ -1,1 +1,1 @@
-export const server = "https://casting-backend.onrender.com/api";
+export const server = "http://localhost:8000"
