@@ -44,6 +44,10 @@ const Drawer = ({ isdrawerOpen, toggleDrawer }) => {
        <li className='py-2' onClick={toggleDrawer}>
        <NavLink to='/register' className='text-orange-600'>register as a cast</NavLink>
        </li>
+       <li className='py-2' onClick={toggleDrawer}>
+       <NavLink to='/myprofile' className='text-orange-600'>My Profile</NavLink>
+       </li>
+
         </ul>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import VerifyOTP from "./pages/Verify";
 import  Home from "./pages/Home"
 import LoginPage from "./pages/Login"
+import ProfilePage from "./pages/Myprofile"; 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AuthProvider } from "./Context/AuthContext";
@@ -38,6 +39,7 @@ const router = createBrowserRouter(
 <Route path="/how" element={<How/>}/>
 <Route path="/custome" element={<Custome/>}/>
 <Route path="/verify" element={<VerifyOTP/>}/>
+<Route path="/myprofile" element={<ProfilePage/>}/>
 
 </Route>
 <Route path="/admin" element={<AdminLayout/>}>
