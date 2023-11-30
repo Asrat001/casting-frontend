@@ -10,7 +10,7 @@ import loding from '../assets/loging.svg'
 
 
 const CastCard = () => {
-    const {state,dispatch,data,isLoading} = useShoppingCart()
+    const {state,dispatch,CastData, lodingCast} = useShoppingCart()
     const [isOpen , setOpen]=useState(false)
     const [Detail , setDetail]=useState([])
  const handleDitail =({data})=>{
@@ -18,7 +18,7 @@ const CastCard = () => {
   setDetail([data])
   setOpen(true)
  }
-console.log(data)
+
 
  const hadleAddtoCast =(data)=>{
 dispatch({
@@ -28,7 +28,7 @@ dispatch({
        
             
  }
- if(isLoading)
+ if(lodingCast)
   {
     return(
       <div className='grid place-items-center'>
@@ -44,7 +44,7 @@ dispatch({
     <div className='grid grid-cols-1 sm:grid-cols-3 place-content-center justify-items-center gap-5'>
      
 {
-    data?.data.users.map((data,i)=>{
+    CastData?.data.users.map((data,i)=>{
       
         
         return(

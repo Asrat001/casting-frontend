@@ -34,16 +34,59 @@ const Signup = () => {
         email: email,
         password: password,
       };
-      dispatch({ type: 'SIGNUP_REQUEST' }); // Dispatch signup request action
-      const response = await axios.post(`${server}/api/user/signup`, userData,{withCredentials:true});
-      dispatch({ type: 'SIGNUP_SUCCESS', payload: response.data }); // Dispatch signup success action
-      
+      dispatch({ type: 'SIGNUP_REQUEST' });
+      // Dispatch signup request action
+       await axios.post(`${server}/api/user/signup`, userData,{withCredentials:true},{
+        headers: {
+          'Content-Type': 'application/json',
+          // Add other headers if needed
+          // 'Authorization': 'Bearer token',
+        },
+      }).then(response=>{
+        console.log(response.status)
+        if(response.status===200){
+          toast.success('you registed sucussfully',{
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          
+          })
+          navigate('/verify');
+        }
+      }).catch(error=>{
+         const status=error.response.status
+          if(status===400){
+            <div className="p-6"> 
+   {
+         toast.error('User already exists',{
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        
+        })
+   }
+            </div>
+       
+          }
+      });
+      // Dispatch signup success action
+  
+     
+       
       setfullName('');
       setEmail('');
       setPassword('');
-      toast.success('you have succesfully Signup.');
+      ;
       // Redirect to login page
-      navigate('/verify');
+      
     } catch (error) {
       dispatch({ type: 'SIGNUP_FAILURE', payload: error.message }); // Dispatch signup failure action
       // ... handle error case

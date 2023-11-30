@@ -37,15 +37,45 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${server}/user/login`, {
+     await axios.post(`${server}/api/user/login`, {
         email,
         password,
+      },{withCredentials:true}).then(res=>{
+        if(res.data.isAdmin===true){
+          navigate('/admin')
+        }else{
+          navigate('/myprofile')
+        }
+      }).catch(error=>{
+        const status= error.res.status
+ console.log(status)
+        if(status===400){
+          toast.warning('fill all the feilds',{
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          
+          })
+        }
+        if(status===404){
+          toast.warning('user not found , please register ',{
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          
+          })
+        }
       });
 
-      const data = response.data;
-      dispatch({ type: 'LOGIN_SUCCESS', payload: data.user }); // Dispatch the login success action
-      toast.success('Login successful');
-      navigate('/'); // Redirect to the home page after successful login
+      // Redirect to the home page after successful login
     } catch (error) {
       dispatch({ type: 'LOGIN_FAILURE', payload: 'Invalid email or password' }); // Dispatch the login failure action
       toast.error('Invalid email or password');

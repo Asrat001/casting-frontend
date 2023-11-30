@@ -4,10 +4,10 @@ import { useShoppingCart } from '../Context/CartContext'
 
 
 const Pagetation = () => {
-  const {data} = useShoppingCart()
+  const {CastData} = useShoppingCart()
   const pages = []
   
-  const totalPage=Math.round(parseInt(data?.data.total) /6 )
+  const totalPage=Math.round(parseInt(CastData?.data.total) /6 )
    for(let i=1;i<=totalPage;i++){
     pages.push(i)
    }

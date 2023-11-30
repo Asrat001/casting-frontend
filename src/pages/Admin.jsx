@@ -4,6 +4,7 @@ import { FaCartArrowDown } from "react-icons/fa";
 import { IoMdPerson } from "react-icons/io";
 import { Bar } from "react-chartjs-2";
 import  {Chart as ChartJs,registerables}  from "chart.js";
+import { useShoppingCart } from "../Context/CartContext";
 ChartJs.register(...registerables)
 const Total =[
   {
@@ -82,6 +83,38 @@ const data = {
 
 
 const AdminDashboard = () => {
+  const {CauntData,OrderCount} =useShoppingCart()
+ 
+  
+  const Total =[
+    {
+      disc:"total cast",
+      value:CauntData?.data.allcasts,
+      route:"user"
+    },
+    {
+      disc:"men",
+      value:CauntData?.data.male,
+      route:"user"
+  
+    },
+    {
+      disc:"female",
+      value:CauntData?.data.female,
+      route:"user"
+    },
+    {
+      disc:"order",
+      value:OrderCount?.data,
+      route:"order"
+    },
+    {
+      disc:"custom order",
+      value:600,
+      route:"order"
+    }
+  ]
+ 
   return (
     <section>
       <h3 className="my-2 text-[24px] font-bold">Dashboard</h3>
