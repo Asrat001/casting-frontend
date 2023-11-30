@@ -17,37 +17,25 @@ import slide_image_1 from "../assets/hero.png";
 function Slider() {
   return (
     <section className="   flex flex-col  sm:flex-row  justify-between items-center">
-      <div className="flex justify-center items-center flex-col overflow-x-hidden sm:overflow-visible">
+      <div className="flex justify-center items-center flex-col p-4 ">
         <Swiper
           effect={"cards"}
           pagination={true}
-          autoplay={{
-            delay:2500,
-            disableOnInteraction:false
-          }}
           grabCursor={true}
-          modules={[EffectCards, Pagination,Autoplay]}
+          modules={[EffectCards, Pagination]}
           className="mySwiper"
         >
           <SwiperSlide>
             <img src="https://res.cloudinary.com/diogyja1g/image/upload/v1693222355/9_v0if8x.jpg" className="w-full  h-full  object-cover" />
-            <h1 className=" text-sky-700 text-[23px] absolute  bottom-10 left-2">Netsante Getachew</h1>
-         <p className="text-white text-[13px] absolute  bottom-8 underline underline-offset-2 left-2"> producer , mentor</p>
           </SwiperSlide>
           <SwiperSlide>
             <img src="https://res.cloudinary.com/diogyja1g/image/upload/v1693222355/9_v0if8x.jpg" className="w-full  h-full  object-cover" />
-            <h1 className=" text-sky-700 text-[23px] absolute  bottom-10 left-1">Netsante Getachew</h1>
-            <p className="text-white text-[13px] absolute  bottom-8 underline underline-offset-2 left-2"> producer , mentor</p>
           </SwiperSlide>
           <SwiperSlide>
           <img src="https://res.cloudinary.com/diogyja1g/image/upload/v1693222355/9_v0if8x.jpg" className="w-full h-full  object-cover" />
-         <h1 className=" text-sky-700 text-[23px] absolute  bottom-10 left-1">Netsante Getachew</h1>
-         <p className="text-white text-[13px] absolute  bottom-8 underline underline-offset-2 left-2"> producer , mentor</p>
           </SwiperSlide>
           <SwiperSlide>
             <img src="https://res.cloudinary.com/diogyja1g/image/upload/v1693222355/9_v0if8x.jpg" className="w-full h-full  object-cover" />
-            <h1 className=" text-sky-700 text-[23px] absolute  bottom-10 left-1">Netsante Getachew</h1>
-           <p className="text-white text-[13px] absolute  bottom-8 underline underline-offset-2 left-2"> producer , mentor</p>
           </SwiperSlide>
         </Swiper>
     

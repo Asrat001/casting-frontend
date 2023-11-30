@@ -25,7 +25,7 @@ function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY;
-      if (scrollTop > 80) {
+      if (scrollTop > 40) {
         setScrolled(true);
       } else {
         setScrolled(false);
@@ -37,11 +37,9 @@ function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   return (
-    <React.Fragment>
-        <div className=' absolute left-0 top-[100px] md:left-[60px] md:top-[110px] '>
-   
-    </div>
-      <nav className={` w-full fixed  top-0  ${scrolled ? ` bg-white`:` bg-transparent`}   z-20 flex  justify-between  sm:gap-[100px] items-center py-2 px-6 sm:px-8`}>
+    <React.Fragment >
+ 
+      <nav className={` w-full fixed  left-0 top-0  ${scrolled ? `  bg-transparent`:` bg-transparent`}  justify-between  z-20 flex    sm:gap-[100px] items-center px-6 py-2  sm:px-8`}>
       <div className="cursor-pointer md:hidden" onClick={toggleDrawer}>
           <svg
             className="w-6 h-6"
@@ -81,7 +79,7 @@ function Navbar() {
      </ul>
       <button 
       onClick={()=>{setOpen(true)}}
-      className={`p-3 h-16 sm:w-16 rounded-full border-[4px]  border-[#ED7D31]  flex justify-center items-center`}>
+      className={`p-3 h-16 w-16 rounded-full border-[4px]  border-[#ED7D31]  flex justify-center items-center`}>
       <BsPersonPlusFill className=' text-gray-900 ' size={28}/>
       <p className={` text-gray-900 relative top-[-4px] left-0 ${state.length>0 ? `bg-red-600 p-1 rounded-full`:``} `} >{state.cart.length}</p>
        </button>
