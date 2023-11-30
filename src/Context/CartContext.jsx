@@ -35,6 +35,7 @@ export function ShoppingCartProvider({ children }) {
         state,
         isOpen,
         data,
+        isLoading,
         dispatch,
         openCart,
         closeCart,

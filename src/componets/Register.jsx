@@ -35,15 +35,15 @@ const Signup = () => {
         password: password,
       };
       dispatch({ type: 'SIGNUP_REQUEST' }); // Dispatch signup request action
-      const response = await axios.post(`${server}/user/signup`, userData);
+      const response = await axios.post(`${server}/api/user/signup`, userData,{withCredentials:true});
       dispatch({ type: 'SIGNUP_SUCCESS', payload: response.data }); // Dispatch signup success action
-      console.log(response)// ... handle success case
+      
       setfullName('');
       setEmail('');
       setPassword('');
       toast.success('you have succesfully Signup.');
       // Redirect to login page
-      navigate('/login');
+      navigate('/verify');
     } catch (error) {
       dispatch({ type: 'SIGNUP_FAILURE', payload: error.message }); // Dispatch signup failure action
       // ... handle error case
