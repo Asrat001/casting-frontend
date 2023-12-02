@@ -43,10 +43,12 @@ const Profile = () => {
     const [phone, setPhone] = useState("");
     const [age, setAge] = useState();
     const [sex, setSex] = useState('');
+    const [Education, setEducation] = useState('');
     const [link, setLink] = useState("");
     const [nationality, setNationality] = useState("");
     const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
+    const [skin, setSkin] = useState("");
     const [exprience, setExprience] = useState("");
     const [interests, setInterests] = useState(
         []
@@ -58,17 +60,24 @@ const Profile = () => {
     }
     const ProfileData={
       about:about,
-      Language:Language,
+      Language:Language.split(","),
       phone:phone,
       age:age,
-      link:[link],
-      nationality:nationality,
-      address:address,
-      city:city,
-      exprience:exprience,
+      info:{
+        region:address,
+        nationality:nationality,
+        city:city,
+        accadamic:Education
+      },
+      link:[link.split(",")],
+      exprience:exprience.split(","),
       gender:sex,
-      avatar:JSON.parse(sessionStorage.getItem('img'))
+      avatar:JSON.parse(sessionStorage.getItem('img')),
+      talent:interests,
+      skintone:skin
     }
+
+
     const handelSubmit= async (e)=>{
       e.preventDefault();
      
@@ -130,7 +139,7 @@ const Profile = () => {
       let a = Math.floor(Math.random() * image.length);
       setRand(a)
   }, []);
-   console.log(Language.split(","))
+   
   return (
     <div className=" min-h-screen grid grid-cols-1 sm:grid-cols-2 ">
     <div className="w-full h-full ">
@@ -252,6 +261,26 @@ const Profile = () => {
                 htmlFor="email"
                 className="block text-sm font-medium text-gray-700"
               >
+                Education
+              </label>
+              <div className="mt-1">
+                <input
+                  type="text"
+                  name="text"
+                  placeholder='Yared School of Art'
+                  autoComplete="name"
+                  required
+                  value={sex}
+                  onChange={(e) => setEducation(e.target.value)}
+                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                />
+              </div>
+            </div>
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700"
+              >
                Your tik tok or youtube  video link
               </label>
               <div className="mt-1 " >
@@ -275,7 +304,7 @@ const Profile = () => {
                 Skin ton
               </label>
               <div className="mt-1">
-                <select className='className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"'>
+                <select onChange={(e)=>setSkin(e.target.value)} className='className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"'>
                 <option value='black'>
                     Black
                   </option>
