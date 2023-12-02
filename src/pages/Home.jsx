@@ -18,8 +18,39 @@ import Pagetation from "../componets/Pagetation";
 import Baner from "../componets/Baner";
 import space from "../assets/space.png";
 import axios from "axios";
+import { fetchCasts } from "../apiRequistes/fetchCasts";
+import { useQuery } from "react-query";
 
 function Home() {
+  const [searchValue, setSearchValue] = useState("")
+  const [age, setAge] = useState()
+  const [gender, setGender] = useState()
+  const [page, setPage] = useState(1)
+  
+  
+  const HandelAger=(event)=>{
+    const valu= event?.target.value
+    filter.age=valu
+  }
+  const HandelGender=(event)=>{
+    const valu= event?.target.value
+    setGender(valu)
+    
+  }
+  const HandelSkin=(data)=>{
+      setSkin(data)
+    
+  }
+
+  const HandelPage=(page)=>{
+        setPage(page)
+  }
+  const filter={
+    search:searchValue,
+    gender:gender,
+    page:page
+  }
+  const { isLoading:lodingCast ,data:CastData,isError} = useQuery({ queryKey: ['cast-data',filter], queryFn:()=>fetchCasts(filter) })
   return (
     <section className="mb-20 sm:mb-auto">
       <div className=" h-screen">
@@ -58,13 +89,14 @@ function Home() {
           </div>
         </div>
         <div className=" flex p-4 md:p-14 gap-4">
-        <Filtter/>
+        <Filtter  HandelSkin={HandelSkin} HandelAger={HandelAger} HandelGender={HandelGender}/>
           <div className=" rounded-lg border-gray-300 border-[1px] md:p-6 w-full">
             <div className="flex mb-6 w-[60%]">
               <div className="  rounded-l-lg  border-gray-300 border-[1px] pl-3 w-full h-[50px] flex justify-center items-center">
                 <input
                   type="text"
                   placeholder="eg : music video , film , promotion"
+                  onChange={(e)=>setSearchValue(e.target.value)}
                   className=" border-none outline-none text-black   focus:border-sky-500 bg-transparent rounded-r-full p-2  w-full border-green-400"
                 />
               </div>
@@ -72,10 +104,10 @@ function Home() {
                 <BsSearch className="w-8 h-8 text-white" />
               </button>
             </div>
-            <p className="my-6 font-bold">1,200 Cast's</p>
-            <CastCard />
+            <p className="my-6 font-bold">{CastData?.data.total} Cast's avilable</p>
+            <CastCard Data={CastData} lodingCast={lodingCast} error={isError} />
             <div className="  mt-24   sm:px-20">
-              <Pagetation />
+              <Pagetation Data={CastData} HandelPage={HandelPage}/>
             </div>
           </div>
         </div>

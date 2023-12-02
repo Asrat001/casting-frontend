@@ -9,8 +9,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import loding from '../assets/loging.svg'
 
 
-const CastCard = () => {
-    const {state,dispatch,CastData, lodingCast} = useShoppingCart()
+const CastCard = ({Data,lodingCast,error}) => {
+  console.log(Data)
+    const {state,dispatch} = useShoppingCart()
     const [isOpen , setOpen]=useState(false)
     const [Detail , setDetail]=useState([])
  const handleDitail =({data})=>{
@@ -37,6 +38,27 @@ dispatch({
     )
 
   }
+  if(error)
+  {
+    return(
+      <div className='grid place-items-center'>
+       <p>erroe loding data</p>
+      </div>
+    )
+
+  }
+  if(Data?.data.total==0  )
+  
+  
+  {
+    return(
+      <div className='grid place-items-center'>
+       <p>No Data matching your search</p>
+      </div>
+    )
+
+  }
+
 
 
 
@@ -44,7 +66,7 @@ dispatch({
     <div className='grid grid-cols-1 sm:grid-cols-3 place-content-center justify-items-center gap-5'>
      
 {
-    CastData?.data.users.map((data,i)=>{
+    Data?.data?.users.map((data,i)=>{
       
         
         return(
@@ -52,7 +74,9 @@ dispatch({
                 <img src={data.avatar} loading='lazy' className=' h-[240px]  object-cover w-full   '/>
                 <div className='px-2 py-2'>
                 <p className=' text-gray-800'>{data.fullname}</p>
+                <p className=' text-orange-600 text-[12px] font-extrabold  px-1 '>{data.expriance}</p>
                 <p className=' text-gray-600 text-[14px] px-1 '>{data.about}</p>
+               
                 </div>
                 <div className=' flex items-center gap-x-4 px-2 p-2'>
                 <button   onClick={()=>handleDitail({data})} className='py-1 px-1.5 w-auto flex  gap-3 justify-center bg-[#E6EEFB] items-center border-gray-400 border  text-[#ED7D31]'>
@@ -73,17 +97,19 @@ dispatch({
 <Modal
   isOpen={isOpen}
   onClose={()=>{setOpen(false)}}
-  className={` fixed top-0  right-0  w-[70%]   translate-x-[-0%] translate-y-[-0%]  `}
+  className={` fixed top-0  right-0 w-full  md:w-[70%]   translate-x-[-0%] translate-y-[-0%]  `}
 >
   <section className=' mt-4'>
 
   {
     Detail?.map((user,i)=>{
+      
       return(
-        <div>
+        <div key={i}>
 
           <h1 className=' text-black font-semibold text-[26px]'>{user.role}</h1>
-          <img src={user.img} className='h-[500px] w-full object-cover' alt='username'/>
+          <img src={user?.avatar
+} className='h-[500px] w-full object-cover' alt='username'/>
 <div className='px-3'>
 
        

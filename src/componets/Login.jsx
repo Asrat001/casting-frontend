@@ -41,10 +41,11 @@ const Login = () => {
         email,
         password,
       },{withCredentials:true}).then(res=>{
+        sessionStorage.setItem('user',JSON.stringify(res.data));
         if(res.data.isAdmin===true){
           navigate('/admin')
         }else{
-          navigate('/myprofile')
+          navigate(from,{replace:true})
         }
       }).catch(error=>{
         const status= error.res.status

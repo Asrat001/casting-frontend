@@ -34,8 +34,6 @@ const Signup = () => {
         email: email,
         password: password,
       };
-      dispatch({ type: 'SIGNUP_REQUEST' });
-      // Dispatch signup request action
        await axios.post(`${server}/api/user/signup`, userData,{withCredentials:true},{
         headers: {
           'Content-Type': 'application/json',
@@ -45,6 +43,7 @@ const Signup = () => {
       }).then(response=>{
         console.log(response.status)
         if(response.status===200){
+          sessionStorage.setItem('user',JSON.stringify(response.data));
           toast.success('you registed sucussfully',{
             position: "top-right",
             autoClose: 3000,

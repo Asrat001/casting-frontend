@@ -1,8 +1,6 @@
 import React from 'react';
-const handleEditProfile = () => {
-    // Handle edit profile action
-    console.log('Edit profile clicked');
-  };
+import { Link, } from 'react-router-dom';
+
 const ProfilePage = () => {
   return (
     <div className="bg-gray-100 min-h-screen p-4 mt-20">
@@ -18,7 +16,7 @@ const ProfilePage = () => {
             <p className="text-gray-600">Actor | Model | Musician</p>
           </div>
 
-        <button onClick={handleEditProfile} className="bg-orange-500 hover:bg-orange-800 text-white font-bold px-2 py-1 rounded-full mt-5">Edit Profile</button>     
+        <Link to='/profile' className="bg-orange-500 hover:bg-orange-800 text-white font-bold px-2 py-1 rounded-full mt-5">Edit Profile</Link>     
         </div>
         <div className="mb-6 mt-9 space-y-2">
           <h2 className="text-lg font-bold mb-2">Personal Information</h2>

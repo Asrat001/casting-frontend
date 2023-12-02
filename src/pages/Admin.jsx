@@ -4,7 +4,9 @@ import { FaCartArrowDown } from "react-icons/fa";
 import { IoMdPerson } from "react-icons/io";
 import { Bar } from "react-chartjs-2";
 import  {Chart as ChartJs,registerables}  from "chart.js";
-import { useShoppingCart } from "../Context/CartContext";
+import { fetchCountedata,fetchCountorders } from "../apiRequistes/fetchCasts";
+import { useQuery } from "react-query";
+import { useLocation, useNavigate } from "react-router-dom";
 ChartJs.register(...registerables)
 const Total =[
   {
@@ -83,37 +85,53 @@ const data = {
 
 
 const AdminDashboard = () => {
-  const {CauntData,OrderCount} =useShoppingCart()
  
+ 
+  const navigate =useNavigate()
+  const location=useLocation()
+  const from=location.state?.from?.pathname||'/'
   
-  const Total =[
-    {
-      disc:"total cast",
-      value:CauntData?.data.allcasts,
-      route:"user"
-    },
-    {
-      disc:"men",
-      value:CauntData?.data.male,
-      route:"user"
-  
-    },
-    {
-      disc:"female",
-      value:CauntData?.data.female,
-      route:"user"
-    },
-    {
-      disc:"order",
-      value:OrderCount?.data,
-      route:"order"
-    },
-    {
-      disc:"custom order",
-      value:600,
-      route:"order"
-    }
-  ]
+    const { isLoading:lodingCountData,error ,data:CauntData} = useQuery("count-data", fetchCountedata);
+    const { isLoading:lodingCountOrder ,data:OrderCount} = useQuery("count-order",fetchCountorders); 
+    console.log(CauntData)
+    const Total =[
+      {
+        disc:"total cast",
+        value:CauntData?.data.allcasts,
+        route:"user"
+      },
+      {
+        disc:"men",
+        value:CauntData?.data.male,
+        route:"user"
+    
+      },
+      {
+        disc:"female",
+        value:CauntData?.data.female,
+        route:"user"
+      },
+      {
+        disc:"order",
+        value:OrderCount?.data,
+        route:"order"
+      },
+      {
+        disc:"custom order",
+        value:600,
+        route:"order"
+      }
+    ]
+
+useEffect(()=>{
+  const user = JSON.parse(sessionStorage.getItem('user'));
+  console.log(user?.isAdmin)
+  if(user?.isAdmin==false||!user){
+
+    navigate(from,{replace:true})
+  }
+},[])
+
  
   return (
     <section>

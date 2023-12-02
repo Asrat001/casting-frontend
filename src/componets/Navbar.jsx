@@ -4,7 +4,6 @@ import {GiHamburgerMenu} from 'react-icons/gi'
 import { NavLink } from 'react-router-dom'
 import logo from "../assets/cast.png"
 import { useShoppingCart } from '../Context/CartContext'
-import CastCart from './CastCart'
 import Modal from './Modal'
 import Drawer from './drawer'
 import { AiFillDelete } from 'react-icons/ai'
@@ -19,10 +18,11 @@ function Navbar() {
   const toggleDrawer = () => {
     setIsdrawerOpen(!isdrawerOpen);
   };
+  const user = JSON.parse(sessionStorage.getItem('user'));
+  console.log(user)
 
 
-
-  useEffect(() => {
+  useEffect(() => {   
     const handleScroll = () => {
       const scrollTop = window.scrollY;
       if (scrollTop > 40) {
@@ -36,6 +36,7 @@ function Navbar() {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
   return (
     <React.Fragment >
  
@@ -70,7 +71,7 @@ function Navbar() {
         <NavLink to='/about' className='text-black text-[14px]'>About</NavLink>
        </li>
        <li>
-       <NavLink to='/login' className='text-black text-[14px]'>Login</NavLink>
+       <NavLink to={`${user?'':'login'}`} className='text-black text-[14px]'>{user?'':'login'}</NavLink>
        </li>
        <li className={` border-dotted  border-[4px] p-2 border-[#ED7D31]  `}>
         <NavLink to='/how' className='text-black text-[14px]'>How it works</NavLink>
@@ -79,11 +80,11 @@ function Navbar() {
      </ul>
       <button 
       onClick={()=>{setOpen(true)}}
-      className={`p-3 h-16 w-16 rounded-full border-[4px]  border-[#ED7D31]  flex justify-center items-center`}>
+      className={`p-3 h-16 w-16 rounded-full ${user?` hidden`:``} border-[4px]  border-[#ED7D31]  flex justify-center items-center`}>
       <BsPersonPlusFill className=' text-gray-900 ' size={28}/>
       <p className={` text-gray-900 relative top-[-4px] left-0 ${state.length>0 ? `bg-red-600 p-1 rounded-full`:``} `} >{state.cart.length}</p>
        </button>
-      <CastCart isOpen={isOpen}/>
+     
   
   </nav>
   

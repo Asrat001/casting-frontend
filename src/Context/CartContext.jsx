@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useReducer, useState } from "reac
 import { cartReducer } from "./Reducer";
 import axios from "axios";
 import { useQuery } from "react-query";
-import { fetchCasts,fetchCountedata ,fetchCountorders} from "../apiRequistes/fetchCasts";
+import { fetchCasts} from "../apiRequistes/fetchCasts";
 
 const ShoppingCartContext = createContext({});
 
@@ -18,9 +18,7 @@ export function ShoppingCartProvider({ children }) {
   const openCart = () => setIsOpen(true);
   const closeCart = () => setIsOpen(false);
  
-   const { isLoading:lodingCast ,data:CastData} = useQuery("cast-data", fetchCasts);
-   const { isLoading:lodingCountData ,data:CauntData} = useQuery("count-data", fetchCountedata);
-   const { isLoading:lodingCountOrder ,data:OrderCount} = useQuery("count-order",fetchCountorders);
+  
   const cart = JSON.parse(sessionStorage.getItem('cart'))
   const [state, dispatch] = useReducer(cartReducer, {cart:cart||[],isExist:Boolean});
 
@@ -35,11 +33,6 @@ export function ShoppingCartProvider({ children }) {
       value={{
         state,
         isOpen,
-        CastData,
-        lodingCast ,
-        lodingCountData,
-        CauntData,
-        OrderCount,
         dispatch,
         openCart,
         closeCart,

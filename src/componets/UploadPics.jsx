@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Image, CloudinaryContext, Transformation } from 'cloudinary-react';
 import {BsFillCloudUploadFill} from 'react-icons/bs'
 const UploadPics = () => {
-  const [image, setImage] = useState(null);
+  const image=JSON.parse(sessionStorage.getItem('img'));
 
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
@@ -17,7 +17,7 @@ const UploadPics = () => {
       });
 
       const data = await response.json();
-      setImage(data.secure_url);
+      sessionStorage.setItem('img',JSON.stringify(data.secure_url));
     } catch (error) {
       console.error('Error uploading image to Cloudinary:', error);
     }

@@ -27,28 +27,33 @@ import Custome from "./componets/Custome";
 import { ShoppingCartProvider } from "./Context/CartContext";
 import {QueryClientProvider,QueryClient} from 'react-query'
 import React from "react";
+import { RequireAuth,RequireAdminAuth } from "./componets/requireAuth";
 const router = createBrowserRouter(
   createRoutesFromElements(
 <Route>
 <Route path="/" element={<RootLayout/>}  errorElement={<ErrorPage />}>
  <Route index element={<Home/>}/>
- <Route path="about" element={<About/>}/>
- <Route path="/detail" element={<Detail/>}/>
  <Route path="/login" element={<LoginPage/>}/>
 <Route path="/register" element={<Register/>}/>
-<Route path="/profile" element={<Profile/>}/>
 <Route path="/how" element={<How/>}/>
+<Route path="about" element={<About/>}/>
+<Route path="/detail" element={<Detail/>}/>
 <Route path="/custome" element={<Custome/>}/>
 <Route path="/verify" element={<VerifyOTP/>}/>
+<Route path="/profile" element={<Profile/>}/>
 <Route path="/myprofile" element={<ProfilePage/>}/>
+ 
 
 </Route>
+
 <Route path="/admin" element={<AdminLayout/>}>
   <Route index element={<AdminDashboard/>}/>
   <Route path="user" element={<Usermanagment/>}/>
   <Route path="order"element={<Order/>}/>
 </Route>
+
 </Route>
+
   )
 );
 

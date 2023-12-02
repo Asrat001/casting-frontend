@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react'
 import UploadPics from '../componets/UploadPics'
 import {AiOutlineCloseCircle} from "react-icons/ai"
 import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
+import { server } from '../server';
+import { toast } from 'react-toastify';
  
 const Talents = [
     "🎨 Art",
@@ -15,7 +19,7 @@ const Talents = [
     "🎮 Gaming",
     "🎶 Music",
     "🏋️ Fitness",
-    "🏞️ Travel",
+    "🏞️ Swimming",
     "🎯 Sports",
     "🎬 Movies",
     "📺 TV Shows",
@@ -34,18 +38,95 @@ const Talents = [
     ]
 const Profile = () => {
     const [rand, setRand] = useState(0);
-    const [email, setEmail] = useState("");
-    const [name, setName] = useState("");
+    const [about, setAbout] = useState("");
     const [Language, setLanguage] = useState("");
-    const [password, setPassword] = useState("");
+    const [phone, setPhone] = useState("");
+    const [age, setAge] = useState();
+    const [sex, setSex] = useState('');
+    const [link, setLink] = useState("");
+    const [nationality, setNationality] = useState("");
+    const [address, setAddress] = useState("");
+    const [city, setCity] = useState("");
+    const [exprience, setExprience] = useState("");
     const [interests, setInterests] = useState(
         []
       );
+      const navigate = useNavigate()
       const removeTag=(Indextoremove)=>{
       setInterests(interests.filter((_,index)=>index!==Indextoremove))
 
     }
+    const ProfileData={
+      about:about,
+      Language:Language,
+      phone:phone,
+      age:age,
+      link:[link],
+      nationality:nationality,
+      address:address,
+      city:city,
+      exprience:exprience,
+      gender:sex,
+      avatar:JSON.parse(sessionStorage.getItem('img'))
+    }
+    const handelSubmit= async (e)=>{
+      e.preventDefault();
+     
+      try {
+        
+         await axios.put(`${server}/api/user/profile`, ProfileData,{withCredentials:true},{
+          headers: {
+            'Content-Type': 'application/json',
+            // Add other headers if needed
+            // 'Authorization': 'Bearer token',
+          },
+        }).then(response=>{
+          console.log(response.status)
+          if(response.status===200){
+            toast.success('profile set up sucssfully',{
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            
+            })
+            navigate('/myprofile');
+          }
+        }).catch(error=>{
+          
+           const status=error.response.status
+            if(status===400){
+              <div className="p-6"> 
+     {
+           toast.error('User already exists',{
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          
+          })
+     }
+              </div>
+         
+            }
+        });
+      
+    
+
+        
+      }catch(e){
+
+      }
+    }
+ 
     useEffect(() => {
+   
       let a = Math.floor(Math.random() * image.length);
       setRand(a)
   }, []);
@@ -62,7 +143,7 @@ const Profile = () => {
       </div>
      
         
-         <form className="mt-6">
+         <form className="mt-6" onSubmit={handelSubmit}>
          <UploadPics/>
            <main className='grid grid-cols-1  sm:grid-cols-2 gap-4 '>
            <div>
@@ -81,7 +162,7 @@ const Profile = () => {
                   autoComplete="name"
                   placeholder="i'm pacienate actor and film maker...."
                   required
-                  onChange={(e) => setLanguage(e.target.value)}
+                  onChange={(e) => setAbout(e.target.value)}
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
               </div>
@@ -100,7 +181,7 @@ const Profile = () => {
                   name="phone"
                   placeholder=' ex:091656****'
                   required
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={(e) => setPhone(e.target.value)}
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
               </div>
@@ -119,7 +200,7 @@ const Profile = () => {
                   
                   name="language"
                   autoComplete="name"
-                  placeholder='place sparet them by comaeg: Amharic,Engilsh,Oromuffa'
+                  placeholder='sparate by , eg: Amharic,Englishe'
                   required
                   onChange={(e) => setLanguage(e.target.value)}
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
@@ -140,8 +221,8 @@ const Profile = () => {
                   name="text"
                   autoComplete="name"
                   required
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  value={age}
+                  onChange={(e) => setAge(e.target.value)}
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
               </div>
@@ -151,16 +232,35 @@ const Profile = () => {
                 htmlFor="email"
                 className="block text-sm font-medium text-gray-700"
               >
-                Upload 4 picture  of your self (make sure u look good)
+                Gender
+              </label>
+              <div className="mt-1">
+                <input
+                  type="text"
+                  name="text"
+                  placeholder='male or female'
+                  autoComplete="name"
+                  required
+                  value={sex}
+                  onChange={(e) => setSex(e.target.value)}
+                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                />
+              </div>
+            </div>
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700"
+              >
+               Your tik tok or youtube  video link
               </label>
               <div className="mt-1 " >
                 <input
-                  type="file"
+                placeholder='https://tiktok.com/me or httts://youtube.com/me'
+                  type="text"
                   name="photo"
-                  accept='.jpg, jpeg, .png'
-                  multiple={true}
                   required
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={(e) => setLink(e.target.value)}
                   className="appearance-none block gap-x-4 px-3 w-full py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                 />
       
@@ -175,21 +275,18 @@ const Profile = () => {
                 Skin ton
               </label>
               <div className="mt-1">
-                <select className='       className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"'>
-                <option>
+                <select className='className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"'>
+                <option value='black'>
                     Black
                   </option>
-                  <option>
+                  <option value='brown'>
 
                     Brown
                   </option>
-                  <option>
+                  <option value='white'>
                     White
                   </option>
-                </select>
-                
-           
-             
+                </select>             
               </div>
             </div>
             <div>
@@ -207,7 +304,7 @@ const Profile = () => {
                   autoComplete="name"
                   placeholder=''
                   required
-                  onChange={(e) => setLanguage(e.target.value)}
+                  onChange={(e) => setNationality(e.target.value)}
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
               </div>
@@ -218,7 +315,7 @@ const Profile = () => {
                 htmlFor="email"
                 className="block text-sm font-medium text-gray-700"
               >
-                Address
+                Region
               </label>
              
                 <div className="mt-1">
@@ -228,7 +325,7 @@ const Profile = () => {
                   autoComplete="name"
                   placeholder=''
                   required
-                  onChange={(e) => setLanguage(e.target.value)}
+                  onChange={(e) => setAddress(e.target.value)}
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
               </div>
@@ -249,7 +346,7 @@ const Profile = () => {
                   autoComplete="name"
                   placeholder='Addis Abeba,Dilla,Bahir dar'
                   required
-                  onChange={(e) => setLanguage(e.target.value)}
+                  onChange={(e) => setCity(e.target.value)}
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
               </div>
@@ -270,7 +367,7 @@ const Profile = () => {
                   autoComplete="name"
                   placeholder='place sparet them by comaeg: Amharic,Engilsh,Oromuffa'
                   required
-                  onChange={(e) => setLanguage(e.target.value)}
+                  onChange={(e) => (e.target.value)}
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
               </div>
@@ -291,7 +388,7 @@ const Profile = () => {
                   autoComplete="name"
                   placeholder='ex: Music video, Movie , promrotion'
                   required
-                  onChange={(e) => setLanguage(e.target.value)}
+                  onChange={(e) => setExprience(e.target.value)}
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
               </div>
