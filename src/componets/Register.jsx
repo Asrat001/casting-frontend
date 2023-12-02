@@ -4,6 +4,7 @@ import styles from "../styles/styles";
 import { Link,useNavigate } from "react-router-dom";
 import axios from "axios";
 import { server } from "../server";
+import Spinner from "../assets/Spinner.svg"
 import { toast } from "react-toastify";
 import { useAuthDispatch } from "../Context/AuthContext";
 const image =[
@@ -18,6 +19,7 @@ const Signup = () => {
   const [fullname, setfullName] = useState("");
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
+  const [isLoading, setIsloading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useAuthDispatch();
 
@@ -29,6 +31,7 @@ const Signup = () => {
     e.preventDefault();
     // ... handle form submission and API request using axios
     try {
+      setIsloading(true)
       const userData = {
         fullname: fullname,
         email: email,
@@ -54,6 +57,7 @@ const Signup = () => {
             progress: undefined,
           
           })
+          setIsloading(false)
           navigate('/verify');
         }
       }).catch(error=>{
@@ -73,7 +77,7 @@ const Signup = () => {
         })
    }
             </div>
-       
+        setIsloading(false)
           }
       });
       // Dispatch signup success action
@@ -89,6 +93,7 @@ const Signup = () => {
     } catch (error) {
       dispatch({ type: 'SIGNUP_FAILURE', payload: error.message }); // Dispatch signup failure action
       // ... handle error case
+      setIsloading(false)
       toast.error('Signup failed. Please try again.');
     }
   };
@@ -102,7 +107,9 @@ const Signup = () => {
         <div className="">
         <h2 className="mt-6 text-3xl font-extrabold text-[#ED7D31]">
           Cast Registration
+        
         </h2>
+   
         </div>
           <form className="space-y-6 mt-20" onSubmit={handleSubmit}>
             <div>
@@ -181,9 +188,9 @@ const Signup = () => {
             <div>
               <button
                 type="submit"
-                className="group relative w-full h-[40px] flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-[#ED7D31] hover:bg-[#ED7D31]/70"
+                className="group relative w-full h-[40px] flex items-center justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-[#ED7D31] hover:bg-[#ED7D31]/70"
               >
-                Submit
+                {isLoading?<img src={Spinner} alt="loding"/>:'submit'}
               </button>
             </div>
             <div className={`${styles.noramlFlex} w-full`}>

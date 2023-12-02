@@ -2,9 +2,13 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Link,useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import Spinner from "../assets/Spinner.svg"
 import { server } from '../server';
+import { useEffect } from 'react';
 const VerifyOTP = () => {
   const [otp, setOTP] = useState('');
+  const [user, setUser] = useState();
+  const [isLoading, setIsloading] = useState(false);
   const navigate = useNavigate();
 
   const headers = {
@@ -14,6 +18,10 @@ const VerifyOTP = () => {
     // Example: Authorization header with a token
     // Add other headers as needed
   };
+  useEffect(()=>{
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    setUser(user)
+  },[])
   const handleOTPChange = (e) => {
     setOTP(e.target.value);
   };
@@ -23,6 +31,7 @@ const VerifyOTP = () => {
     
   
     try {
+      setIsloading(true)
       await axios.post(`${server}/api/user/verify`,  {otp },{withCredentials:true} ).then(res=>{
         if(res.status===200){
           toast.success('you  sucussfully verified ',{
@@ -35,6 +44,7 @@ const VerifyOTP = () => {
             progress: undefined,
           
           })
+          setIsloading(false)
           navigate('/profile')
         }
    
@@ -50,6 +60,7 @@ const VerifyOTP = () => {
             draggable: true,
             progress: undefined,
         })
+        setIsloading(false)
       }
       if(status===404){
         toast.warning("user not found ",{
@@ -61,6 +72,7 @@ const VerifyOTP = () => {
           draggable: true,
           progress: undefined,
       })
+      setIsloading(false)
     }
     if(status===400){
       toast.warning("Invalid OTP",{
@@ -72,21 +84,23 @@ const VerifyOTP = () => {
         draggable: true,
         progress: undefined,
     })
+    setIsloading(false)
   }
 
     });
      
        // Handle the response as needed
     } catch (error) {
-      console.error(error); // Handle the error as needed
+      setIsloading(false); // Handle the error as needed
     }
   };
 
   return (
     <form onSubmit={handleSubmit} className=" p-6 md:p-20">
       <div>
+<p className='text-[16px] font-semibold text-[#ED7D31]'>Hey {user?.fullname} !!</p>
 <h3 className=' text-[42px]'>Alomost there </h3>
-<p className=' text-[14px] text-[#ED7D31]'> we have sent you an email with verification OTP</p>
+<p className=' text-[14px] text-[#ED7D31]'> we have sent you an email with verification OTP to your email Account</p>
       </div>
 <main className='absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] flex justify-center items-center flex-col w-full p-5 md:w-1/4'>
 <div className=' w-full mt-20'> 
@@ -101,9 +115,10 @@ const VerifyOTP = () => {
 </div>
       <button
         type="submit"
-        className="bg-[#ED7D31]  hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mb-48"
+        className="group relative w-full mt-6 h-[40px] flex justify-center items-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-orange-600 hover:bg-orange-900"
       >
-        Verify OTP
+          {isLoading?<img src={Spinner} alt="loding" className='w-10 h-10'/>:'Verify OTP'}
+      
       </button>
 </main>
 

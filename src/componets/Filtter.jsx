@@ -1,6 +1,7 @@
 import React from 'react'
 import icon from "../assets/vol.svg";
 import { useState } from 'react';
+
 const Filtter = ({HandelGender, HandelSkin}) => {
   const [skin, setSkin] = useState('');
   const HandelSkinChenge=(event)=>{

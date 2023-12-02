@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import UploadPics from '../componets/UploadPics'
 import {AiOutlineCloseCircle} from "react-icons/ai"
-import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { server } from '../server';
 import { toast } from 'react-toastify';
+import Spinner from "../assets/Spinner.svg"
  
 const Talents = [
     "🎨 Art",
@@ -38,18 +38,19 @@ const Talents = [
     ]
 const Profile = () => {
     const [rand, setRand] = useState(0);
+    const [isLoading, setIsloading] = useState(false);
     const [about, setAbout] = useState("");
-    const [Language, setLanguage] = useState("");
+    const [Language, setLanguage] = useState([]);
     const [phone, setPhone] = useState("");
     const [age, setAge] = useState();
     const [sex, setSex] = useState('');
     const [Education, setEducation] = useState('');
-    const [link, setLink] = useState("");
+    const [link, setLink] = useState([]);
     const [nationality, setNationality] = useState("");
     const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
     const [skin, setSkin] = useState("");
-    const [exprience, setExprience] = useState("");
+    const [exprience, setExprience] = useState([]);
     const [interests, setInterests] = useState(
         []
       );
@@ -58,9 +59,10 @@ const Profile = () => {
       setInterests(interests.filter((_,index)=>index!==Indextoremove))
 
     }
+    console.log(Language)
     const ProfileData={
       about:about,
-      Language:Language.split(","),
+      Language:Language,
       phone:phone,
       age:age,
       info:{
@@ -69,8 +71,8 @@ const Profile = () => {
         city:city,
         accadamic:Education
       },
-      link:[link.split(",")],
-      exprience:exprience.split(","),
+      link:link,
+      exprience:exprience,
       gender:sex,
       avatar:JSON.parse(sessionStorage.getItem('img')),
       talent:interests,
@@ -82,7 +84,7 @@ const Profile = () => {
       e.preventDefault();
      
       try {
-        
+        setIsloading(true)
          await axios.put(`${server}/api/user/profile`, ProfileData,{withCredentials:true},{
           headers: {
             'Content-Type': 'application/json',
@@ -102,6 +104,7 @@ const Profile = () => {
               progress: undefined,
             
             })
+            setIsloading(false)
             navigate('/myprofile');
           }
         }).catch(error=>{
@@ -122,7 +125,7 @@ const Profile = () => {
           })
      }
               </div>
-         
+             setIsloading(false)
             }
         });
       
@@ -211,7 +214,7 @@ const Profile = () => {
                   autoComplete="name"
                   placeholder='sparate by , eg: Amharic,Englishe'
                   required
-                  onChange={(e) => setLanguage(e.target.value)}
+                  onChange={(e) => setLanguage([...Education,e.target.value])}
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
               </div>
@@ -270,7 +273,7 @@ const Profile = () => {
                   placeholder='Yared School of Art'
                   autoComplete="name"
                   required
-                  value={sex}
+                  value={Education}
                   onChange={(e) => setEducation(e.target.value)}
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
@@ -289,7 +292,7 @@ const Profile = () => {
                   type="text"
                   name="photo"
                   required
-                  onChange={(e) => setLink(e.target.value)}
+                  onChange={(e) => setLink([...Education,e.target.value])}
                   className="appearance-none block gap-x-4 px-3 w-full py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                 />
       
@@ -417,7 +420,7 @@ const Profile = () => {
                   autoComplete="name"
                   placeholder='ex: Music video, Movie , promrotion'
                   required
-                  onChange={(e) => setExprience(e.target.value)}
+                  onChange={(e) => setExprience([...Education,e.target.value])}
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
               </div>
@@ -478,11 +481,11 @@ const Profile = () => {
             </div>
             <button
                 type="submit"
-                className="group relative w-full mt-6 h-[40px] flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-orange-600 hover:bg-orange-900"
+                className="group relative w-full mt-6 h-[40px] flex justify-center items-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-orange-600 hover:bg-orange-900"
               >
-                Submit
+                {isLoading? <img src={Spinner} alt='loding' className='w-10 h-10'/>:'submit'}
               </button>
-          </form>
+          </form> 
          
         
       </div>
