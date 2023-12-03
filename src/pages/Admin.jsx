@@ -134,7 +134,7 @@ useEffect(()=>{
   console.log(user?.isAdmin)
   if(user?.isAdmin==false||!user){
 
-    navigate("/admin")
+    navigate("/")
   }
    
   
