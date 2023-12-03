@@ -104,14 +104,16 @@ const Signup = () => {
     <div className=" min-h-screen grid grid-cols-1 sm:grid-cols-2 ">
       <div className="w-full h-full ">
         <div className="bg-white h-full py-8 px-4 shadow  sm:px-10">
-        <div className="">
+
+        
         <h2 className="mt-6 text-3xl font-extrabold text-[#ED7D31]">
           Cast Registration
         
         </h2>
    
-        </div>
+        
           <form className="space-y-6 mt-20" onSubmit={handleSubmit}>
+            
             <div>
               <label
                 htmlFor="email"
@@ -190,7 +192,7 @@ const Signup = () => {
                 type="submit"
                 className="group relative w-full h-[40px] flex items-center justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-[#ED7D31] hover:bg-[#ED7D31]/70"
               >
-                {isLoading?<img src={Spinner} alt="loding"/>:'submit'}
+                {isLoading?<img src={Spinner} alt="loding" className="w-10 h-10"/>:'submit'}
               </button>
             </div>
             <div className={`${styles.noramlFlex} w-full`}>

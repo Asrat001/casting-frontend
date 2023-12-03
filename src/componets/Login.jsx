@@ -6,10 +6,22 @@ import axios from "axios";
 import { server } from "../server";
 import { toast } from "react-toastify";
 import { useAuthDispatch } from "../Context/AuthContext";
+import Spinner from "../assets/Spinner.svg"
+import { useEffect } from "react";
+const image =[
+  "https://res.cloudinary.com/diogyja1g/image/upload/v1695589767/image2_fu1qup.jpg",
+  "https://res.cloudinary.com/diogyja1g/image/upload/v1695589768/86_sffdlz.jpg",
+  "https://res.cloudinary.com/diogyja1g/image/upload/v1695590103/image1_hzy1af.jpg",
+  "https://res.cloudinary.com/diogyja1g/image/upload/v1695589769/image3_fezfd6.jpg"
+  ]
+
+
 const Login = () => {
+  const [rand, setRand] = useState(0);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
+  const [isLoading, setIsloading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useAuthDispatch(); // Use useAuthDispatch hook
   /*const handleSubmit = async (e) => {
@@ -34,14 +46,20 @@ const Login = () => {
       });
   };
   */
+  useEffect(() => {
+    let a = Math.floor(Math.random() * image.length);
+    setRand(a)
+}, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsloading(true)
     try {
      await axios.post(`${server}/api/user/login`, {
         email,
         password,
       },{withCredentials:true}).then(res=>{
         sessionStorage.setItem('user',JSON.stringify(res.data));
+        setIsloading(false)
         if(res.data.isAdmin===true){
           navigate('/admin')
         }else{
@@ -49,7 +67,7 @@ const Login = () => {
         }
       }).catch(error=>{
         const status= error.res.status
- console.log(status)
+
         if(status===400){
           toast.warning('fill all the feilds',{
             position: "top-right",
@@ -61,6 +79,7 @@ const Login = () => {
             progress: undefined,
           
           })
+          setIsloading(false)
         }
         if(status===404){
           toast.warning('user not found , please register ',{
@@ -80,18 +99,22 @@ const Login = () => {
     } catch (error) {
       dispatch({ type: 'LOGIN_FAILURE', payload: 'Invalid email or password' }); // Dispatch the login failure action
       toast.error('Invalid email or password');
+      setIsloading(false)
     }
   };
   
   return (
-    <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md">
-        <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
-          Login to your account
+    <div className="min-h-screen grid grid-cols-1 sm:grid-cols-2 ">
+  
+      
+      
+      <div className="w-full h-full">
+
+        <div className="bg-white h-full py-8 px-4 shadow  sm:px-10">
+        <h2 className="my-6 text-3xl font-extrabold text-[#ED7D31]">
+          Wellcome Back !!
+        
         </h2>
-      </div>
-      <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label
@@ -171,9 +194,9 @@ const Login = () => {
             <div>
               <button
                 type="submit"
-                className="group relative w-full h-[40px] flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-900"
+                className="group relative w-full h-[40px] items-center flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-orange-600 hover:bg-orange-900"
               >
-                Submit
+                   {isLoading?<img src={Spinner} alt="loding" className="w-10 h-10"/>:'submit'}
               </button>
             </div>
             <div className={`${styles.noramlFlex} w-full`}>
@@ -184,6 +207,9 @@ const Login = () => {
             </div>
           </form>
         </div>
+      </div>
+      <div className=" hidden md:block bg-gradient-to-tr  from-[#243046] to-[#ED7D31]">
+        <img src={image[rand]}  alt="loginimage" className=" w-full h-full object-cover mix-blend-overlay "/>
       </div>
     </div>
   );
