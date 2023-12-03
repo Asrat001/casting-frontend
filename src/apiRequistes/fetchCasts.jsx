@@ -2,8 +2,9 @@ import axios from "axios"
 import { server } from "../server"
 
 
+
  const fetchCasts =async ( filter)=>{
-    console.log(filter)
+   
     return await axios.get(`${server}/api/user/alluser?search=${filter.search}&limit=6&page=${filter.page}&sex=${filter.gender ?filter.gender:''}&minAge=0&maxAge=30`)
    }
 const fetchCountedata = async()=>{
@@ -12,18 +13,12 @@ const fetchCountedata = async()=>{
 const fetchCountorders = async ()=>{
     return await axios.get(`${server}/api/order/countorders`,{withCredentials:true})
 }
-const logout = async ()=>{
-    try {
-     await axios.post(`${server}/api/user/logout`,{withCredentials:true}).then((res)=>{
-        if(res.status==200){
-            sessionStorage.clear();
-           
-        }
-     })
-    } catch (error) {
-        
-    }
+const fetchOrder = async ()=>{
+    return await axios.get(`${server}/api/order/getallorder`,{withCredentials:true})
+}
+const fetchCustomOrder = async ()=>{
+    return await axios.get(`${server}/api/order/getallcustomorder`,{withCredentials:true})
 }
 
 
-export{fetchCasts,fetchCountedata,fetchCountorders,logout}
+export{fetchCasts,fetchCountedata,fetchCountorders,fetchCustomOrder,fetchOrder}

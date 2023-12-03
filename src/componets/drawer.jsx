@@ -1,10 +1,28 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import logo from "../assets/cast.png"
-import { logout } from '../apiRequistes/fetchCasts';
+import { useNavigate } from "react-router-dom"
+import axios from 'axios';
+import { server } from '../server';
 
-const Drawer = ({ isdrawerOpen, toggleDrawer }) => {
+const Drawer = ({ isdrawerOpen, toggleDrawer}) => {
+
+  const navigate=useNavigate()
   const user = JSON.parse(sessionStorage.getItem('user'));
+  const logout = async ()=>{
+   
+    try {
+     await axios.post(`${server}/api/user/logout`,{withCredentials:true}).then((res)=>{
+     
+        if(res.status==201){
+          sessionStorage.removeItem('user');
+          navigate('/')
+        }
+     })
+    } catch (error) {
+      console.log(error)
+    }
+}
   return (
     <div>
       {isdrawerOpen && (
@@ -34,25 +52,29 @@ const Drawer = ({ isdrawerOpen, toggleDrawer }) => {
  <div className=' flex justify-between items-center mt-6'>
  <img src={logo} alt="enrgy casting log" className=' w-[60px] h-[60px]  object-cover'/>
         <button 
-      onClick={logout}
+      onClick={()=>logout()}
       className={`p-1 w-fit  ${user?` black`:` hidden`} border-[2px] rounded-lg  border-[#ED7D31]  flex justify-center items-center`}>
        log out
        </button>
  </div>
  <hr className=' bg-orange-700 mt-1'/>
-        <ul className="p-4">
-        <li className="py-2">
-        <NavLink to='/' onClick={toggleDrawer} className='text-orange-600'>Home</NavLink>
+        <ul className="mt-3 space-y-3">
+        <li className="p-2 shadow-lg shadow-gray-300 rounded-lg bg-[#E6EEFB]">
+        {user?.isAdmin==true?<NavLink to={'/admin'} onClick={toggleDrawer} className='text-gray-800'>{'Dashboard'}</NavLink>:<NavLink to={'/'} onClick={toggleDrawer} className='text-gray-800'>{'home'}</NavLink>}
        </li>
-       <li className='py-2' onClick={toggleDrawer}>
-       <NavLink to='/about' className='text-orange-600'>about</NavLink>
+       <li className='p-2 shadow-lg shadow-gray-300 rounded-lg bg-[#E6EEFB]' onClick={toggleDrawer}>
+     {user?.isAdmin==true?<NavLink to={'/user'} className='text-gray-800'>{'user Management'}</NavLink>:<NavLink to={'/about'} className='text-gray-800'>{'about'}</NavLink>}
        </li>
-       <li className='py-2' onClick={toggleDrawer}>
-      {user?<NavLink to='/how' className='text-orange-600' >how</NavLink>: <NavLink to='/register' className='text-orange-600'>Register as Cast</NavLink>}
+       <li className='p-2 shadow-lg shadow-gray-300 rounded-lg bg-[#E6EEFB]' onClick={toggleDrawer}>
+      {user?.isAdmin==true?<NavLink to='/register' className='text-gray-800' >Register Cast</NavLink>: <NavLink to='/how' className='text-gray-800'>How it works</NavLink>  }
        </li>
-       <li className='py-2' onClick={toggleDrawer}>
-     {user?<NavLink to='/myprofile' className='text-orange-600'>My Profile</NavLink>:<NavLink to='/login' className='text-orange-600'>log in</NavLink>}
+       <li className='p-2 shadow-lg shadow-gray-300 rounded-lg bg-[#E6EEFB]' onClick={toggleDrawer}>
+       {user?.isAdmin==true?<NavLink to='/order' className='text-gray-800' >Order</NavLink>: user?<NavLink to='/myprofile' className='text-gray-800'>Myprofile</NavLink> :<NavLink to='/register' className='text-gray-800'>Register as Cast</NavLink> }
        </li>
+       <li className='p-2 shadow-lg shadow-gray-300 rounded-lg bg-[#E6EEFB]' onClick={toggleDrawer}>
+       {user?.isAdmin==true?<NavLink to='/order' className='text-gray-800' >Custom Order</NavLink>: user?'' :<NavLink to='/login' className='text-gray-800'>Login</NavLink> }
+       </li>
+
         </ul>
   
       </div>

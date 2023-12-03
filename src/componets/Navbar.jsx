@@ -85,7 +85,7 @@ function Navbar() {
       <p className={` text-gray-900 relative top-[-4px] left-0 ${state.length>0 ? `bg-red-600 p-1 rounded-full`:``} `} >{state.cart.length}</p>
        </button>
  
-     <img src={user?.img} alt='profile pic' className={` ${user? 'block':' hidden'} w-16 h-16 rounded-full  object-cover`}/>
+     <img src={user?.img} alt='profile pic' className={` ${user? 'block':' hidden'} w-16 h-16 rounded-full  border-[3px]  border-[#ED7D31]  object-cover`}/>
  
   </nav>
   

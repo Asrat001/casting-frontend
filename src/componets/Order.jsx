@@ -1,9 +1,22 @@
 import React, { useState } from 'react'
 import Pagetation from './Pagetation'
 import Modal from './Modal'
+import { useLocation } from 'react-router-dom'
+import { useQuery } from 'react-query'
+import { fetchOrder,fetchCustomOrder } from '../apiRequistes/fetchCasts'
 
 const Order = () => {
   const [isOpen , setOpen]=useState(false)
+  const [Data , setData]=useState()
+  const location =useLocation();
+  if(location.pathname==='/admin/custom-order'){
+    const { isLoading:loding ,data:CustomOrder} = useQuery("costom-order",fetchCustomOrder); 
+    console.log(CustomOrder)
+  }
+  if(location.pathname==='/admin/order'){
+    const { isLoading:loding ,data:CustomOrder} = useQuery("order",fetchOrder); 
+    console.log(CustomOrder)
+  }
   const  data =[
     {id:1,
     name:'John',
@@ -85,15 +98,15 @@ const Order = () => {
               </td>
               <td className="py-4 whitespace-nowrap">
                 <ul className='grid grid-cols-3 justify-items-center place-items-center'>
-                  <l>
+                  
                     <button className=' text-green-500 border-[2px] border-gray-600 p-1'>conform</button>
-                  </l>
-                  <l>
+                  
+                  
                     <button className=' text-sky-500 border-[2px] border-gray-600 p-1'>Matched</button>
-                  </l>
-                  <l>
+                  
+                  
                     <button className=' text-red-500 border-[2px] border-gray-600 p-1'>Delete</button>
-                  </l>
+                  
                 </ul>
               </td>
         
