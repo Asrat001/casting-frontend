@@ -90,10 +90,9 @@ const AdminDashboard = () => {
   const navigate =useNavigate()
   const location=useLocation()
   const [lodde,setLoding]=useState(false)
-  const [Total,setTotal]=useState([])
   const from=location.state?.from?.pathname||'/login'
   const user = JSON.parse(sessionStorage.getItem('user'));
-       if(lodde){
+       
         const { isLoading:lodingCountData,error ,data:CauntData} = useQuery("count-data", fetchCountedata);
         const { isLoading:lodingCountOrder ,data:OrderCount} = useQuery("count-order",fetchCountorders); 
         const Total =[
@@ -124,8 +123,8 @@ const AdminDashboard = () => {
             route:"order"
           }
         ]
-        setTotal(Total)
-       }
+      
+       
 
     
    
@@ -135,10 +134,10 @@ useEffect(()=>{
   console.log(user?.isAdmin)
   if(user?.isAdmin==false||!user){
 
-    navigate(from,{replace:true})
-  }else{
-    setLoding(true)
+    navigate("/login")
   }
+   
+  
 },[])
 
  

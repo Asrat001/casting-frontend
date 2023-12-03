@@ -85,7 +85,7 @@ dispatch({
                 <button 
                 disabled={user?.isAdmin==false}
                onClick={() => { hadleAddtoCast(data)  }} className={`py-1.5 px-1.5 flex items-center gap-3 bg-[#E6EEFB]  border-gray-400 border  ${state.cart.some(item => item._id === data._id) ? 'bg-[#ED7D31]' : ''}   text-gray-700`}>
-                   {state.cart.some(item => item._id === data._id) ? 'Already in Cart' : 'Book'}
+                   {state.cart.some(item => item._id === data._id) ? 'Booked' : 'Book'}
                   <BsFillCameraReelsFill />
                   </button>
                 </div>
