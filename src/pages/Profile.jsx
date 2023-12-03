@@ -40,17 +40,17 @@ const Profile = () => {
     const [rand, setRand] = useState(0);
     const [isLoading, setIsloading] = useState(false);
     const [about, setAbout] = useState("");
-    const [Language, setLanguage] = useState([]);
+    const [Language, setLanguage] = useState("");
     const [phone, setPhone] = useState("");
     const [age, setAge] = useState();
     const [sex, setSex] = useState('');
     const [Education, setEducation] = useState('');
-    const [link, setLink] = useState([]);
+    const [link, setLink] = useState("");
     const [nationality, setNationality] = useState("");
     const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
     const [skin, setSkin] = useState("");
-    const [exprience, setExprience] = useState([]);
+    const [exprience, setExprience] = useState("");
     const [interests, setInterests] = useState(
         []
       );
@@ -73,7 +73,7 @@ const Profile = () => {
       },
       link:link,
       exprience:exprience,
-      gender:sex,
+      gender:sex.toUpperCase(),
       avatar:JSON.parse(sessionStorage.getItem('img')),
       talent:interests,
       skintone:skin
@@ -221,6 +221,7 @@ const Profile = () => {
             
             </div>
             <div>
+
               <label
                 htmlFor="email"
                 className="block text-sm font-medium text-gray-700"
@@ -247,16 +248,16 @@ const Profile = () => {
                 Gender
               </label>
               <div className="mt-1">
-                <input
-                  type="text"
-                  name="text"
-                  placeholder='male or female'
-                  autoComplete="name"
-                  required
-                  value={sex}
-                  onChange={(e) => setSex(e.target.value)}
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                />
+                <select onChange={(e)=>setSex(e.target.value)} className='className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"'>
+              
+                  <option value='male'>
+
+                  Male
+                  </option>
+                  <option value='Female'>
+                  Female
+                  </option>
+                </select>             
               </div>
             </div>
             <div>

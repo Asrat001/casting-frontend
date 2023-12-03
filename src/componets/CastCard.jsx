@@ -19,7 +19,7 @@ const CastCard = ({Data,lodingCast,error}) => {
   setDetail([data])
   setOpen(true)
  }
-
+ const user = JSON.parse(sessionStorage.getItem('user'));
 
  const hadleAddtoCast =(data)=>{
 dispatch({
@@ -70,20 +70,20 @@ dispatch({
       
         
         return(
-            <div key={i} className='w-fit h-fit bg-white    shadow-lg shadow-gray-300    '>
-                <img src={data.avatar} loading='lazy' className=' h-[240px]  object-cover w-full   '/>
+            <div key={i} className='w-[300px] h-[400px] bg-white flex flex-col justify-between  rounded-lg   shadow-lg shadow-gray-300    '>
+                <img src={data.avatar} loading='lazy' className=' h-[240px] rounded-lg  object-cover w-full   '/>
                 <div className='px-2 py-2'>
-                <p className=' text-gray-800'>{data.fullname}</p>
-                <p className=' text-orange-600 text-[12px] font-extrabold  px-1 '>{data.expriance}</p>
-                <p className=' text-gray-600 text-[14px] px-1 '>{data.about}</p>
+                <p className=' text-gray-800'>{data.fullname} | <span className=' text-orange-600 text-[12px] font-extrabold '>{data.expriance}</span></p>
+                <p className=' text-gray-600 text-[14px] px-1 text-ellipsis '>{data?.about?.length>50?`${data.about.slice(0, 50)}...`:data.about }</p>
                
                 </div>
-                <div className=' flex items-center gap-x-4 px-2 p-2'>
+                <div className=' flex items-center gap-x-4  p-4'>
                 <button   onClick={()=>handleDitail({data})} className='py-1 px-1.5 w-auto flex  gap-3 justify-center bg-[#E6EEFB] items-center border-gray-400 border  text-[#ED7D31]'>
                   Detail
                   <BsFillEyeFill/>
                 </button>
                 <button 
+                disabled={user?.isAdmin==false}
                onClick={() => { hadleAddtoCast(data)  }} className={`py-1.5 px-1.5 flex items-center gap-3 bg-[#E6EEFB]  border-gray-400 border  ${state.cart.some(item => item._id === data._id) ? 'bg-[#ED7D31]' : ''}   text-gray-700`}>
                    {state.cart.some(item => item._id === data._id) ? 'Already in Cart' : 'Book'}
                   <BsFillCameraReelsFill />
@@ -119,7 +119,7 @@ dispatch({
        <p className=' text-gray-700 text-[13px]'><span className=' text-[#ED7D31] text-[20px]'>exprinace:</span>{user?.expriance}</p>
 
        <p className=' text-gray-700 text-[13px]'><span className=' text-[#ED7D31] text-[20px]'>talent:</span>{user.talent}</p>
-       <p className=' text-gray-700 text-[13px]'><span className=' text-[#ED7D31] text-[20px]'>Language: </span>{user.language.join(' , ')}</p>
+       <p className=' text-gray-700 text-[13px]'><span className=' text-[#ED7D31] text-[20px]'>Language: </span>{user.language}</p>
        <p className=' text-gray-700 text-[13px]'><span className=' text-[#ED7D31] text-[20px]'>Nationality:</span>{user.info.nationality}</p>
        <p className=' text-gray-700 text-[13px]'><span className=' text-[#ED7D31] text-[20px]'>Region: </span>{user.info.region}</p>
 

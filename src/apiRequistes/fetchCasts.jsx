@@ -12,5 +12,18 @@ const fetchCountedata = async()=>{
 const fetchCountorders = async ()=>{
     return await axios.get(`${server}/api/order/countorders`,{withCredentials:true})
 }
+const logout = async ()=>{
+    try {
+     await axios.post(`${server}/api/user/logout`,{withCredentials:true}).then((res)=>{
+        if(res.status==200){
+            sessionStorage.clear();
+           
+        }
+     })
+    } catch (error) {
+        
+    }
+}
 
-export{fetchCasts,fetchCountedata,fetchCountorders}
+
+export{fetchCasts,fetchCountedata,fetchCountorders,logout}

@@ -1,49 +1,44 @@
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
-import { AiOutlinePlayCircle } from "react-icons/ai";
+import React, { useRef, useState } from 'react';
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
-import "swiper/css";
-import "swiper/css/effect-cards";
-import "./Work.css";
-import "swiper/css/autoplay";
-import "swiper/css/pagination";
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
+import './Work.css';
 
 // import required modules
-import { EffectCards, Pagination,Autoplay} from "swiper/modules";
-import slide_image_1 from "../assets/hero.png";
+import { Autoplay, Pagination} from 'swiper/modules';
 
-function Slider() {
+export default function Slider() {
   return (
-    <section className="   flex flex-col  sm:flex-row  justify-between items-center">
-      <div className="flex justify-center items-center flex-col p-4 ">
-        <Swiper
-          effect={"cards"}
-          pagination={true}
-          grabCursor={true}
-          modules={[EffectCards, Pagination]}
-          className="mySwiper"
-        >
-          <SwiperSlide>
-            <img src="https://res.cloudinary.com/diogyja1g/image/upload/v1693222355/9_v0if8x.jpg" className="w-full  h-full  object-cover" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="https://res.cloudinary.com/diogyja1g/image/upload/v1693222355/9_v0if8x.jpg" className="w-full  h-full  object-cover" />
-          </SwiperSlide>
-          <SwiperSlide>
-          <img src="https://res.cloudinary.com/diogyja1g/image/upload/v1693222355/9_v0if8x.jpg" className="w-full h-full  object-cover" />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src="https://res.cloudinary.com/diogyja1g/image/upload/v1693222355/9_v0if8x.jpg" className="w-full h-full  object-cover" />
-          </SwiperSlide>
-        </Swiper>
-    
-      </div>
-
-  
-    </section>
+    <>
+      <Swiper
+        spaceBetween={0}
+        centeredSlides={true}
+        autoplay={{
+          delay: 3500,
+          disableOnInteraction:true,
+        }}
+        pagination={{
+          clickable: true,
+        }}
+       
+        modules={[Autoplay, Pagination,]}
+        className="mySwiper"
+      >
+        <SwiperSlide>Slide 1</SwiperSlide>
+        <SwiperSlide>Slide 2</SwiperSlide>
+        <SwiperSlide>Slide 3</SwiperSlide>
+        <SwiperSlide>Slide 4</SwiperSlide>
+        <SwiperSlide>Slide 5</SwiperSlide>
+        <SwiperSlide>Slide 6</SwiperSlide>
+        <SwiperSlide>Slide 7</SwiperSlide>
+        <SwiperSlide>Slide 8</SwiperSlide>
+        <SwiperSlide>Slide 9</SwiperSlide>
+      </Swiper>
+    </>
   );
 }
-
-export default Slider;

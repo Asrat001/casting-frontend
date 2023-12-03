@@ -89,39 +89,46 @@ const AdminDashboard = () => {
  
   const navigate =useNavigate()
   const location=useLocation()
-  const from=location.state?.from?.pathname||'/'
-  
-    const { isLoading:lodingCountData,error ,data:CauntData} = useQuery("count-data", fetchCountedata);
-    const { isLoading:lodingCountOrder ,data:OrderCount} = useQuery("count-order",fetchCountorders); 
-    console.log(CauntData)
-    const Total =[
-      {
-        disc:"total cast",
-        value:CauntData?.data.allcasts,
-        route:"user"
-      },
-      {
-        disc:"men",
-        value:CauntData?.data.male,
-        route:"user"
+  const [lodde,setLoding]=useState(false)
+  const [Total,setTotal]=useState([])
+  const from=location.state?.from?.pathname||'/login'
+  const user = JSON.parse(sessionStorage.getItem('user'));
+       if(lodde){
+        const { isLoading:lodingCountData,error ,data:CauntData} = useQuery("count-data", fetchCountedata);
+        const { isLoading:lodingCountOrder ,data:OrderCount} = useQuery("count-order",fetchCountorders); 
+        const Total =[
+          {
+            disc:"total cast",
+            value:CauntData?.data.allcasts,
+            route:"user"
+          },
+          {
+            disc:"men",
+            value:CauntData?.data.male,
+            route:"user"
+        
+          },
+          {
+            disc:"female",
+            value:CauntData?.data.female,
+            route:"user"
+          },
+          {
+            disc:"order",
+            value:OrderCount?.data,
+            route:"order"
+          },
+          {
+            disc:"custom order",
+            value:600,
+            route:"order"
+          }
+        ]
+        setTotal(Total)
+       }
+
     
-      },
-      {
-        disc:"female",
-        value:CauntData?.data.female,
-        route:"user"
-      },
-      {
-        disc:"order",
-        value:OrderCount?.data,
-        route:"order"
-      },
-      {
-        disc:"custom order",
-        value:600,
-        route:"order"
-      }
-    ]
+   
 
 useEffect(()=>{
   const user = JSON.parse(sessionStorage.getItem('user'));
@@ -129,6 +136,8 @@ useEffect(()=>{
   if(user?.isAdmin==false||!user){
 
     navigate(from,{replace:true})
+  }else{
+    setLoding(true)
   }
 },[])
 

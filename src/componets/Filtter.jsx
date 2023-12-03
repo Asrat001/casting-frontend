@@ -16,14 +16,15 @@ const Filtter = ({HandelGender, HandelSkin}) => {
       <h1 className=" font-semibold font-exo">Filters</h1>
     </div>
     <div className="my-6">
+      
       <h3>Geneder</h3>
       <select onChange={HandelGender} className=" border-[2px] mt-2 border-gray-400 rounded-lg w-full outline-none p-3 text-gray-900  bg-white ">
         <option defaultValue="" className=" hidden">
           not selected
         </option>
         <option value='' className="  hover:bg-[#FAFAFA]  p-2">All</option>
-        <option value='female' className=" accent-[#FAFAFA]  p-2">Femeal</option>
-        <option value='male' className="  hover:bg-[#FAFAFA]  p-2">men</option>
+        <option value='FEMALE' className=" accent-[#FAFAFA]  p-2">Female</option>
+        <option value='MALE' className="  hover:bg-[#FAFAFA]  p-2">Male</option>
        
       </select>
     </div>

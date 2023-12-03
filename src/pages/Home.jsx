@@ -20,6 +20,7 @@ import space from "../assets/space.png";
 import axios from "axios";
 import { fetchCasts } from "../apiRequistes/fetchCasts";
 import { useQuery } from "react-query";
+import Slider from "../componets/Slider";
 
 function Home() {
   const [searchValue, setSearchValue] = useState("")
@@ -52,35 +53,35 @@ function Home() {
   }
   const { isLoading:lodingCast ,data:CastData,isError} = useQuery({ queryKey: ['cast-data',filter], queryFn:()=>fetchCasts(filter) })
   return (
-    <section className="mb-20 sm:mb-auto">
+    <section className="">
       <div className=" h-screen">
-        <Hero />
+     <Hero/>
       </div>
       <main className=" ">
-        <div className="px-[40px] py-[35px] bg-[#3E8ED1]  overflow-x-hidden ">
-          <h2 className=" font-bold text-[32px] ml-[60px] mb-6 text-white ">
+        <div className="p-2 md:px-[40px] py-[35px] bg-[#3E8ED1]  overflow-x-hidden ">
+          <h2 className=" font-bold text-[32px] md:ml-[60px] mb-6 text-white ">
             Popular category
           </h2>
-          <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 place-items-center">
-            <a className="  flex items-center gap-2 bg-white w-48 p-1 shadow-lg shadow-black rounded-lg">
-              <i className=" place-items-center bg-[#E6EEFB] p-3 rounded-lg">
+          <div className=" grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-4 place-items-center">
+            <a className=" w-full flex items-center gap-2 bg-white md:w-48 p-1 shadow-lg shadow-black rounded-lg">
+              <i className="  place-items-center bg-[#E6EEFB] p-3 rounded-lg">
                 <BsFileMusic color="#ED7D31" />
               </i>
               <h1>Music Video</h1>
             </a>
-            <a className="  flex items-center gap-2 bg-white w-48 p-1 shadow-lg shadow-black rounded-lg">
+            <a className=" w-full  flex items-center gap-2 bg-white md:w-48 p-1 shadow-lg shadow-black rounded-lg">
               <i className=" place-items-center bg-[#E6EEFB] p-3 rounded-lg">
                 <BsFilm color="#ED7D31" />
               </i>
               <h1>Film</h1>
             </a>
-            <a className="  flex items-center gap-2 bg-white w-48 p-1 shadow-lg shadow-black rounded-lg">
+            <a className=" w-full  flex items-center gap-2 bg-white md:w-48 p-1 shadow-lg shadow-black rounded-lg">
               <i className=" place-items-center bg-[#E6EEFB] p-3 rounded-lg">
                 <BsPostageFill color="#ED7D31" />
               </i>
               <h1>TV Series</h1>
             </a>
-            <a className="  flex items-center gap-2 bg-white w-48 p-1  shadow-lg shadow-black rounded-lg">
+            <a className=" w-full  flex items-center gap-2 bg-white md:w-48 p-1  shadow-lg shadow-black rounded-lg">
               <i className=" place-items-center bg-[#E6EEFB] p-3 rounded-lg">
                 <BiSolidCameraMovie color="#ED7D31" />
               </i>
@@ -90,8 +91,8 @@ function Home() {
         </div>
         <div className=" flex p-4 md:p-14 gap-4">
         <Filtter  HandelSkin={HandelSkin} HandelAger={HandelAger} HandelGender={HandelGender}/>
-          <div className=" rounded-lg border-gray-300 border-[1px] md:p-6 w-full">
-            <div className="flex mb-6 w-[60%]">
+          <div className="p-4 rounded-lg md:border-gray-300 md:border-[1px] md:p-6 w-full">
+            <div className="flex mb-6 md:w-[60%]">
               <div className="  rounded-l-lg  border-gray-300 border-[1px] pl-3 w-full h-[50px] flex justify-center items-center">
                 <input
                   type="text"
@@ -100,7 +101,7 @@ function Home() {
                   className=" border-none outline-none text-black   focus:border-sky-500 bg-transparent rounded-r-full p-2  w-full border-green-400"
                 />
               </div>
-              <button className=" bg-[#ED7D31] p-2 w-[60px] rounded-r-lg">
+              <button className=" bg-[#ED7D31] p-2 rounded-r-lg">
                 <BsSearch className="w-8 h-8 text-white" />
               </button>
             </div>
@@ -111,15 +112,15 @@ function Home() {
             </div>
           </div>
         </div>
-        <div className=" h-screen p-10 mt-[20px]">
+        <div className="p-4">
           <h3 className=" text-black font-bold text-[30px] ">
             Why Energy Casting?
           </h3>
-          <div className=" grid grid-cols-1 lg:grid-cols-2 sm:p-16  ">
-            <div className=" h-[300px] sm:h-[500px] ">
-              <img src={space} alt="co-workers image  h-full" className="h-full w-full object-cover " />
+          <div className=" grid grid-cols-1 lg:grid-cols-2 gap-2 sm:p-16  ">
+            <div className=" hidden md:block h-[300px] sm:h-[500px] ">
+              <img src={space} alt="co-workers image" className=" w-full object-cover " />
             </div>
-            <div className=" grid grid-cols-1 sm:grid-cols-2   gap-3 p-4  ">
+            <div className=" grid grid-cols-1 sm:grid-cols-2   gap-3 p-4   ">
               <div className=" w-auto bg-[#f38c4c] p-6   rounded-lg ">
                 <div className="w-16 h-16 bg-[#ED7D31] rounded-full flex justify-center items-center">
                   <FaStar size={24} color="white" />
@@ -177,7 +178,7 @@ function Home() {
             </div>
           </div>
         </div>
-        <div className="mt-96 sm:mt-40">
+        <div className="mt-100 sm:mt-40">
           <Baner />
         </div>
       </main>
