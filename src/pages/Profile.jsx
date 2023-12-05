@@ -62,7 +62,7 @@ const Profile = () => {
     console.log(Language)
     const ProfileData={
       about:about,
-      Language:Language,
+      language:Language,
       phone:phone,
       age:age,
       info:{
@@ -214,7 +214,7 @@ const Profile = () => {
                   autoComplete="name"
                   placeholder='sparate by , eg: Amharic,Englishe'
                   required
-                  onChange={(e) => setLanguage([...Education,e.target.value])}
+                  onChange={(e) => setLanguage(e.target.value)}
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
               </div>
@@ -293,7 +293,7 @@ const Profile = () => {
                   type="text"
                   name="photo"
                   required
-                  onChange={(e) => setLink([...Education,e.target.value])}
+                  onChange={(e) => setLink(e.target.value)}
                   className="appearance-none block gap-x-4 px-3 w-full py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
                 />
       
@@ -421,7 +421,7 @@ const Profile = () => {
                   autoComplete="name"
                   placeholder='ex: Music video, Movie , promrotion'
                   required
-                  onChange={(e) => setExprience([...Education,e.target.value])}
+                  onChange={(e) => setExprience(e.target.value)}
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                 />
               </div>

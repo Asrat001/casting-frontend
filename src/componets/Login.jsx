@@ -53,21 +53,33 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsloading(true)
+   
     try {
+      console.log("heyhey ")
      await axios.post(`${server}/api/user/login`, {
         email,
         password,
-      },{withCredentials:true}).then(res=>{
+      },).then(res=>{
         sessionStorage.setItem('user',JSON.stringify(res.data));
         setIsloading(false)
+        toast.success('Wellcome Again',{
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        
+        })
         if(res.data.isAdmin===true){
           navigate('/admin')
         }else{
-          navigate(from,{replace:true})
+          navigate('/')
         }
       }).catch(error=>{
         const status= error.res.status
-
+          console.log(error)
         if(status===400){
           toast.warning('fill all the feilds',{
             position: "top-right",
@@ -81,7 +93,7 @@ const Login = () => {
           })
           setIsloading(false)
         }
-        if(status===404){
+        if(status==404){
           toast.warning('user not found , please register ',{
             position: "top-right",
             autoClose: 3000,
