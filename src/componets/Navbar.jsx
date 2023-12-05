@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {BsPersonPlusFill} from 'react-icons/bs'
+import { FaCartArrowDown } from "react-icons/fa";
 import {GiHamburgerMenu} from 'react-icons/gi'
 import { NavLink } from 'react-router-dom'
 import logo from "../assets/cast.png"
@@ -7,6 +7,7 @@ import { useShoppingCart } from '../Context/CartContext'
 import Modal from './Modal'
 import Drawer from './drawer'
 import { AiFillDelete } from 'react-icons/ai'
+import { IoIosNotifications } from "react-icons/io";
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -40,7 +41,7 @@ function Navbar() {
   return (
     <React.Fragment >
  
-      <nav className={` w-full fixed  left-0 top-0  ${scrolled ? `  bg-white`:` bg-white`}  justify-between  z-20 flex    sm:gap-[100px] items-center px-6 py-2  sm:px-8`}>
+      <nav className={` w-full fixed   left-0 top-0  ${scrolled ? `  bg-white`:` bg-transparent`}  justify-between  z-20 flex    sm:gap-[100px] items-center px-6 py-2  sm:px-8`}>
       <div className="cursor-pointer md:hidden" onClick={toggleDrawer}>
           <svg
             className="w-6 h-6"
@@ -80,13 +81,14 @@ function Navbar() {
      </ul>
       <button 
       onClick={()=>{setOpen(true)}}
-      className={`p-3 h-16 w-16 rounded-full ${user?` hidden`:``} border-[4px]  border-[#ED7D31]  flex justify-center items-center`}>
-      <BsPersonPlusFill className=' text-gray-900 ' size={28}/>
-      <p className={` text-gray-900 relative top-[-4px] left-0 ${state.length>0 ? `bg-red-600 p-1 rounded-full`:``} `} >{state.cart.length}</p>
+      className={`p-2 h-12 w-12 rounded-full ${user?` hidden`:``} border-[2px]  border-gray-600  flex justify-center items-center`}>
+        <FaCartArrowDown  className=' text-gray-900 ' size={18}/> 
+      <p className={` text-orange-600 relative top-[-4px] left-0 ${state.length>0 ? `bg-red-600 p-1 rounded-full`:``} `} >{state.cart.length}</p>
        </button>
  
-     <img src={user?.img} alt='profile pic' className={` ${user? 'block':' hidden'} w-16 h-16 rounded-full  border-[3px]  border-[#ED7D31]  object-cover`}/>
- 
+     <button className={`p-1 ${user?` `:`hidden`} rounded-full border-[2px] border-gray-800`}>
+     <IoIosNotifications size={28} className='text-[#ED7D31]'/>
+     </button>
   </nav>
   
   <Modal

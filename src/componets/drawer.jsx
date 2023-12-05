@@ -49,13 +49,13 @@ const Drawer = ({ isdrawerOpen, toggleDrawer}) => {
             />
           </svg>
         </button>
- <div className=' flex justify-between items-center mt-6'>
- <img src={logo} alt="enrgy casting log" className=' w-[60px] h-[60px]  object-cover'/>
-        <button 
-      onClick={()=>logout()}
-      className={`p-1 w-fit  ${user?` black`:` hidden`} border-[2px] rounded-lg  border-[#ED7D31]  flex justify-center items-center`}>
-       log out
-       </button>
+ <div className=' flex justify-between items-center  mb-2 mt-6'>
+   <div>
+   <img src={logo} alt="enrgy casting log" className=' w-[60px] h-[60px]  object-cover'/>
+   <p className=' font-semibold text-[12px] text-gray-600'>Energy Film Production</p>
+   </div>
+ <img src={user?.img} alt='profile pic' className={` ${user? 'block':' hidden'} w-12 h-12 rounded-full  border-[3px]  border-[#ED7D31]  object-cover`}/>
+ 
  </div>
  <hr className=' bg-orange-700 mt-1'/>
         <ul className="mt-3 space-y-3">
@@ -72,7 +72,11 @@ const Drawer = ({ isdrawerOpen, toggleDrawer}) => {
        {user?.isAdmin==true?<NavLink to='/order' className='text-gray-800' >Order</NavLink>: user?<NavLink to='/myprofile' className='text-gray-800'>Myprofile</NavLink> :<NavLink to='/register' className='text-gray-800'>Register as Cast</NavLink> }
        </li>
        <li className='p-2 shadow-lg shadow-gray-300 rounded-lg bg-[#E6EEFB]' onClick={toggleDrawer}>
-       {user?.isAdmin==true?<NavLink to='/order' className='text-gray-800' >Custom Order</NavLink>: user?'' :<NavLink to='/login' className='text-gray-800'>Login</NavLink> }
+       {user?.isAdmin==true?<NavLink to='/order' className='text-gray-800' >Custom Order</NavLink>: user?       <button 
+      onClick={()=>logout()}
+      className={`p-1 w-fit  ${user?` black`:` hidden`}  rounded-lg    flex justify-center items-center`}>
+       log out
+       </button> :<NavLink to='/login' className='text-gray-800'>Login</NavLink> }
        </li>
 
         </ul>
