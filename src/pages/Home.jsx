@@ -28,7 +28,7 @@ function Home() {
   const [gender, setGender] = useState()
   const [page, setPage] = useState(1)
   
-  
+
   const HandelAger=(event)=>{
     const valu= event?.target.value
     filter.age=valu
@@ -58,15 +58,15 @@ function Home() {
      <Hero/>
       </div>
       <main className=" ">
-        <div className="p-2 md:px-[40px] py-[35px] bg-[#3E8ED1]  overflow-x-hidden ">
-          <h2 className=" font-bold text-[32px] md:ml-[60px] mb-6 text-white ">
+        <div className="p-2 md:px-[40px] py-[35px]   overflow-x-hidden ">
+          <h2 className=" font-bold text-[32px] md:ml-[60px] mb-6 text-gray-600 ">
             Popular category
           </h2>
           <div className=" grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-4 place-items-center">
-            <a className=" w-full flex items-center gap-2 bg-white md:w-48 p-1 shadow-lg shadow-black rounded-lg">
-              <i className="  place-items-center bg-[#E6EEFB] p-3 rounded-lg">
+            <a className=" w-full flex items-center gap-2  md:w-48  shadow-lg shadow-black rounded-lg">
+              <div className="  place-items-center bg-[#E6EEFB] w-12 h-12 rounded-lg">
                 <BsFileMusic color="#ED7D31" />
-              </i>
+              </div>
               <h1>Music Video</h1>
             </a>
             <a className=" w-full  flex items-center gap-2 bg-white md:w-48 p-1 shadow-lg shadow-black rounded-lg">
@@ -89,7 +89,7 @@ function Home() {
             </a>
           </div>
         </div>
-        <div className=" flex p-4 md:p-14 gap-4">
+        <div className=" flex  md:p-14 gap-4">
         <Filtter  HandelSkin={HandelSkin} HandelAger={HandelAger} HandelGender={HandelGender}/>
           <div className="p-4 rounded-lg md:border-gray-300 md:border-[1px] md:p-6 w-full">
             <div className="flex mb-6 md:w-[60%]">

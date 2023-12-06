@@ -13,13 +13,22 @@ import './Work.css';
 import { Autoplay, Pagination} from 'swiper/modules';
 
 export default function Slider() {
+ 
+  const image =[
+    "https://res.cloudinary.com/diogyja1g/image/upload/v1695589767/image2_fu1qup.jpg",
+    "https://res.cloudinary.com/diogyja1g/image/upload/v1695589768/86_sffdlz.jpg",
+    "https://res.cloudinary.com/diogyja1g/image/upload/v1695590103/image1_hzy1af.jpg",
+    "https://res.cloudinary.com/diogyja1g/image/upload/v1695589769/image3_fezfd6.jpg"
+    ]
+
+
   return (
     <>
       <Swiper
         spaceBetween={0}
         centeredSlides={true}
         autoplay={{
-          delay: 3500,
+          delay: 4500,
           disableOnInteraction:true,
         }}
         pagination={{
@@ -29,15 +38,17 @@ export default function Slider() {
         modules={[Autoplay, Pagination,]}
         className="mySwiper"
       >
-        <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
+        {
+          image.map((img,i)=>{
+            return(
+              <SwiperSlide key={i} className={``}>
+                <img src={img} className=' rounded-bl-lg'/>
+              
+              </SwiperSlide>
+            )
+          })
+        }
+    
       </Swiper>
     </>
   );

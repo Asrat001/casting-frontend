@@ -13,6 +13,7 @@ const CastCard = ({Data,lodingCast,error}) => {
   console.log(Data)
     const {state,dispatch} = useShoppingCart()
     const [isOpen , setOpen]=useState(false)
+    const [showCard, setShowCard] = useState(null);
     const [Detail , setDetail]=useState([])
  const handleDitail =({data})=>{
   
@@ -70,25 +71,36 @@ dispatch({
       
         
         return(
-            <div key={i} className='w-[300px] h-[400px] bg-white flex flex-col justify-between  rounded-lg   shadow-lg shadow-gray-300    '>
-                <img src={data.avatar} loading='lazy' className=' h-[240px] rounded-lg  object-cover w-full   '/>
-                <div className='px-2 py-2'>
-                <p className=' text-gray-800'>{data.fullname} | <span className=' text-orange-600 text-[12px] font-extrabold '>{data.expriance}</span></p>
-                <p className=' text-gray-600 text-[14px] px-1 text-ellipsis '>{data?.about?.length>50?`${data.about.slice(0, 50)}...`:data.about }</p>
-               
+            <div key={i}  
+             onMouseEnter={() => setShowCard(i)}
+             onMouseLeave={() => setShowCard(null)}  
+             style={{ backgroundImage: `url(${data.avatar})` }}
+             className={`w-[300px] h-[400px]  bg-white flex flex-col justify-end bg-cover bg-no-repeat  bg-center  rounded-lg   shadow-lg shadow-gray-300   ` }>
+     <div className={`${showCard==i?' bg-gray-800/50 rounded-b-lg':''}`}>
+     <div className='px-2 py-2   '>
+                <p className=' text-white font-bold'>{data.fullname} | <span className=' text-orange-600 text-[12px] font-extrabold '>{data.expriance}</span></p>
+                <p className=' text-white text-[14px] px-1 text-ellipsis '>{data?.about?.length>50?`${data.about.slice(0, 50)}...`:data.about }</p>
                 </div>
-                <div className=' flex items-center gap-x-4  p-4'>
-                <button   onClick={()=>handleDitail({data})} className='py-1 px-1.5 w-auto flex  gap-3 justify-center bg-[#E6EEFB] items-center border-gray-400 border  text-[#ED7D31]'>
+          {showCard==i &&(
+           <div>
+             
+                <div className=' flex items-center gap-x-4  p-2'>
+                <button   onClick={()=>handleDitail({data})} className='py-1 px-1.5 w-auto flex text-[16px]  gap-3 justify-center rounded-full bg-[#ED7D31] items-center shadow-md shadow-gray-300   text-white'>
                   Detail
                   <BsFillEyeFill/>
                 </button>
                 <button 
                 disabled={user?.isAdmin==false}
-               onClick={() => { hadleAddtoCast(data)  }} className={`py-1.5 px-1.5 flex items-center gap-3 bg-[#E6EEFB]  border-gray-400 border  ${state.cart.some(item => item._id === data._id) ? 'bg-[#ED7D31]' : ''}   text-gray-700`}>
+               onClick={() => { hadleAddtoCast(data)  }} className={`py-1.5 px-1.5 flex items-center gap-3 bg-white  rounded-full text-[15px] border  ${state.cart.some(item => item._id === data._id) ? 'bg-[#ED7D31]' : ''}   text-gray-700`}>
                    {state.cart.some(item => item._id === data._id) ? 'Booked' : 'Book'}
                   <BsFillCameraReelsFill />
                   </button>
                 </div>
+            </div>
+          )
+
+          }
+      </div>
 
             </div>
         )

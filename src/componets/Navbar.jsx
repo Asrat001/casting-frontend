@@ -66,7 +66,7 @@ function Navbar() {
   
      <ul className=' sm:flex justify-center items-center gap-x-4 hidden '>
        <li>
-        <NavLink to='/' className='text-black text-[14px]'>Home</NavLink>
+        <NavLink to='/' className='text-black font-extrabold text-[14px]'>Home</NavLink>
        </li>
        <li>
         <NavLink to='/about' className='text-black text-[14px]'>About</NavLink>
@@ -74,16 +74,16 @@ function Navbar() {
        <li>
        <NavLink to={`${user?'':'login'}`} className='text-black text-[14px]'>{user?'':'login'}</NavLink>
        </li>
-       <li className={` border-dotted  border-[4px] p-2 border-[#ED7D31]  `}>
-        <NavLink to='/how' className='text-black text-[14px]'>How it works</NavLink>
+       <li className={` border-dotted  border-[4px] p-1 border-[#ED7D31]  `}>
+        <NavLink to='/how' className='text-black font-extrabold text-[14px]'>How it works</NavLink>
        </li>
         
      </ul>
       <button 
       onClick={()=>{setOpen(true)}}
-      className={`p-2 h-12 w-12 rounded-full ${user?` hidden`:``} border-[2px]  border-gray-600  flex justify-center items-center`}>
-        <FaCartArrowDown  className=' text-gray-900 ' size={18}/> 
-      <p className={` text-orange-600 relative top-[-4px] left-0 ${state.length>0 ? `bg-red-600 p-1 rounded-full`:``} `} >{state.cart.length}</p>
+      className={`p-2 h-12 w-12 rounded-full ${user?` hidden`:``} border-[2px]  border-orange-600  flex justify-center items-center`}>
+        <FaCartArrowDown  className=' text-white ' size={18}/> 
+      <p className={` text-orange-600 relative top-[-5px] left-[2px] ${state.length>0 ? `bg-red-600 p-1 rounded-full`:``} `} >{state.cart.length}</p>
        </button>
  
      <button className={`p-1 ${user?` `:`hidden`} rounded-full border-[2px] border-gray-800`}>
