@@ -59,7 +59,7 @@ const Login = () => {
      await axios.post(`${server}/api/user/login`, {
         email,
         password,
-      },).then(res=>{
+      },{withCredentials:true}).then(res=>{
         sessionStorage.setItem('user',JSON.stringify(res.data));
         setIsloading(false)
         toast.success('Wellcome Again',{
