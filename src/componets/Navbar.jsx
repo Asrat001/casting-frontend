@@ -92,7 +92,7 @@ function Navbar() {
   <Modal
    isOpen={isOpen}
    onClose={()=>{setOpen(false)}}
-   className={` absolute top-0 right-0  w-auto sm:w-[40%]  translate-x-[-0%] translate-y-[-0%]  `}
+   className={` absolute top-0 right-0  w-full sm:w-[40%]  translate-x-[-0%] translate-y-[-0%]  `}
   > {
     state?.cart.length==0 ?
     <h1 className=' text-[#ED7D31] text-[16px] font-bold'>Please first select a Cast to book !!</h1>

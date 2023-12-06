@@ -60,13 +60,7 @@ const router = createBrowserRouter(
 );
 
 const App = () => {
-  const [loading, setLoading]=useState(true);
 
-  useEffect(() => {
-    window.addEventListener('load', () => {
-      setLoading(false); // Set loading to false when all content (including images) is loaded
-    });
-  }, []);
 
 
 
@@ -75,8 +69,7 @@ const App = () => {
   
     <AuthProvider>
     <ShoppingCartProvider>
-      {loading?<Loading/>:
-<div>
+
 <RouterProvider router={router}/>
 <ToastContainer
         position="bottom-center"
@@ -90,8 +83,8 @@ const App = () => {
         pauseOnHover
         theme="dark"
       />
-</div>
-      }
+
+      
 
   </ShoppingCartProvider>
   </AuthProvider>
