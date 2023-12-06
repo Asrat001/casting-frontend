@@ -52,14 +52,7 @@ function Home() {
     page:page
   }
   const { isLoading:lodingCast ,data:CastData,isError} = useQuery({ queryKey: ['cast-data',filter], queryFn:()=>fetchCasts(filter) })
-   if(lodingCast){
-return(
-  <main className=" w-screen flex justify-center items-center h-screen bg-white">
-  <img src={loding} className=" w-16 h-16"/>
-  <p>Loading your page</p>
-</main>
-)
-   }
+
   return (
     <section className="">
       <div className=" h-screen">

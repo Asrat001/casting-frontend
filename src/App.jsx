@@ -26,8 +26,9 @@ import Order from "./componets/Order";
 import Custome from "./componets/Custome";
 import { ShoppingCartProvider } from "./Context/CartContext";
 import {QueryClientProvider,QueryClient} from 'react-query'
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { RequireAuth,RequireAdminAuth } from "./componets/requireAuth";
+import Loading from "./componets/loading";
 const router = createBrowserRouter(
   createRoutesFromElements(
 <Route>
@@ -59,25 +60,39 @@ const router = createBrowserRouter(
 );
 
 const App = () => {
+  const [loading, setLoading]=useState(true);
+
+  useEffect(() => {
+    window.addEventListener('load', () => {
+      setLoading(false); // Set loading to false when all content (including images) is loaded
+    });
+  }, []);
+
+
 
     return (
-     <AuthProvider>
-      <ShoppingCartProvider>
-  <RouterProvider router={router}/>
-  <ToastContainer
-          position="bottom-center"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="dark"
-        />
-    </ShoppingCartProvider>
-    </AuthProvider>
+<div>
+  {
+    loading ?<Loading/> :
+    <AuthProvider>
+    <ShoppingCartProvider>
+<RouterProvider router={router}/>
+<ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
+  </ShoppingCartProvider>
+  </AuthProvider>
+  }
+</div>
      
     )
   
