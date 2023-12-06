@@ -62,8 +62,6 @@ function Navbar() {
       <img src={logo} alt="enrgy casting log" className=' w-[60px] h-[60px]  object-cover'/>
       <h1 className=''><span className=' font-bold'>Energy</span> Casting</h1>
       </div>
-    
-  
      <ul className=' sm:flex justify-center items-center gap-x-4 hidden '>
        <li>
         <NavLink to='/' className='text-black font-extrabold text-[14px]'>Home</NavLink>
@@ -81,8 +79,8 @@ function Navbar() {
      </ul>
       <button 
       onClick={()=>{setOpen(true)}}
-      className={`p-2 h-12 w-12 rounded-full ${user?` hidden`:``} border-[2px]  border-orange-600  flex justify-center items-center`}>
-        <FaCartArrowDown  className=' text-white ' size={18}/> 
+      className={`p-2 h-12 w-12 rounded-full ${user?` hidden`:``} border-[2px] ${scrolled?'border-gray-800':'border-orange-600'}   flex justify-center items-center`}>
+        <FaCartArrowDown  className={`${scrolled?'text-[#ED7D31]':'text-gray-900  sm:text-white'}   `} size={18}/> 
       <p className={` text-orange-600 relative top-[-5px] left-[2px] ${state.length>0 ? `bg-red-600 p-1 rounded-full`:``} `} >{state.cart.length}</p>
        </button>
  

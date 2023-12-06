@@ -21,7 +21,7 @@ import axios from "axios";
 import { fetchCasts } from "../apiRequistes/fetchCasts";
 import { useQuery } from "react-query";
 import Slider from "../componets/Slider";
-
+import loding from '../assets/loging.svg'
 function Home() {
   const [searchValue, setSearchValue] = useState("")
   const [age, setAge] = useState()
@@ -52,6 +52,14 @@ function Home() {
     page:page
   }
   const { isLoading:lodingCast ,data:CastData,isError} = useQuery({ queryKey: ['cast-data',filter], queryFn:()=>fetchCasts(filter) })
+   if(lodingCast){
+return(
+  <main className=" w-screen flex justify-center items-center h-screen bg-white">
+  <img src={loding} className=" w-16 h-16"/>
+  <p>Loading your page</p>
+</main>
+)
+   }
   return (
     <section className="">
       <div className=" h-screen">
@@ -91,7 +99,7 @@ function Home() {
         </div>
         <div className=" flex  md:p-14 gap-4">
         <Filtter  HandelSkin={HandelSkin} HandelAger={HandelAger} HandelGender={HandelGender}/>
-          <div className="p-4 rounded-lg md:border-gray-300 md:border-[1px] md:p-6 w-full">
+          <div className="p-5 rounded-lg md:border-gray-300 md:border-[1px] md:p-12 w-full">
             <div className="flex mb-6 md:w-[60%]">
               <div className="  rounded-l-lg  border-gray-300 border-[1px] pl-3 w-full h-[50px] flex justify-center items-center">
                 <input

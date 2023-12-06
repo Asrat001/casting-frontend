@@ -64,7 +64,7 @@ dispatch({
 
 
   return (
-    <div className='grid grid-cols-1 sm:grid-cols-3 place-content-center justify-items-center gap-5'>
+    <div className='grid grid-cols-1 sm:grid-cols-3 place-content-center justify-items-center  gap-x-20 gap-y-4'>
      
 {
     Data?.data?.users.map((data,i)=>{
@@ -75,7 +75,7 @@ dispatch({
              onMouseEnter={() => setShowCard(i)}
              onMouseLeave={() => setShowCard(null)}  
              style={{ backgroundImage: `url(${data.avatar})` }}
-             className={`w-[300px] h-[400px]  bg-white flex flex-col justify-end bg-cover bg-no-repeat  bg-center  rounded-lg   shadow-lg shadow-gray-300   ` }>
+             className={`md:w-[300px] w-full h-[400px]  bg-white flex flex-col justify-end bg-cover bg-no-repeat  bg-center  rounded-lg   shadow-lg shadow-gray-400   ` }>
      <div className={`${showCard==i?' bg-gray-800/50 rounded-b-lg':''}`}>
      <div className='px-2 py-2   '>
                 <p className=' text-white font-bold'>{data.fullname} | <span className=' text-orange-600 text-[12px] font-extrabold '>{data.expriance}</span></p>
