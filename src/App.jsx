@@ -72,10 +72,11 @@ const App = () => {
 
     return (
 <div>
-  {
-    loading ?<Loading/> :
+  
     <AuthProvider>
     <ShoppingCartProvider>
+      {loading?<Loading/>:
+<div>
 <RouterProvider router={router}/>
 <ToastContainer
         position="bottom-center"
@@ -89,9 +90,12 @@ const App = () => {
         pauseOnHover
         theme="dark"
       />
+</div>
+      }
+
   </ShoppingCartProvider>
   </AuthProvider>
-  }
+  
 </div>
      
     )
