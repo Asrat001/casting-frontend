@@ -94,7 +94,7 @@ const AdminDashboard = () => {
   const user = JSON.parse(sessionStorage.getItem('user'));
        
         const { isLoading:lodingCountData,error ,data:CauntData} = useQuery("count-data", fetchCountedata);
-      //  const { isLoading:lodingCountOrder ,data:OrderCount} = useQuery("count-order",fetchCountorders); 
+        const { isLoading:lodingCountOrder ,data:OrderCount} = useQuery("count-order",fetchCountorders); 
         const Total =[
           {
             disc:"total cast",
@@ -114,7 +114,7 @@ const AdminDashboard = () => {
           },
           {
             disc:"order",
-            value:400,
+            value:OrderCount?.data,
             route:"order"
           },
           {

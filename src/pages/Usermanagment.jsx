@@ -2,9 +2,20 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Pagetation from "../componets/Pagetation";
 import { useShoppingCart } from "../Context/CartContext";
+import { fetchCasts } from "../apiRequistes/fetchCasts";
+import { useQuery } from "react-query";
 
-const Usermanagment = () => {
-  const {CastData}=useShoppingCart()
+const Usermanagment = ({}) => {
+  const [page, setPage] = useState(1)
+  const HandelPage=(page)=>{
+    setPage(page)
+}
+  const filter={
+    search:"",
+    gender:"",
+    page:1
+  }
+  const { isLoading:lodingCast ,data:CastData,isError} = useQuery({ queryKey: ['cast-data',filter], queryFn:()=>fetchCasts(filter) })
 
   return (
     <div className="">
@@ -112,7 +123,7 @@ const Usermanagment = () => {
    
         </div>
       </div>
-      <Pagetation/>
+      <Pagetation Data={CastData}/>
     </div>
   );
 };

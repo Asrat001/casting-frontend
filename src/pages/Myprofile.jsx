@@ -56,7 +56,7 @@ const fetchProfileData = async()=>{
           <p><span className="font-semibold">Language:</span> {userData?.data.userinfo[0].language}</p>
           <p><span className="font-semibold">Phone:</span> {userData?.data.userinfo[0].phone}</p>
 
-          <p><span className="font-semibold">Age:</span> 30</p>
+          <p><span className="font-semibold">Age:</span> {userData?.data.userinfo[0].age}</p>
           <p><span className="font-semibold">Skin Tone:</span>{userData?.data.userinfo[0].skintone}</p>
           {
 info.map((info)=>{
