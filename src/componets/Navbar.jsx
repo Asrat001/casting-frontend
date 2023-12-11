@@ -60,33 +60,27 @@ function Navbar() {
         </div>
       <div className=' sm:flex items-center gap-1 hidden  '>
       <img src={logo} alt="enrgy casting log" className=' w-[60px] h-[60px]  object-cover'/>
-      <h1 className=''><span className=' font-bold'>Energy</span> Casting</h1>
+      <h1 className=''><span className='  font-extrabold text-indigo-900 '>Energy</span> Casting</h1>
       </div>
-     <ul className=' sm:flex justify-center items-center gap-x-4 hidden '>
-       <li>
-        <NavLink to='/' className='text-black font-extrabold text-[14px]'>Home</NavLink>
-       </li>
-       <li>
-        <NavLink to='/about' className='text-black text-[14px]'>About</NavLink>
-       </li>
-       <li>
-       <NavLink to={`${user?'':'login'}`} className='text-black text-[14px]'>{user?'':'login'}</NavLink>
-       </li>
-       <li className={` border-dotted  border-[4px] p-1 border-[#ED7D31]  `}>
-        <NavLink to='/how' className='text-black font-extrabold text-[14px]'>How it works</NavLink>
-       </li>
-        
-     </ul>
+<div className=' flex items-center gap-4'>
+ {user?.isAdmin==true?  <NavLink
+      className={`border-[1px]  p-1 ${scrolled?' text-gray-900 border-gray-800':'text-gray-900 md:text-white border-orange-700'}   font-extrabold`}
+      to='/admin'
+      >Dashboard</NavLink>:     <NavLink
+      className={`border-[1px]  p-1 ${scrolled?' text-gray-900 border-gray-800':'text-gray-900 md:text-white border-orange-700'}   font-extrabold`}
+      to='/login'
+      >Login</NavLink>}
       <button 
       onClick={()=>{setOpen(true)}}
       className={`p-2 h-12 w-12 rounded-full ${user?` hidden`:``} border-[2px] ${scrolled?'border-gray-800':'border-orange-600'}   flex justify-center items-center`}>
-        <FaCartArrowDown  className={`${scrolled?'text-[#ED7D31]':'text-gray-900  sm:text-white'}   `} size={18}/> 
+        <FaCartArrowDown  className={`${scrolled?'text-[#ED7D31]':'text-gray-900  smtext-indigo-900'}   `} size={18}/> 
       <p className={` text-orange-600 relative top-[-5px] left-[2px] ${state.length>0 ? `bg-red-600 p-1 rounded-full`:``} `} >{state.cart.length}</p>
        </button>
  
      <button className={`p-1 ${user?` `:`hidden`} rounded-full border-[2px] border-gray-800`}>
      <IoIosNotifications size={28} className='text-[#ED7D31]'/>
      </button>
+</div>
   </nav>
   
   <Modal

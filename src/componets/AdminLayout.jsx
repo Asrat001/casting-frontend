@@ -6,22 +6,42 @@ import { IoNotificationsSharp } from "react-icons/io5";
 import { GiHamburgerMenu } from "react-icons/gi";
 import Drawer from "./drawer";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { server } from "../server";
 
 const AdminLayout = () => {
   const [isdrawerOpen, setIsdrawerOpen] = useState(false);
   const toggleDrawer = () => {
     setIsdrawerOpen(!isdrawerOpen);
   };
-
+ const navigate =useNavigate()
+  const logout = async ()=>{
+   
+    try {
+     await axios.post(`${server}/api/user/logout`,{withCredentials:true}).then((res)=>{
+     
+        if(res.status==201){
+          sessionStorage.removeItem('user');
+          navigate('/')
+        }
+     })
+    } catch (error) {
+      console.log(error)
+    }
+}
   const user = JSON.parse(sessionStorage.getItem("user"));
   return (
     <main className=" flex flex-col md:flex-row">
       <nav className="  fixed top-0 left-0 w-full md:w-fit   bg-white md:min-h-screen  mix-blend-hard-normal py-4 px-5 ">
         <div className=" flex justify-between items-center">
-          <button onClick={toggleDrawer} className=" block sm:hidden">
+     <div>
+     <button onClick={toggleDrawer} className=" block sm:hidden">
             <GiHamburgerMenu className="w-8 h-8 text-gray-600" />
-            ADMIN DASHBOARD
+         
           </button>
+        <p className="block md:hidden">  ADMIN DASHBOARD</p>
+     </div>
           <img
             src={user?.img}
             alt="profile pic"
@@ -35,7 +55,12 @@ const AdminLayout = () => {
             Energy casting Admin Dashbord
           </h2>
           <hr />
-          <ul className=" mt-20 space-y-4 ">
+ {user?.isAdmin==true?    <button 
+      onClick={()=>logout()}
+      className={`p-1 w-fit  ${user?` black`:` hidden`}  my-4 rounded-lg  border-[2px] border-gray-900     flex justify-center items-center`}>
+       log out
+       </button> :''}
+          <ul className=" mt-10 space-y-4 ">
             <li className=" bg-[#ECF3F7]   p-4 px-4 flex items-center gap-2 rounded-xl shadow-lg shadow-gray-600 ">
               <div className="p-1  bg-white h-fit w-fit rounded-full">
                 <BiSolidDashboard size={28} />

@@ -75,7 +75,7 @@ const Login = () => {
         if(res.data.isAdmin===true){
           navigate('/admin')
         }else{
-          navigate('/')
+          navigate('/myprofile')
         }
       }).catch(error=>{
         const status= error.res.status

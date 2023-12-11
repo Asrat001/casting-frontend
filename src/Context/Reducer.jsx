@@ -9,7 +9,7 @@ export const cartReducer = (state, action) => {
           console.log(existingItem)
         if(existingItem){
           toast.error('user alardy added',{
-            position: "top-right",
+            position: "bottom-center",
             autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,
@@ -22,7 +22,7 @@ export const cartReducer = (state, action) => {
         }
         else{
           toast.success('cast added  to the cart',{
-            position: "top-right",
+            position: "bottom-center",
             autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,

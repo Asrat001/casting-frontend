@@ -6,6 +6,7 @@ import axios from 'axios';
 import { server } from '../server';
 import { toast } from 'react-toastify';
 import Spinner from "../assets/Spinner.svg"
+import { MultiSelect } from 'react-multi-select-component';
  
 const Talents = [
     "🎨 Art",
@@ -30,6 +31,13 @@ const Talents = [
     "📝 Writing",
   ];
 
+const Exprince=[
+  { label: "Music Video", value: "Music" },
+  { label: "Film", value: "Film" },
+  { label: "Commercial ", value: "Commercial ",},
+  { label: "TV Series", value: "TV Series ",},
+]
+
   const image =[
     "https://res.cloudinary.com/diogyja1g/image/upload/v1695589767/image2_fu1qup.jpg",
     "https://res.cloudinary.com/diogyja1g/image/upload/v1695589768/86_sffdlz.jpg",
@@ -46,11 +54,13 @@ const Profile = () => {
     const [sex, setSex] = useState('');
     const [Education, setEducation] = useState('');
     const [link, setLink] = useState("");
+    const [work, setWork] = useState("");
     const [nationality, setNationality] = useState("");
     const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
     const [skin, setSkin] = useState("");
-    const [exprience, setExprience] = useState("");
+    const [Testimonials,setTestimonials]=useState('')
+    const [exprience, setExprience] = useState([]);
     const [interests, setInterests] = useState(
         []
       );
@@ -71,14 +81,17 @@ const Profile = () => {
         city:city,
         accadamic:Education
       },
+      Testimonials:Testimonials,
+
       link:link,
-      exprience:exprience,
+      works:work,
+      exprience:exprience.map((val)=>val.value).toString().toUpperCase(),
       gender:sex.toUpperCase(),
       avatar:JSON.parse(sessionStorage.getItem('img')),
       talent:interests,
-      skintone:skin
+      skintone:skin.toUpperCase()
     }
-
+ console.log((exprience.map((val)=>val.value)).toString().toUpperCase())
 
     const handelSubmit= async (e)=>{
       e.preventDefault();
@@ -301,6 +314,7 @@ const Profile = () => {
             </div>
 
             <div>
+
               <label
                 htmlFor="email"
                 className="block text-sm font-medium text-gray-700"
@@ -414,20 +428,52 @@ const Profile = () => {
                 Expriance
               </label>
              
-                <div className="mt-1">
-                <input
-                  type='text'
-                  name="text"
-                  autoComplete="name"
-                  placeholder='ex: Music video, Movie , promrotion'
-                  required
-                  onChange={(e) => setExprience(e.target.value)}
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                />
-              </div>
+          <MultiSelect
+          options={Exprince}
+          value={exprience}
+          onChange={setExprience}
+          labelledBy='Expriance'
+          />
             
             </div>
-          
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700"
+              >
+               Previous Work Links
+              </label>
+              <div className="mt-1 " >
+                <input
+                placeholder=' httts://youtube.com/me'
+                  type="text"
+                  name="photo"
+                  required
+                  onChange={(e) => setWork(e.target.value)}
+                  className="appearance-none block gap-x-4 px-3 w-full py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-blue-500 sm:text-sm"
+                />
+      
+              </div>
+            </div>
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700"
+              >
+               Testimonials Telephone
+              </label>
+              <div className="mt-1 " >
+                <input
+                placeholder='0916..........'
+                  type="number"
+                  name="photo"
+                  required
+                  onChange={(e) => setTestimonials(e.target.value)}
+                  className="appearance-none block gap-x-4 px-3 w-full py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                />
+      
+              </div>
+            </div>
             </main> 
             <div className=''>
               <label

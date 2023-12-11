@@ -4,7 +4,9 @@ import logo from "../assets/cast.png"
 import { useNavigate } from "react-router-dom"
 import axios from 'axios';
 import { server } from '../server';
-
+import { IoIosHome, IoIosLogIn } from 'react-icons/io';
+import { FcAbout } from "react-icons/fc";
+import { BsFillInfoSquareFill, BsFillQuestionCircleFill } from 'react-icons/bs';
 const Drawer = ({ isdrawerOpen, toggleDrawer}) => {
 
   const navigate=useNavigate()
@@ -26,16 +28,16 @@ const Drawer = ({ isdrawerOpen, toggleDrawer}) => {
   return (
     <div>
       {isdrawerOpen && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-40" onClick={toggleDrawer} />
+        <div className="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-40 " onClick={toggleDrawer} />
       )}
       <div
-        className={`bg-white w-64 h-screen p-4 fixed top-0 left-0 transform ${
+        className={`bg-white w-full  h-screen p-4 fixed top-0 left-0 transform ${
           isdrawerOpen ? 'translate-x-0' : '-translate-x-full'
-        } transition-transform duration-300 ease-in-out shadow-lg z-50 rounded-r-2xl`}
+        } transition-transform duration-300 ease-in-out shadow-lg z-50 `}
       >
         <button className="absolute top-2 right-2 p-2" onClick={toggleDrawer}>
           <svg
-            className="w-4 h-4"
+            className="w-6 h-6"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -54,30 +56,30 @@ const Drawer = ({ isdrawerOpen, toggleDrawer}) => {
    <img src={logo} alt="enrgy casting log" className=' w-[60px] h-[60px]  object-cover'/>
    <p className=' font-semibold text-[12px] text-gray-600'>Energy Film Production</p>
    </div>
- <img src={user?.img} alt='profile pic' className={` ${user? 'block':' hidden'} w-12 h-12 rounded-full  border-[3px]  border-[#ED7D31]  object-cover`}/>
- 
+   <button 
+      onClick={()=>logout()}
+      className={`p-1 w-fit  ${user?` black`:` hidden`}  rounded-lg  border-[2px] border-gray-900     flex justify-center items-center`}>
+       log out
+       </button> 
  </div>
  <hr className=' bg-orange-700 mt-1'/>
         <ul className="mt-3 space-y-3">
-        <li className="p-2 shadow-lg shadow-gray-300 rounded-lg bg-[#E6EEFB]">
-        {user?.isAdmin==true?<NavLink to={'/admin'} onClick={toggleDrawer} className='text-gray-800'>{'Dashboard'}</NavLink>:<NavLink to={'/'} onClick={toggleDrawer} className='text-gray-800'>{'home'}</NavLink>}
-       </li>
-       <li className='p-2 shadow-lg shadow-gray-300 rounded-lg bg-[#E6EEFB]' onClick={toggleDrawer}>
-     {user?.isAdmin==true?<NavLink to={'/user'} className='text-gray-800'>{'user Management'}</NavLink>:<NavLink to={'/about'} className='text-gray-800'>{'about'}</NavLink>}
-       </li>
-       <li className='p-2 shadow-lg shadow-gray-300 rounded-lg bg-[#E6EEFB]' onClick={toggleDrawer}>
-      {user?.isAdmin==true?<NavLink to='/register' className='text-gray-800' >Register Cast</NavLink>: <NavLink to='/how' className='text-gray-800'>How it works</NavLink>  }
-       </li>
-       <li className='p-2 shadow-lg shadow-gray-300 rounded-lg bg-[#E6EEFB]' onClick={toggleDrawer}>
-       {user?.isAdmin==true?<NavLink to='/order' className='text-gray-800' >Order</NavLink>: user?<NavLink to='/myprofile' className='text-gray-800'>Myprofile</NavLink> :<NavLink to='/register' className='text-gray-800'>Register as Cast</NavLink> }
-       </li>
-       <li className='p-2 shadow-lg shadow-gray-300 rounded-lg bg-[#E6EEFB]' onClick={toggleDrawer}>
-       {user?.isAdmin==true?<NavLink to='/order' className='text-gray-800' >Custom Order</NavLink>: user?       <button 
-      onClick={()=>logout()}
-      className={`p-1 w-fit  ${user?` black`:` hidden`}  rounded-lg    flex justify-center items-center`}>
-       log out
-       </button> :<NavLink to='/login' className='text-gray-800'>Login</NavLink> }
-       </li>
+     
+        {user?.isAdmin==true?<NavLink to={'/admin'} onClick={toggleDrawer} className='text-gray-800  p-1  border-[4px] rounded-full  border-gray-900 flex items-center w-1/2  justify-between'>{'Dashboard'}</NavLink>:<NavLink to={'/'} onClick={toggleDrawer} className='text-gray-800  p-1  border-[4px] rounded-full  border-gray-900 flex items-center w-1/2  justify-center gap-2'>{'home'} <IoIosHome/> </NavLink>}
+       
+
+     {user?.isAdmin==true?<NavLink to={'/admin/user'} className='text-gray-800  p-1  border-[4px] rounded-full  border-gray-900 flex items-center w-1/2  justify-between'>{'user Management'}</NavLink>:<NavLink to={'/about'} className='text-gray-800  p-1  border-[4px] rounded-full  border-gray-900 flex items-center w-1/2  justify-center gap-2'>{'about'} <BsFillInfoSquareFill/> </NavLink>}
+     
+       
+      {user?.isAdmin==true?<NavLink to='/register' className='text-gray-800  p-1  border-[4px] rounded-full  border-gray-900 flex items-center w-1/2  justify-between' >Register Cast</NavLink>: <NavLink to='/how' className='text-gray-800  p-1  border-[4px] rounded-full  border-gray-900 flex items-center w-1/2  justify-center gap-2'>How it works<BsFillQuestionCircleFill/> </NavLink>  }
+       
+
+       {user?.isAdmin==true?<NavLink to='/order' className='text-gray-800  p-1  border-[4px] rounded-full  border-gray-900 flex items-center w-1/2 gap-2' >Order</NavLink>:<NavLink to='/register' className='text-gray-800  p-1  border-[4px] rounded-full  border-gray-900 flex  justify-center items-center w-1/2 gap-2'>Register as Cast <IoIosLogIn size={18}/> </NavLink> }
+       
+       
+       {user?.isAdmin==true?<NavLink to='/order' className='text-gray-800  p-1  border-[4px] rounded-full  border-gray-900 flex items-center w-1/2 gap-2' >Custom Order</NavLink>: 
+     <NavLink to='/login' className='text-gray-800  p-1  border-[4px] rounded-full  border-gray-900 flex items-center w-1/2  justify-center gap-2'>Login <IoIosLogIn size={18}/> </NavLink> }
+       
 
         </ul>
   

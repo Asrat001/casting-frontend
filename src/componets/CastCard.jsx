@@ -3,18 +3,20 @@ import { BsFillCameraReelsFill, BsFillEyeFill, BsFillTelephoneFill } from 'react
 import { useShoppingCart } from '../Context/CartContext'
 import Data from '../data'
 import Modal from './Modal'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import loding from '../assets/loging.svg'
+import Pagetation from './Pagetation'
 
 
-const CastCard = ({Data,lodingCast,error}) => {
+const CastCard = ({Data,lodingCast,error,HandelPage}) => {
   console.log(Data)
     const {state,dispatch} = useShoppingCart()
     const [isOpen , setOpen]=useState(false)
     const [showCard, setShowCard] = useState(null);
     const [Detail , setDetail]=useState([])
+    const containerRef = useRef(null); 
  const handleDitail =({data})=>{
   
   setDetail([data])
@@ -64,7 +66,8 @@ dispatch({
 
 
   return (
-    <div className='grid grid-cols-1 sm:grid-cols-3 place-content-center justify-items-center  gap-x-20 gap-y-4'>
+    
+  <div className='grid grid-cols-1 sm:grid-cols-4 place-content-center justify-items-center  gap-4' ref={containerRef}>
      
 {
     Data?.data?.users.map((data,i)=>{
@@ -102,10 +105,13 @@ dispatch({
           }
       </div>
 
-            </div>
+  </div>
+
         )
     })
 }
+
+
 <Modal
   isOpen={isOpen}
   onClose={()=>{setOpen(false)}}
@@ -155,6 +161,8 @@ dispatch({
 
 </Modal>
     </div>
+   
+    
   )
 }
 

@@ -10,12 +10,8 @@ const Filtter = ({HandelGender, HandelSkin}) => {
     
   }
   return (
-    <div className=" p-10 hidden md:block">
-    <div className=" w-[200px] flex  items-center gap-2">
-      <img src={icon} alt="icon" className=" w-6 h-6 " />
-      <h1 className=" font-semibold font-exo">Filters</h1>
-    </div>
-    <div className="my-6">
+    <div className=" flex ">
+    <div className="">
       
       <h3>Geneder</h3>
       <select onChange={HandelGender} className=" border-[2px] mt-2 border-gray-400 rounded-lg w-full outline-none p-3 text-gray-900  bg-white ">

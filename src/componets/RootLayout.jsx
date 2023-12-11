@@ -20,7 +20,7 @@ const RootLayout = () => {
   return (
     <>
     {
-      tru ||customepage?"":
+      tru ||customepage||myprofile?"":
       <header className="  ">
      <Navbar/>
     </header>
